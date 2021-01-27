@@ -1,4 +1,35 @@
- {
-	top: 0;
-	right: 0;
+.resume-header {
+	font-size: 1.3rem;
+	font-family: 'Julius Sans One', sans-serif;
+	margin-bottom: 0;
+	margin-top: 1rem;
+}
+
+.resume-body {
+	font-family: 'Lora', serif;
+	font-size: larger;
+}
+
+.resume-date {
+	font-style: italic;
+	font-family: 'Lora', serif;
+	font-size: large;
+	text-align: center;
+}
+
+.resume-title {
+	font-family: 'Lora', serif;
+	font-size: larger;
+	text-align: center;
+	margin-bottom: 0;
+}
+
+hr {
+	margin-top: 0;
+	background-color: white;
+}
+
+.res-hr{
+	width:8rem; 
+	margin: auto;
 }
