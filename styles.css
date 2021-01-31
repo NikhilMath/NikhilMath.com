@@ -29,7 +29,11 @@ hr {
 	background-color: white;
 }
 
-.res-hr{
+.res-hr {
 	width:8rem; 
 	margin: auto;
+}
+
+.hr-quarantine {
+	width: 29rem;
 }
