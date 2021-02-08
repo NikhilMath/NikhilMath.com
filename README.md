@@ -3,7 +3,7 @@
 
 This is my personal website
 
-To open this file go to the website [NikhilMath.com](NikhilMath.com)
+To open this file go to the website [NikhilMath.com](https://NikhilMath.com)
 or download the zip file here. 
 ---
 
