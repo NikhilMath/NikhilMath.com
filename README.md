@@ -2,8 +2,8 @@
 
 My personal website, visit it to see more about me.
 
-[NikhilMath.com](https://NikhilMath.com)
-[LinkedIn](https://www.linkedin.com/in/nikhil-math/)
+[NikhilMath.com](https://NikhilMath.com) <br />
+[LinkedIn](https://www.linkedin.com/in/nikhil-math/)<br />
 [GitHub](https://github.com/NikhilMath)
 ---
 
