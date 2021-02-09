@@ -1,11 +1,10 @@
-**Version 2.1**
+**Version 2.1.1**
 
 My personal website, visit it to see more about me.
 
-To open this file go to the website [NikhilMath.com](https://NikhilMath.com)
-or download the zip file here.
-
+[NikhilMath.com](https://NikhilMath.com)
 [LinkedIn](https://www.linkedin.com/in/nikhil-math/)
+[GitHub](https://github.com/NikhilMath)
 ---
 
 ## Contributors
