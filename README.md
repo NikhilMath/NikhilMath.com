@@ -1,14 +1,9 @@
-**Version 2.2.1**
+# [NikhilMath.com](https://NikhilMath.com)
 
-My personal website, visit it to see more about me.
----
-[NikhilMath.com](https://NikhilMath.com) <br />
-[LinkedIn](https://www.linkedin.com/in/nikhil-math/)<br />
-[GitHub](https://github.com/NikhilMath)
----
+### &nbsp;&nbsp;&nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/in/nikhil-math/)<br />
 
-## Contributors
 
-Nikhil Math: <erulemath@gmail.com>
+
+<hr>
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Nikhilmath/Nikhilmath.com)
