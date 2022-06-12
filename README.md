@@ -11,3 +11,4 @@ My personal website, visit it to see more about me.
 
 Nikhil Math: <erulemath@gmail.com>
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Nikhilmath/Nikhilmath.com)
