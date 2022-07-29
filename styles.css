@@ -1,43 +1,37 @@
+/* --------------------------------- Resume --------------------------------- */
 .resume-header {
-	font-size: 1.3rem;
 	font-family: 'Julius Sans One', sans-serif;
+	font-size: 1.3rem;
 	margin-bottom: 0;
 	margin-top: 1rem;
 }
-
 .resume-body {
 	font-family: 'Lora', serif;
 	font-size: larger;
 }
-
 .resume-date {
-	font-style: italic;
 	font-family: 'Lora', serif;
 	font-size: large;
+	font-style: italic;
 	text-align: center;
 }
-
 .resume-title {
 	font-family: 'Lora', serif;
 	font-size: larger;
-	text-align: center;
 	margin-bottom: 0;
+	text-align: center;
 }
-
-hr {
-	margin-top: 0;
-	background-color: white;
-}
-
 .res-hr {
-	width:8rem; 
 	margin: auto;
+	width: 8rem; 
 }
-
+hr {
+	background-color: white;
+	margin-top: 0;
+}
 .hr-quarantine {
 	width: 29rem;
 }
-
 .navbar-color {
 	background-color: #808080;
 }
