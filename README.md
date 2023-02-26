@@ -1,10 +1,6 @@
+This is the GitHub repository for my personal website - Click the link and check it out
 # [NikhilMath.com](https://NikhilMath.com)
 
-### &nbsp;&nbsp;&nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/in/nikhil-math/)<br />
-
-
-
-<hr>
-
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Nikhilmath/Nikhilmath.com)
-nghg
+---
+Here is my LinkedIn if you are curious, feel free to connect / message me on it
+# [LinkedIn](https://www.linkedin.com/in/nikhil-math/)
