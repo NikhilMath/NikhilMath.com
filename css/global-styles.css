@@ -2,25 +2,61 @@
 /* Global Variables */
 :root {
   --neon-blue: hsl(183, 98%, 48%);
-  --bootstrap-dark: hsl(210, 10%, 23%);
+  --bootstrap-dark: hsl(210, 11%, 15%);
+  --nav-button-border: 7px;
+  --bootstrap-light: hsl(210, 17%, 98%);
+  --neon-purple: hsl(276, 79%, 56%);
+  --neon-green: hsl(118, 100%, 50%);
 }
-/* Makes the buttons that are in the Nav bar have the right font-size */
-nav button {
-  font-size: 1.5rem !important;
-  /* when were done with the boostrap 5 btn class, and make our own, we will get rid of this important tag */
+/* Utility Classes */
+.not-allowed-cursor {
+  cursor: not-allowed !important;
 }
-/* Makes the buttons go neon when hovered over */
-nav button:hover {
-  background: var(--neon-blue);
-  color: black;
-  box-shadow: 0 0 5px var(--neon-blue), 
-  0 0 25px var(--neon-blue),
-  0 0 50px var(--neon-blue),
-  0 0 200px var(--neon-blue);
+/* body background color */
+body {
+  background-color: var(--bootstrap-dark);
+  margin-bottom: 5rem;
 }
 /* Makes the nav buttons have a ring around the current page you are on */
 button.current-page {
-  box-shadow: 0px 0px 0px 4px var(--bootstrap-dark), 
-  0px 0px 6px 5px white,
-  0px 0px 0px 8px var(--neon-blue);
+  box-shadow: 0px 0px 0px 3px var(--neon-blue);
+}
+/* Nav button styles */
+button.nav-button {
+  background-color: var(--neon-blue);
+  width: 100%;
+  border: var(--nav-button-border) solid var(--bootstrap-dark);
+  color: var(--bootstrap-dark);
+  border-radius: 1.125rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+button.nav-button:hover {
+  background: var(--neon-blue);
+  color: black;
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+.nav-button.current-page {
+  border: var(--nav-button-border) var(--bootstrap-dark) solid;
+}
+/* ----------------------- Bootstrap 5.3 Media Queries ---------------------- */
+/* X-Small devices (portrait phones, less than 576px) */
+/* No media query for `xs` since this is the default in Bootstrap */
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 36rem) {
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 48rem) {
+  button.nav-button {
+    margin-bottom: 0;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 62rem) {
+}
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 75rem) {
+}
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 87.5rem) {
 }
