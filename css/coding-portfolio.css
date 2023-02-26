@@ -1,1 +1,32 @@
 /* -------------------------- Coding Portfolio CSS -------------------------- */
+/* Portfolio image styles */
+body {
+  min-height: 150vh;
+}
+.portfolio-entry-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.portfolio-entry-container a {
+  display: flex;
+  justify-content: center;
+  color: var(--bootstrap-light);
+}
+.portfolio-entry-container p {
+  margin-top: 1rem;
+  font-size: 1.75rem;
+}
+.portfolio-images {
+  width: 80%;
+  height: auto;
+}
+.profession-portfolio {
+  border: 2px solid var(--neon-purple);
+  box-shadow: 0px 0px 6px 3px var(--neon-purple);
+}
+.personal-portfolio {
+  border: 2px solid var(--neon-green);
+  box-shadow: 0px 0px 6px 3px var(--neon-green);
+}

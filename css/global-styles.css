@@ -4,10 +4,18 @@
   --neon-blue: hsl(183, 98%, 48%);
   --bootstrap-dark: hsl(210, 11%, 15%);
   --nav-button-border: 7px;
+  --bootstrap-light: hsl(210, 17%, 98%);
+  --neon-purple: hsl(276, 79%, 56%);
+  --neon-green: hsl(118, 100%, 50%);
+}
+/* Utility Classes */
+.not-allowed-cursor {
+  cursor: not-allowed !important;
 }
 /* body background color */
 body {
   background-color: var(--bootstrap-dark);
+  margin-bottom: 5rem;
 }
 /* Makes the nav buttons have a ring around the current page you are on */
 button.current-page {
