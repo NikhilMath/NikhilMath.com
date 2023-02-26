@@ -1,18 +1,26 @@
-/* ---------------------- Global CSS for NikhilMath.com --------------------- */
-#button:hover {
-  color: #050801;
-  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-    0 0 200px #03e9f4;
+/* ------------------------------- Global CSS ------------------------------- */
+/* Global Variables */
+:root {
+  --neon-blue: hsl(183, 98%, 48%);
+  --bootstrap-dark: hsl(210, 10%, 23%);
 }
-#button:hover {
-  background: #03e9f4;
-  color: #050801;
-  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-    0 0 200px #03e9f4;
+/* Makes the buttons that are in the Nav bar have the right font-size */
+nav button {
+  font-size: 1.5rem !important;
+  /* when were done with the boostrap 5 btn class, and make our own, we will get rid of this important tag */
 }
-
-.current-page {
-  box-shadow: 0px 0px 0px 4px rgb(52 58 64), 
-  0px 0px 6px 5px rgb(254 254 254),
-  0px 0px 0px 8px #03e9f4;
+/* Makes the buttons go neon when hovered over */
+nav button:hover {
+  background: var(--neon-blue);
+  color: black;
+  box-shadow: 0 0 5px var(--neon-blue), 
+  0 0 25px var(--neon-blue),
+  0 0 50px var(--neon-blue),
+  0 0 200px var(--neon-blue);
+}
+/* Makes the nav buttons have a ring around the current page you are on */
+button.current-page {
+  box-shadow: 0px 0px 0px 4px var(--bootstrap-dark), 
+  0px 0px 6px 5px white,
+  0px 0px 0px 8px var(--neon-blue);
 }
