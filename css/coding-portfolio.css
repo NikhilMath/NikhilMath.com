@@ -3,24 +3,35 @@
 body {
   min-height: 150vh;
 }
-.portfolio-entry-container{
+hr {
+  margin: 2rem 0rem
+}
+.portfolio-entry-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 .portfolio-entry-container a {
   display: flex;
   justify-content: center;
+  align-items: center;
   color: var(--bootstrap-light);
+  font-size: 2rem;
+  text-decoration: none;
+  text-align: center;
 }
 .portfolio-entry-container p {
   margin-top: 1rem;
   font-size: 1.75rem;
+  margin-bottom: 0;
 }
 .portfolio-images {
   width: 80%;
   height: auto;
+  margin-top: 1.5rem;
 }
 .profession-portfolio {
   border: 2px solid var(--neon-purple);
@@ -29,4 +40,46 @@ body {
 .personal-portfolio {
   border: 2px solid var(--neon-green);
   box-shadow: 0px 0px 6px 3px var(--neon-green);
+}
+.github-repo-button {
+  background-color: transparent;
+  color: var(--bootstrap-light);
+  border: 4px solid var(--bootstrap-light);
+  font-size: 2rem;
+  margin-top: 1rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+}
+.hr-gradient {
+  border: 0;
+  height: 3px;
+  background-image: linear-gradient( to right, rgba(0, 0, 0, 0), rgb(255, 255, 255), rgba(0, 0, 0, 0) );
+  color: var(--bootstrap-light);
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* ----------------------- Bootstrap 5.3 Media Queries ---------------------- */
+/* X-Small devices (portrait phones, less than 576px) */
+/* No media query for `xs` since this is the default in Bootstrap */
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 36rem) {
+  .hr-gradient {
+    margin-top: 3rem;
+  }
+  .portfolio-entry-container {
+    margin-bottom: 0;
+  }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 48rem) {
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 62rem) {
+}
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 75rem) {
+}
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 87.5rem) {
 }
