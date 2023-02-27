@@ -39,6 +39,10 @@ button.nav-button:hover {
 .nav-button.current-page {
   border: var(--nav-button-border) var(--bootstrap-dark) solid;
 }
+/* makes the header links have a bullet point */
+header div a::before {
+  content: '· ';
+}
 /* ----------------------- Bootstrap 5.3 Media Queries ---------------------- */
 /* X-Small devices (portrait phones, less than 576px) */
 /* No media query for `xs` since this is the default in Bootstrap */
