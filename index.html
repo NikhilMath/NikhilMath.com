@@ -20,16 +20,17 @@
   <header class="navbar navbar-expand-lg navbar-dark" style="background-color: #111211;">
     <div class="container-fluid px-5 py-1 container">
       <a class="text-decoration-none text-light font-monospace" href="https://github.com/NikhilMath"
-        target="_blank">GitHub&nbsp;😸</a>
+      target="_blank">GitHub&nbsp;😸</a>
       <a href="/resume/NikhilResumeWithLinks.pdf" download
-        class="text-decoration-none text-light font-monospace fs-5">Download my Resume!&nbsp;(.pdf)&nbsp;📝</a>
+      class="text-decoration-none text-light font-monospace fs-5">Download my Resume!&nbsp;(.pdf)&nbsp;📝</a>
       <a class="text-decoration-none text-light font-monospace" href="https://www.linkedin.com/in/nikhil-math/"
-        target="_blank">LinkedIn&nbsp;🏢</a>
+      target="_blank">LinkedIn&nbsp;🏢</a>
     </div>
   </header>
   <!-- ----------------------------- Page Title ------------------------------ -->
   <h1 class="display-1 text-center text-light mt-4">Coding Portfolio</h1>
-  <p class="text-center text-light mb-4"><em>by Nikhil Math</em></p>
+    <p class="text-center text-light">Latest Update – <span id="last-commit-date"></span></p>
+  </div>
   <!-- ------------------------------- Navbar -------------------------------- -->
   <nav class="mb-5 container">
     <div class="row">
@@ -107,21 +108,6 @@
       </div>
     </section>
   </main>
-  <p class="text-center text-light">Last commit on master branch: <span id="last-commit-date"></span></p>
-
-  <script>
-    const apiUrl = 'https://api.github.com/repos/NikhilMath/NikhilMath.com/branches/master';
-    const lastCommitDateEl = document.getElementById('last-commit-date');
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        const lastCommitDate = new Date(data.commit.commit.author.date);
-        const options = { dateStyle: 'long' };
-        lastCommitDateEl.textContent = lastCommitDate.toLocaleString('en-US', options);
-      })
-      .catch(error => console.error(error));
-  </script>
 
   <!-- ------------------------------- Footer -------------------------------- -->
   <footer class="navbar fixed-bottom navbar-dark" style="background-color: #111211;">
@@ -130,6 +116,8 @@
       <a href="mailto:erulemath@gmail.com" class="text-decoration-none text-light">💻&nbsp;&nbsp;erulemath@gmail.com</a>
     </div>
   </footer>
+  <!-- ------------------------------- Scripts ------------------------------- -->
+  <script src="/scripts.js"></script>
   <!-- ------------------- Bootstrap JavaScript Libraries -------------------- -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
