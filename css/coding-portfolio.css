@@ -4,7 +4,7 @@ body {
   min-height: 150vh;
 }
 hr {
-  margin: 2rem 0rem
+  margin: 2rem 0rem;
 }
 .portfolio-entry-container {
   display: flex;
