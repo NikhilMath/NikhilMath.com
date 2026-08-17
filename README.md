@@ -1,7 +1,12 @@
-This is the GitHub repository for my personal website - Click the link and check it out
+![Nikhil Math](og-image.png)
 
-## [NikhilMath.com](https://NikhilMath.com)
+# [nikhilmath.com](https://nikhilmath.com)
 
-Here is my LinkedIn if you are curious, feel free to connect / message me on it
+Source for my personal landing page.
 
-## [LinkedIn](https://www.linkedin.com/in/nikhil-math/)
+Static site — a single `index.html` with inlined CSS, deployed via GitHub Pages on push to `master`. No build step, no dependencies.
+
+## Links
+
+- [LinkedIn](https://www.linkedin.com/in/nikhil-math/)
+- [GitHub](https://github.com/NikhilMath)
