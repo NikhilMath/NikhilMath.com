@@ -4,7 +4,7 @@
 
 Source for my personal landing page.
 
-Static site — a single `index.html` with inlined CSS, deployed via GitHub Pages on push to `master`. No build step, no dependencies.
+Static site. A single `index.html` with inlined CSS.
 
 ## Links
 
