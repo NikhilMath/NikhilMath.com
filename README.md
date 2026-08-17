@@ -5,8 +5,3 @@
 Source for my personal landing page.
 
 Static site. A single `index.html` with inlined CSS.
-
-## Links
-
-- [LinkedIn](https://www.linkedin.com/in/nikhil-math/)
-- [GitHub](https://github.com/NikhilMath)
