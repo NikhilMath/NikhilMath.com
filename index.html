@@ -1,129 +1,163 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <title>Coding Portfolio | Nikhil Math</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- ------------------------- Bootstrap 5.3.0 CDN ------------------------- -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/global-styles.css">
-  <link rel="stylesheet" href="css/coding-portfolio.css">
-  <script src="https://kit.fontawesome.com/2c23b18a78.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nikhil Math</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-card: #11161d;
+      --border: #1f2a37;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #7ee787;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(126, 231, 135, 0.06), transparent 60%),
+        var(--bg);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .prompt {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .prompt .accent { color: var(--accent); }
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--accent);
+      vertical-align: -2px;
+      margin-left: 2px;
+      animation: blink 1.1s steps(2, start) infinite;
+    }
+    @keyframes blink { to { visibility: hidden; } }
+
+    h1 {
+      margin: 0 0 24px 0;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    ul.links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    ul.links a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+    }
+    ul.links a:hover {
+      border-color: var(--accent);
+      background: rgba(126, 231, 135, 0.04);
+    }
+    ul.links a:active { transform: translateY(1px); }
+
+    .label { color: var(--muted); min-width: 78px; }
+    .value { color: var(--text); }
+    .arrow { margin-left: auto; color: var(--muted); }
+    ul.links a:hover .arrow { color: var(--accent); }
+
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: left;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 28px 20px; }
+      h1 { font-size: 26px; }
+      .label { min-width: 68px; }
+    }
+  </style>
 </head>
-
-<!-- -------------------------------- HTML --------------------------------- -->
 <body>
-  <!-- ------------------------------- Header -------------------------------- -->
-  <header class="navbar navbar-expand-lg navbar-dark" style="background-color: #111211;">
-    <div class="container-fluid px-5 py-1 container">
-      <a class="text-decoration-none text-light font-monospace" href="https://github.com/NikhilMath"
-      target="_blank">GitHub&nbsp;😸</a>
-      <a href="/resume/NikhilResumeWithLinks.pdf" download
-      class="text-decoration-none text-light font-monospace fs-5">Download my Resumé!&nbsp;(.pdf)&nbsp;📝</a>
-      <a class="text-decoration-none text-light font-monospace" href="https://www.linkedin.com/in/nikhil-math/"
-      target="_blank">LinkedIn&nbsp;🏢</a>
-    </div>
-  </header>
-  <!-- ----------------------------- Page Title ------------------------------ -->
-  <h1 class="display-1 text-center text-light mt-4">Coding Portfolio</h1>
-    <p class="text-center text-light">Last updated on: <span id="last-commit-date"></span></p>
-  </div>
-  <!-- ------------------------------- Navbar -------------------------------- -->
-  <nav class="mb-5 container">
-    <div class="row">
-      <div class="col-md-4">
-        <a href="/">
-          <button class="nav-button current-page" type="button">Coding Portfolio</button>
-        </a>
-      </div> <!-- col-md-4 -->
-      <div class="col-md-4">
-        <a href="/" class="">
-          <button class="nav-button not-allowed-cursor" type="button">Something</button>
-        </a>
-      </div> <!-- col-md-4 -->
-      <div class="col-md-4">
-        <a href="/" class="">
-          <button class="nav-button not-allowed-cursor" type="button">Books</button>
-        </a>
-      </div> <!-- col-md-4 -->
-    </div> <!-- row -->
-  </nav>
-  <!-- -------------------------------- Main --------------------------------- -->
-  <main>
-    <!-- -------------------- Professional Career Websites --------------------- -->
-    <section class="container mb-5">
-      <div class="row">
-        <hr class="text-light">
-        <h2 class="display-6 font-monospace text-light text-center">Professional Career Websites</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="portfolio-entry-container">
-            <p><a href="https://metimedelivered.com/" target="_blank"
-                class="text-decoration-none">MeTimeDelivered.com</a></p>
-            <a href="https://metimedelivered.com/">
-              <img src="/images/metimedelivered.jpeg" alt="" class="portfolio-images profession-portfolio">
-            </a>
-          </div>
-        </div>
-        <hr class="hr-gradient d-md-none">
-        <div class="col-md-6">
-          <div class="portfolio-entry-container">
-            <p><a href="https://kimberbell.com/" target="_blank" class="text-decoration-none">Kimberbell.com</a></p>
-            <a href="https://kimberbell.com/">
-              <img src="/images/kimberbell.jpeg" alt="" class="portfolio-images profession-portfolio">
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ---------------------- Personal Passion Projects ---------------------- -->
-    <section class="container mb-5">
-      <div class="row">
-        <hr class="text-light">
-        <h2 class="display-6 font-monospace text-light text-center">Personal Passion Projects</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="portfolio-entry-container">
-            <p><a href="https://locallogan.com/" target="_blank" class="text-decoration-none">LocalLogan.com</a></p>
-            <a href="https://locallogan.com/">
-              <img src="images/locallogan.jpeg" alt="" class="portfolio-images personal-portfolio">
-            </a>
-            <p><a href="https://github.com/NikhilMath/LocalLogan.com" target="_blank"><button class="github-repo-button">GitHub Repository</button></a></p>
-          </div>
-        </div>
-        <hr class="hr-gradient d-md-none">
-        <div class="col-md-6">
-          <div class="portfolio-entry-container">
-            <p><a href="https://nikhilmath.com/" target="_blank" class="text-decoration-none">NikhilMath.com</a></p>
-            <a href="https://nikhilmath.com/">
-              <img src="/images/nikhilmath.jpeg" alt="" class="portfolio-images personal-portfolio">
-            </a>
-            <p><a href="https://github.com/NikhilMath/NikhilMath.com" target="_blank"><button class="github-repo-button">GitHub Repository</button></a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <!-- ------------------------------- Footer -------------------------------- -->
-  <footer class="navbar fixed-bottom navbar-dark" style="background-color: #111211;">
-    <div class="container-fluid px-5 py-2 container">
-      <a href="tel:4356273017" class="text-decoration-none text-light">☎️&nbsp;&nbsp;+1&nbsp;435&nbsp;627&nbsp;3017</a>
-      <a href="mailto:erulemath@gmail.com" class="text-decoration-none text-light">💻&nbsp;&nbsp;erulemath@gmail.com</a>
-    </div>
-  </footer>
-  <!-- ------------------------------- Scripts ------------------------------- -->
-  <script src="/scripts.js"></script>
-  <!-- ------------------- Bootstrap JavaScript Libraries -------------------- -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-</body>
+  <main class="card">
+    <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> whoami<span class="cursor"></span></div>
+    <h1>Nikhil Math</h1>
 
+    <ul class="links">
+      <li>
+        <a href="https://github.com/NikhilMath" target="_blank" rel="noopener">
+          <span class="label">github</span>
+          <span class="value">NikhilMath</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/nikhil-math/" target="_blank" rel="noopener">
+          <span class="label">linkedin</span>
+          <span class="value">nikhil-math</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:erulemath@gmail.com">
+          <span class="label">email</span>
+          <span class="value">erulemath@gmail.com</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a href="tel:+14359194041">
+          <span class="label">phone</span>
+          <span class="value">+1 435 919 4041</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </li>
+    </ul>
+
+    <footer>&copy; <span id="year"></span> Nikhil Math</footer>
+  </main>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
