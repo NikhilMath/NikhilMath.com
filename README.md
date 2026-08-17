@@ -1,6 +1,6 @@
 ![Nikhil Math](https://raw.githubusercontent.com/NikhilMath/NikhilMath.com/master/og-image.png)
 
-# [nikhilmath.com](https://nikhilmath.com)
+# [NikhilMath.com](https://nikhilmath.com)
 
 Source for my personal landing page.
 
