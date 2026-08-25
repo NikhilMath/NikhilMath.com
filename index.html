@@ -124,16 +124,18 @@
       position: absolute;
       top: 24px;
       right: 32px;
-      width: 88px;
-      height: 88px;
+      width: 92px;
+      height: 92px;
       border-radius: 14px;
-      object-fit: cover;
-      object-position: 50% 45%;
+      background-image: url('avatar.jpeg');
+      background-size: 300%;
+      background-position: 48% 63%;
+      background-repeat: no-repeat;
       border: 1px solid rgba(255, 255, 255, 0.14);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
     @media (max-width: 480px) {
-      .avatar { width: 64px; height: 64px; top: 18px; right: 20px; border-radius: 10px; }
+      .avatar { width: 68px; height: 68px; top: 18px; right: 20px; border-radius: 10px; }
     }
 
     .prompt {
@@ -227,7 +229,7 @@
       <div class="title">nikhil@math — -zsh — 80×24</div>
     </div>
     <div class="terminal">
-      <img class="avatar" src="avatar.jpeg" alt="Nikhil Math">
+      <div class="avatar" role="img" aria-label="Nikhil Math"></div>
       <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> whoami<span class="cursor"></span></div>
       <h1>Nikhil Math</h1>
 
