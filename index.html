@@ -80,11 +80,26 @@
     @keyframes blink { to { visibility: hidden; } }
 
     h1 {
-      margin: 0 0 24px 0;
+      margin: 0 0 12px 0;
       font-size: 34px;
       font-weight: 600;
       letter-spacing: -0.5px;
     }
+
+    .status {
+      display: flex;
+      gap: 32px;
+      margin: 0 0 24px 0;
+      flex-wrap: wrap;
+    }
+    .currently {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+      line-height: 1.6;
+      flex: 1 1 140px;
+    }
+    .currently .key { color: var(--accent); }
 
     ul.links {
       list-style: none;
@@ -135,6 +150,20 @@
   <main class="card">
     <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> whoami<span class="cursor"></span></div>
     <h1>Nikhil Math</h1>
+    <div class="status">
+      <p class="currently">
+        <span class="key">on the clock:</span><br>
+        IT Support Manager<br>
+        Director of PR<br>
+        Support Group Chair
+      </p>
+      <p class="currently">
+        <span class="key">off-hours:</span><br>
+        Rock Climbing<br>
+        Pokémon Go<br>
+        Functional 3D Printing
+      </p>
+    </div>
 
     <ul class="links">
       <li>
