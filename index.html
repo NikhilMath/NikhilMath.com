@@ -22,12 +22,13 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #a89b83;
-      --bg-card: #11161d;
-      --border: #1f2a37;
       --text: #e6edf3;
       --muted: #8b949e;
       --accent: #7ee787;
+      --window-bg: rgba(17, 22, 29, 0.82);
+      --titlebar: rgba(48, 52, 60, 0.85);
+      --titlebar-border: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.08);
     }
 
     * { box-sizing: border-box; }
@@ -36,10 +37,10 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      background: var(--bg);
       color: var(--text);
       font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     body {
@@ -47,17 +48,75 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: var(--bg);
+      background: #0a1128;
+      position: relative;
     }
 
-    .card {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 20% 25%, #3b82c4 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, #1e40af 0%, transparent 50%),
+        radial-gradient(circle at 75% 85%, #60a5fa 0%, transparent 50%),
+        radial-gradient(circle at 25% 90%, #1e3a8a 0%, transparent 45%);
+      filter: blur(90px) saturate(120%);
+      z-index: 0;
+      animation: drift 30s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-4%, 3%) scale(1.08); }
+    }
+
+    .window {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      max-width: 520px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      max-width: 620px;
       border-radius: 12px;
-      padding: 40px 32px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      background: var(--window-bg);
+      backdrop-filter: blur(30px) saturate(160%);
+      -webkit-backdrop-filter: blur(30px) saturate(160%);
+      border: 1px solid var(--border);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 2px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .titlebar {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 10px 14px;
+      background: var(--titlebar);
+      border-bottom: 1px solid var(--titlebar-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .chrome { display: flex; gap: 8px; }
+    .chrome span {
+      width: 12px; height: 12px; border-radius: 50%;
+      box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.35);
+    }
+    .chrome span:nth-child(1) { background: #ff5f57; }
+    .chrome span:nth-child(2) { background: #febc2e; }
+    .chrome span:nth-child(3) { background: #28c840; }
+
+    .titlebar .title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.2px;
+    }
+
+    .terminal {
+      padding: 28px 32px 32px 32px;
     }
 
     .prompt {
@@ -78,7 +137,7 @@
     @keyframes blink { to { visibility: hidden; } }
 
     h1 {
-      margin: 0 0 12px 0;
+      margin: 0 0 20px 0;
       font-size: 34px;
       font-weight: 600;
       letter-spacing: -0.5px;
@@ -104,24 +163,24 @@
       padding: 0;
       margin: 0;
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
-
     ul.links a {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 14px;
+      padding: 11px 14px;
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text);
       text-decoration: none;
       font-size: 14px;
+      background: rgba(255, 255, 255, 0.02);
       transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
     }
     ul.links a:hover {
       border-color: var(--accent);
-      background: rgba(126, 231, 135, 0.04);
+      background: rgba(126, 231, 135, 0.06);
     }
     ul.links a:active { transform: translateY(1px); }
 
@@ -131,80 +190,85 @@
     ul.links a:hover .arrow { color: var(--accent); }
 
     footer {
-      margin-top: 28px;
+      margin-top: 22px;
       color: var(--muted);
       font-size: 12px;
-      text-align: left;
     }
 
     @media (max-width: 480px) {
-      .card { padding: 28px 20px; }
+      .terminal { padding: 22px 20px 24px 20px; }
       h1 { font-size: 26px; }
+      .titlebar .title { display: none; }
       .label { min-width: 82px; }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> whoami<span class="cursor"></span></div>
-    <h1>Nikhil Math</h1>
-    <div class="status">
-      <p class="currently">
-        <span class="key">on the clock:</span><br>
-        IT Support Manager<br>
-        Director of PR<br>
-        Support Group Chair
-      </p>
-      <p class="currently">
-        <span class="key">off-hours:</span><br>
-        Rock Climbing<br>
-        Pokémon Go<br>
-        Functional 3D Printing
-      </p>
+  <main class="window">
+    <div class="titlebar">
+      <div class="chrome"><span></span><span></span><span></span></div>
+      <div class="title">nikhil@math — -zsh — 80×24</div>
     </div>
+    <div class="terminal">
+      <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> whoami<span class="cursor"></span></div>
+      <h1>Nikhil Math</h1>
 
-    <ul class="links">
-      <li>
-        <a href="https://github.com/NikhilMath" target="_blank" rel="noopener">
-          <span class="label">github</span>
-          <span class="value">NikhilMath</span>
-          <span class="arrow">&rarr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/nikhil-math/" target="_blank" rel="noopener">
-          <span class="label">linkedin</span>
-          <span class="value">nikhil-math</span>
-          <span class="arrow">&rarr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.goodreads.com/nikhilmath" target="_blank" rel="noopener">
-          <span class="label">goodreads</span>
-          <span class="value">nikhilmath</span>
-          <span class="arrow">&rarr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="mailto:erulemath@gmail.com">
-          <span class="label">email</span>
-          <span class="value">erulemath@gmail.com</span>
-          <span class="arrow">&rarr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="tel:+14359194041">
-          <span class="label">phone</span>
-          <span class="value">+1 435 919 4041</span>
-          <span class="arrow">&rarr;</span>
-        </a>
-      </li>
-    </ul>
+      <div class="status">
+        <p class="currently">
+          <span class="key">on the clock:</span><br>
+          IT Support Manager<br>
+          Director of PR<br>
+          Support Group Chair
+        </p>
+        <p class="currently">
+          <span class="key">off-hours:</span><br>
+          Rock Climbing<br>
+          Pokémon Go<br>
+          Functional 3D Printing
+        </p>
+      </div>
 
-    <footer>&copy; <span id="year"></span> Nikhil Math</footer>
+      <ul class="links">
+        <li>
+          <a href="https://github.com/NikhilMath" target="_blank" rel="noopener">
+            <span class="label">github</span>
+            <span class="value">NikhilMath</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/nikhil-math/" target="_blank" rel="noopener">
+            <span class="label">linkedin</span>
+            <span class="value">nikhil-math</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.goodreads.com/nikhilmath" target="_blank" rel="noopener">
+            <span class="label">goodreads</span>
+            <span class="value">nikhilmath</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:erulemath@gmail.com">
+            <span class="label">email</span>
+            <span class="value">erulemath@gmail.com</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a href="tel:+14359194041">
+            <span class="label">phone</span>
+            <span class="value">+1 435 919 4041</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+
+      <footer>&copy; <span id="year"></span> Nikhil Math</footer>
+    </div>
   </main>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
