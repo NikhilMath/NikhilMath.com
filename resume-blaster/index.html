@@ -454,33 +454,33 @@
         name: "level 1", hud: "lvl 1 · devpoint labs",
         banner: ["LEVEL 1 · 2021", "DevPoint Labs", "the training arc"],
         entries: ["devpoint"],
-        quota: 12, hp: 4, speed: 33, every: 1.3, shooter: 0, tough: 0,
+        quota: 12, hp: 4, speed: 44, every: 1.1, shooter: 0.1, tough: 0.05,
         tickets: ["syntax error", "missing ;", "merge conflict", "undefined", "N+1 query", "404", "CORS", "db:migrate"],
       },
       {
         name: "level 2", hud: "lvl 2 · kimberbell",
         banner: ["LEVEL 2 · 2022", "Kimberbell", "web developer / IT specialist"],
         entries: ["kimberbellDev"],
-        quota: 14, hp: 5, speed: 38, every: 1.4, shooter: 0.2, tough: 0.12,
+        quota: 14, hp: 5, speed: 50, every: 1.25, shooter: 0.35, tough: 0.2,
         tickets: ["WCAG fail", "alt text?", "slow page", "broken cart", "mobile layout", "low contrast", "Mac won't boot", "PC on-site"],
       },
       {
         name: "level 3", hud: "lvl 3 · kimberbell",
         banner: ["LEVEL 3 · 2023", "Kimberbell", "promoted: IT manager"],
         entries: ["kimberbellMgr"],
-        quota: 16, hp: 5, speed: 42, every: 1.3, shooter: 0.28, tough: 0.22,
+        quota: 16, hp: 5, speed: 54, every: 1.3, shooter: 0.42, tough: 0.28,
         tickets: ["site down", "code review", "final call", "Windows update", "macOS upgrade", "vendor call", "120+ users", "critical system"],
       },
       {
         name: "level 4", hud: "lvl 4 · visionary homes",
         banner: ["LEVEL 4 · 2023 – NOW", "Visionary Homes", "IT support manager"],
         entries: ["visionary", "certs"],
-        quota: 18, hp: 6, speed: 44, every: 1.5, shooter: 0.3, tough: 0.22,
+        quota: 18, hp: 6, speed: 54, every: 1.55, shooter: 0.42, tough: 0.28,
         tickets: ["printer driver", "password reset", "new hire", "offboarding", "MSP ticket", "carrier bill", "iPad enroll", "Jamf policy", "hardware rollout", "wiki update"],
         boss: {
           name: "ONBOARDING MATRIX",
           banner: ["BOSS", "The Onboarding Matrix", "75+ job titles, one process each"],
-          hp: 80,
+          hp: 110,
           minions: ["new hire", "offboarding", "role change", "checklist"],
         },
       },
@@ -488,7 +488,7 @@
         name: "bonus level", hud: "bonus · side quests",
         banner: ["BONUS LEVEL", "Side Quests", "nonprofit board, school, property"],
         entries: ["recovery", "usu", "sunplex"],
-        quota: 14, hp: 5, speed: 40, every: 1.35, shooter: 0.22, tough: 0.18,
+        quota: 14, hp: 5, speed: 52, every: 1.2, shooter: 0.38, tough: 0.25,
         tickets: ["board meeting", "minutes", "community event", "fee board vote", "accessibility", "tenant screening", "lease renewal", "leaky faucet"],
       },
     ];
@@ -669,7 +669,7 @@
       score += pts;
       burst(r.x + r.w / 2, r.y + r.h / 2, 14, C.accent);
       float(r.x + r.w / 2, r.y, `+${pts}`, C.accent);
-      if (Math.random() < 0.17) dropPickup(r.x + r.w / 2, r.y + r.h / 2);
+      if (Math.random() < 0.12) dropPickup(r.x + r.w / 2, r.y + r.h / 2);
       updateHud();
     }
 
@@ -816,9 +816,9 @@
         if (t.shooter && t.y > 10 && t.y < SLA_Y - 170) {
           t.fire -= dt;
           if (t.fire <= 0) {
-            t.fire = rand(1.8, 3.2);
+            t.fire = rand(1.3, 2.4);
             const r = ticketRect(t);
-            shots.push({ x: r.x + r.w / 2 - 3, y: r.y + r.h, w: 6, h: 10, vx: 0, vy: 215 });
+            shots.push({ x: r.x + r.w / 2 - 3, y: r.y + r.h, w: 6, h: 10, vx: 0, vy: 250 });
           }
         }
         if (t.y + t.h >= SLA_Y) {
@@ -841,13 +841,13 @@
           b.x = W / 2 - b.w / 2 + Math.sin(b.t * 0.9) * (W / 2 - b.w / 2 - 10);
           b.fire -= dt;
           if (b.fire <= 0) {
-            b.fire = b.hp < b.maxHp / 2 ? 1.1 : 1.6;
+            b.fire = b.hp < b.maxHp / 2 ? 1.0 : 1.4;
             const cx = b.x + b.w / 2;
             for (const vx of [-90, 0, 90]) shots.push({ x: cx - 3, y: b.y + b.h, w: 6, h: 10, vx, vy: 200 });
           }
           b.spawn -= dt;
           if (b.spawn <= 0) {
-            b.spawn = rand(2.6, 3.6);
+            b.spawn = rand(2.2, 3.0);
             spawnTicket(L, {
               label: pick(b.minions), x: b.x + b.w / 2, y: b.y + b.h - 6,
               minion: true, shooter: false, tough: false, speed: 50, hp: 3,
