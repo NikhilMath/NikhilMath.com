@@ -453,33 +453,33 @@
         name: "level 1", hud: "lvl 1 · devpoint labs",
         banner: ["LEVEL 1 · 2021", "DevPoint Labs", "the training arc"],
         entries: ["devpoint"],
-        quota: 10, speed: 34, every: 1.3, shooter: 0, tough: 0,
+        quota: 12, hp: 4, speed: 30, every: 1.4, shooter: 0, tough: 0,
         tickets: ["syntax error", "missing ;", "merge conflict", "undefined", "N+1 query", "404", "CORS", "db:migrate"],
       },
       {
         name: "level 2", hud: "lvl 2 · kimberbell",
         banner: ["LEVEL 2 · 2022", "Kimberbell", "web developer / IT specialist"],
         entries: ["kimberbellDev"],
-        quota: 12, speed: 40, every: 1.15, shooter: 0.15, tough: 0.1,
+        quota: 14, hp: 5, speed: 34, every: 1.5, shooter: 0.15, tough: 0.1,
         tickets: ["WCAG fail", "alt text?", "slow page", "broken cart", "mobile layout", "low contrast", "Mac won't boot", "PC on-site"],
       },
       {
         name: "level 3", hud: "lvl 3 · kimberbell",
         banner: ["LEVEL 3 · 2023", "Kimberbell", "promoted: IT manager"],
         entries: ["kimberbellMgr"],
-        quota: 14, speed: 46, every: 1.05, shooter: 0.22, tough: 0.2,
+        quota: 16, hp: 5, speed: 38, every: 1.4, shooter: 0.22, tough: 0.2,
         tickets: ["site down", "code review", "final call", "Windows update", "macOS upgrade", "vendor call", "120+ users", "critical system"],
       },
       {
         name: "level 4", hud: "lvl 4 · visionary homes",
         banner: ["LEVEL 4 · 2023 – NOW", "Visionary Homes", "IT support manager"],
         entries: ["visionary", "certs"],
-        quota: 16, speed: 50, every: 0.95, shooter: 0.26, tough: 0.25,
+        quota: 18, hp: 6, speed: 40, every: 1.6, shooter: 0.25, tough: 0.2,
         tickets: ["printer driver", "password reset", "new hire", "offboarding", "MSP ticket", "carrier bill", "iPad enroll", "Jamf policy", "hardware rollout", "wiki update"],
         boss: {
           name: "ONBOARDING MATRIX",
           banner: ["BOSS", "The Onboarding Matrix", "75+ job titles, one process each"],
-          hp: 45,
+          hp: 80,
           minions: ["new hire", "offboarding", "role change", "checklist"],
         },
       },
@@ -487,7 +487,7 @@
         name: "bonus level", hud: "bonus · side quests",
         banner: ["BONUS LEVEL", "Side Quests", "nonprofit board, school, property"],
         entries: ["recovery", "usu", "sunplex"],
-        quota: 12, speed: 44, every: 1.0, shooter: 0.18, tough: 0.15,
+        quota: 14, hp: 5, speed: 36, every: 1.45, shooter: 0.18, tough: 0.15,
         tickets: ["board meeting", "minutes", "community event", "fee board vote", "accessibility", "tenant screening", "lease renewal", "leaky faucet"],
       },
     ];
@@ -617,7 +617,7 @@
       ctx.font = `600 13px ${FONT}`;
       const label = opts.label || pick(L.tickets);
       const w = Math.ceil(ctx.measureText(label).width) + 26;
-      const h = 30;
+      const h = 36;
       const sway = opts.minion ? rand(0, 8) : rand(0, 16);
       const minX = 8 + sway;
       const maxX = W - w - 8 - sway;
@@ -629,8 +629,9 @@
         y: opts.y ?? -h,
         vy: (opts.speed || L.speed) * rand(0.85, 1.15),
         phase: rand(0, Math.PI * 2),
-        hp: tough ? 2 : 1,
-        maxHp: tough ? 2 : 1,
+        hp: opts.hp ?? L.hp + (tough ? 3 : 0),
+        maxHp: opts.hp ?? L.hp + (tough ? 3 : 0),
+        tough,
         shooter: opts.shooter ?? Math.random() < L.shooter,
         fire: rand(1.2, 2.6),
         age: 0,
@@ -655,14 +656,15 @@
 
     // ---- Hits ------------------------------------------------------------------
 
-    function hitTicket(t, r) {
+    function hitTicket(t, r, bx) {
       t.hp--;
-      t.flash = 0.12;
-      if (t.hp > 0) { burst(r.x + r.w / 2, r.y + r.h / 2, 5, C.danger); return; }
+      t.flash = 0.06;
+      // Spark where the shot lands, below the label, so the text stays readable.
+      if (t.hp > 0) { burst(bx, r.y + r.h, 4, C.accent); return; }
       t.dead = true;
       if (!t.minion) handled++;
       totalResolved++;
-      const pts = t.maxHp > 1 ? 150 : 100;
+      const pts = t.tough ? 150 : 100;
       score += pts;
       burst(r.x + r.w / 2, r.y + r.h / 2, 14, C.accent);
       float(r.x + r.w / 2, r.y, `+${pts}`, C.accent);
@@ -784,7 +786,7 @@
       // Auto-fire.
       player.cooldown -= dt;
       if (player.cooldown <= 0) {
-        player.cooldown = player.rapid > 0 ? 0.1 : 0.2;
+        player.cooldown = player.rapid > 0 ? 0.09 : 0.18;
         const y = player.y - player.h / 2 - 6;
         bullets.push({ x: player.x - 1.5, y, w: 3, h: 11, vx: 0 });
         if (player.spread > 0) {
@@ -847,7 +849,7 @@
             b.spawn = rand(2.6, 3.6);
             spawnTicket(L, {
               label: pick(b.minions), x: b.x + b.w / 2, y: b.y + b.h - 6,
-              minion: true, shooter: false, tough: false, speed: 58,
+              minion: true, shooter: false, tough: false, speed: 50, hp: 3,
             });
           }
         }
@@ -861,7 +863,7 @@
         for (const t of tickets) {
           if (t.dead) continue;
           const r = ticketRect(t);
-          if (overlaps(bl, r)) { bl.dead = true; hitTicket(t, r); break; }
+          if (overlaps(bl, r)) { bl.dead = true; hitTicket(t, r, bl.x); break; }
         }
         if (!bl.dead && boss && overlaps(bl, boss)) { bl.dead = true; hitBoss(); }
       }
@@ -956,20 +958,29 @@
       ctx.textBaseline = "middle";
       for (const t of tickets) {
         const r = ticketRect(t);
-        const tough = t.maxHp > 1;
-        rr(r.x, r.y, r.w, r.h, 6);
-        ctx.fillStyle = t.flash > 0 ? "rgba(255, 255, 255, 0.4)"
-          : tough ? "rgba(255, 123, 114, 0.14)" : "rgba(255, 184, 108, 0.11)";
+        const tough = t.tough;
+        const hitNow = t.flash > 0;
+        const jolt = hitNow ? (Math.random() - 0.5) * 2 : 0;
+        const x = r.x + jolt;
+        rr(x, r.y, r.w, r.h, 6);
+        ctx.fillStyle = tough ? "rgba(255, 123, 114, 0.16)" : "rgba(255, 184, 108, 0.13)";
         ctx.fill();
-        ctx.strokeStyle = tough ? "rgba(255, 123, 114, 0.85)" : "rgba(255, 184, 108, 0.6)";
-        ctx.lineWidth = tough && t.hp > 1 ? 2 : 1;
+        ctx.strokeStyle = hitNow ? "#ffffff" : tough ? "rgba(255, 123, 114, 0.85)" : "rgba(255, 184, 108, 0.6)";
+        ctx.lineWidth = hitNow || tough ? 2 : 1;
         ctx.stroke();
         ctx.fillStyle = C.text;
-        ctx.fillText(t.label, r.x + r.w / 2, r.y + r.h / 2 + 1);
+        ctx.fillText(t.label, x + r.w / 2, r.y + r.h / 2 - 3);
+
+        // Health bar along the bottom of the ticket.
+        const barW = r.w - 14;
+        ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+        ctx.fillRect(x + 7, r.y + r.h - 8, barW, 3);
+        ctx.fillStyle = tough ? C.danger : C.accent;
+        ctx.fillRect(x + 7, r.y + r.h - 8, barW * Math.max(0, t.hp) / t.maxHp, 3);
         if (t.shooter) {
           ctx.fillStyle = C.danger;
           ctx.beginPath();
-          ctx.arc(r.x + 7, r.y + 7, 2.5, 0, Math.PI * 2);
+          ctx.arc(x + 7, r.y + 7, 2.5, 0, Math.PI * 2);
           ctx.fill();
         }
       }
@@ -1140,7 +1151,7 @@
           <p>My resume, as a game. Blast IT tickets before they breach SLA. Every level you clear unlocks the next chapter of my career.</p>
           <ul class="howto">
             <li>move: ${coarse ? "drag anywhere on the screen" : "← → / A D, or the mouse"}</li>
-            <li>firing is automatic</li>
+            <li>firing is automatic · tickets take several hits</li>
             <li>catch skills: <b>CompTIA A+</b> spread · <b>Jamf</b> rapid fire · <b>ITIL 4</b> shield</li>
           </ul>
           <div class="actions">
