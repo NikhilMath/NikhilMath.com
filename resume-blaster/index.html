@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Resume Blaster · Nikhil Math</title>
-  <meta name="description" content="My resume, as a game. Blast IT tickets before they breach SLA and unlock my career one level at a time.">
+  <meta name="description" content="My resume, as a game. Blast my skills as they fall and unlock my career one level at a time.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Resume Blaster · Nikhil Math">
-  <meta property="og:description" content="My resume, as a game. Blast IT tickets before they breach SLA and unlock my career one level at a time.">
+  <meta property="og:description" content="My resume, as a game. Blast my skills as they fall and unlock my career one level at a time.">
   <meta property="og:url" content="https://nikhilmath.com/resume-blaster">
   <meta property="og:image" content="https://nikhilmath.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Resume Blaster · Nikhil Math">
-  <meta name="twitter:description" content="My resume, as a game. Blast IT tickets before they breach SLA and unlock my career one level at a time.">
+  <meta name="twitter:description" content="My resume, as a game. Blast my skills as they fall and unlock my career one level at a time.">
   <meta name="twitter:image" content="https://nikhilmath.com/og-image.png">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='ui-monospace,Menlo,Consolas,monospace' font-size='36' font-weight='700' fill='%23ffb86c'%3E%26gt;_%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -455,33 +455,33 @@
         banner: ["LEVEL 1 · 2021", "DevPoint Labs", "the training arc"],
         entries: ["devpoint"],
         quota: 12, hp: 8, speed: 44, every: 2.2, shooter: 0.1, tough: 0.05,
-        tickets: ["syntax error", "missing ;", "merge conflict", "undefined", "N+1 query", "404", "CORS", "db:migrate"],
+        tickets: ["Ruby on Rails", "React.js", "Full-Stack Dev", "Web Development"],
       },
       {
         name: "level 2", hud: "lvl 2 · kimberbell",
         banner: ["LEVEL 2 · 2022", "Kimberbell", "web developer / IT specialist"],
         entries: ["kimberbellDev"],
         quota: 14, hp: 10, speed: 50, every: 2.5, shooter: 0.35, tough: 0.2,
-        tickets: ["WCAG fail", "alt text?", "slow page", "broken cart", "mobile layout", "low contrast", "Mac won't boot", "PC on-site"],
+        tickets: ["WCAG", "Accessibility", "E-commerce", "Responsive Design", "macOS Support", "Windows Support"],
       },
       {
         name: "level 3", hud: "lvl 3 · kimberbell",
         banner: ["LEVEL 3 · 2023", "Kimberbell", "promoted: IT manager"],
         entries: ["kimberbellMgr"],
         quota: 16, hp: 10, speed: 54, every: 2.6, shooter: 0.42, tough: 0.28,
-        tickets: ["site down", "code review", "final call", "Windows update", "macOS upgrade", "vendor call", "120+ users", "critical system"],
+        tickets: ["Team Leadership", "Staff Training", "Help Desk", "Incident Mgmt", "Troubleshooting", "macOS", "Windows"],
       },
       {
         name: "level 4", hud: "lvl 4 · visionary homes",
         banner: ["LEVEL 4 · 2023 – NOW", "Visionary Homes", "IT support manager"],
         entries: ["visionary", "certs"],
         quota: 18, hp: 12, speed: 54, every: 3.1, shooter: 0.34, tough: 0.28,
-        tickets: ["printer driver", "password reset", "new hire", "offboarding", "MSP ticket", "carrier bill", "iPad enroll", "Jamf policy", "hardware rollout", "wiki update"],
+        tickets: ["Jamf", "Apple Business Manager", "MDM", "Asana", "ITSM", "Vendor & MSP Mgmt", "Device Lifecycle", "IT Asset Mgmt", "Technical Writing", "iOS", "iPadOS", "Phone Systems", "Prowler", "NterNow"],
         boss: {
           name: "ONBOARDING MATRIX",
           banner: ["BOSS", "The Onboarding Matrix", "75+ job titles, one process each"],
           hp: 220,
-          minions: ["new hire", "offboarding", "role change", "checklist"],
+          minions: ["Onboarding", "Offboarding", "Checklists", "Asana"],
         },
       },
       {
@@ -489,22 +489,16 @@
         banner: ["BONUS LEVEL", "Side Quests", "nonprofit board, school, property"],
         entries: ["recovery", "usu", "sunplex"],
         quota: 14, hp: 10, speed: 52, every: 2.4, shooter: 0.38, tough: 0.25,
-        tickets: ["board meeting", "minutes", "community event", "fee board vote", "accessibility", "tenant screening", "lease renewal", "leaky faucet"],
+        tickets: ["Public Relations", "Public Speaking", "Advocacy", "Board Leadership", "Record Keeping", "Tenant Screening", "Leases"],
       },
     ];
 
-    // Skills that drop as pickups. The three in POWER also grant a power-up.
+    // Power-ups that drop from blasted skills.
     const POWER = {
       "CompTIA A+": { key: "spread", label: "spread shot", time: 9 },
-      "Jamf": { key: "rapid", label: "rapid fire", time: 9 },
+      "Automation": { key: "rapid", label: "rapid fire", time: 9 },
       "ITIL 4": { key: "shield", label: "shield up", time: 12 },
     };
-    const SKILLS = [
-      "Asana", "Apple Business Manager", "MDM", "macOS", "iOS", "iPadOS", "Windows",
-      "Workflow Automation", "Vendor & MSP Mgmt", "ITSM", "Incident Mgmt", "Help Desk",
-      "Device Lifecycle", "Onboarding", "Asset Mgmt", "Tech Writing", "End-User Training",
-      "Team Leadership", "Public Speaking", "Public Relations", "Prowler", "NterNow",
-    ];
 
     // ---- DOM ------------------------------------------------------------------
 
@@ -542,7 +536,6 @@
     let bossDone = false;
     let bullets = [], shots = [], tickets = [], pickups = [], particles = [], floaters = [];
     const skillsFound = new Set();
-    let skillCursor = 0;
     const keys = Object.create(null);
     let pointerX = null;
     const player = { x: W / 2, y: H - 46, w: 32, h: 24, cooldown: 0, invuln: 0, spread: 0, rapid: 0, shield: 0 };
@@ -560,7 +553,6 @@
       score = 0;
       totalResolved = 0;
       skillsFound.clear();
-      skillCursor = 0;
       startLevel(0);
     }
 
@@ -647,9 +639,7 @@
     }
 
     function dropPickup(x, y) {
-      let label;
-      if (Math.random() < 0.5) label = pick(Object.keys(POWER));
-      else label = SKILLS[skillCursor++ % SKILLS.length];
+      const label = pick(Object.keys(POWER));
       ctx.font = `600 11px ${FONT}`;
       const w = Math.ceil(ctx.measureText(label).width) + 18;
       pickups.push({ label, x: clamp(x - w / 2, 6, W - w - 6), y, w, h: 20, vy: 95 });
@@ -665,6 +655,7 @@
       t.dead = true;
       if (!t.minion) handled++;
       totalResolved++;
+      skillsFound.add(t.label);
       const pts = t.tough ? 150 : 100;
       score += pts;
       burst(r.x + r.w / 2, r.y + r.h / 2, 14, C.accent);
@@ -723,16 +714,9 @@
     }
 
     function collect(p) {
-      skillsFound.add(p.label);
       const pw = POWER[p.label];
-      if (pw) {
-        player[pw.key] = pw.time;
-        float(player.x, player.y - 34, `${p.label} · ${pw.label}`, C.accent);
-      } else {
-        score += 250;
-        float(player.x, player.y - 34, `+250 · ${p.label}`, C.text);
-      }
-      updateHud();
+      player[pw.key] = pw.time;
+      float(player.x, player.y - 34, `${p.label} · ${pw.label}`, C.accent);
     }
 
     // ---- Effects -----------------------------------------------------------------
@@ -1058,7 +1042,7 @@
         if (!boss) {
           ctx.textAlign = "right";
           ctx.fillStyle = C.muted;
-          ctx.fillText(`queue ${Math.max(0, L.quota - handled)}`, W - 10, 10);
+          ctx.fillText(`skills left ${Math.max(0, L.quota - handled)}`, W - 10, 10);
         }
         const active = [];
         if (player.spread > 0) active.push(`spread ${Math.ceil(player.spread)}s`);
@@ -1149,11 +1133,11 @@
         <div class="panel">
           <p class="kicker">~ nikhil@math:$ ./resume-blaster</p>
           <h1>Resume Blaster</h1>
-          <p>My resume, as a game. Blast IT tickets before they breach SLA. Every level you clear unlocks the next chapter of my career.</p>
+          <p>My resume, as a game. My skills are falling toward the SLA line. Blast each one before it crosses, and every level you clear unlocks the next chapter of my career.</p>
           <ul class="howto">
             <li>move: ${coarse ? "drag anywhere on the screen" : "← → / A D, or the mouse"}</li>
-            <li>firing is automatic · tickets take several hits</li>
-            <li>catch skills: <b>CompTIA A+</b> spread · <b>Jamf</b> rapid fire · <b>ITIL 4</b> shield</li>
+            <li>firing is automatic · skills take several hits</li>
+            <li>catch power-ups: <b>CompTIA A+</b> spread · <b>Automation</b> rapid fire · <b>ITIL 4</b> shield</li>
           </ul>
           <div class="actions">
             <button class="btn primary" data-action="start">start &rarr;</button>
@@ -1191,7 +1175,7 @@
         <div class="panel">
           <p class="kicker">${LEVELS[levelIndex].name} · uptime 0%</p>
           <h2>SLA breached.</h2>
-          <p>The ticket queue got away from you. It happens to the best of us, usually on a Monday.</p>
+          <p>Too many skills slipped past the line. It happens to the best of us, usually on a Monday.</p>
           <div class="actions">
             <button class="btn primary" data-action="retry">retry level &rarr;</button>
             <button class="btn" data-action="resume">view resume</button>
@@ -1204,7 +1188,7 @@
           <h2>You made it to the present day.</h2>
           <div class="stats">
             <div><span>score</span><b>${score}</b></div>
-            <div><span>resolved</span><b>${totalResolved}</b></div>
+            <div><span>blasted</span><b>${totalResolved}</b></div>
             <div><span>skills</span><b>${skillsFound.size}</b></div>
           </div>
           <p>Thanks for playing. If you'd like to talk, here's where to find me.</p>
