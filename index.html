@@ -174,6 +174,68 @@
     }
     .currently .key { color: var(--accent); }
 
+    .section-key {
+      color: var(--accent);
+      font-size: 13px;
+      margin: 0 0 10px 0;
+    }
+
+    .project {
+      display: block;
+      margin: 0 0 28px 0;
+      padding: 22px 24px;
+      border: 1px solid rgba(255, 184, 108, 0.32);
+      border-radius: 10px;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(255, 184, 108, 0.09);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+    }
+    .project:hover {
+      border-color: var(--accent);
+      background: rgba(255, 184, 108, 0.15);
+    }
+    .project:active { transform: translateY(1px); }
+
+    .project .head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .project .name {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .project .tag { color: var(--accent); font-size: 13px; }
+    .project .desc {
+      margin: 12px 0 18px 0;
+      color: #cbd5de;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .project .meta {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: #a5aeb8;
+      font-size: 13px;
+    }
+    .project .play {
+      margin-left: auto;
+      padding: 7px 14px;
+      border: 1px solid rgba(255, 184, 108, 0.45);
+      border-radius: 6px;
+      color: var(--accent);
+      background: rgba(255, 184, 108, 0.12);
+    }
+    .project:hover .play {
+      border-color: var(--accent);
+      background: rgba(255, 184, 108, 0.22);
+    }
+
     ul.links {
       list-style: none;
       padding: 0;
@@ -200,8 +262,8 @@
     }
     ul.links a:active { transform: translateY(1px); }
 
-    .label { color: var(--muted); min-width: 194px; }
-    .value { color: var(--text); white-space: nowrap; }
+    .label { color: var(--muted); min-width: 92px; }
+    .value { color: var(--text); }
     .arrow { margin-left: auto; color: var(--muted); }
     ul.links a:hover .arrow { color: var(--accent); }
 
@@ -215,8 +277,17 @@
       .terminal { padding: 22px 20px 24px 20px; }
       h1 { font-size: 26px; }
       .titlebar .title { display: none; }
-      ul.links a { flex-wrap: wrap; row-gap: 2px; }
-      .label { flex-basis: 100%; min-width: 0; font-size: 12px; }
+      .label { min-width: 82px; }
+      .project { padding: 18px 18px 20px 18px; }
+      .project .name { font-size: 19px; }
+      .project .meta { flex-wrap: wrap; gap: 14px; }
+      .project .meta span { white-space: nowrap; }
+      .project .play {
+        margin-left: 0;
+        flex-basis: 100%;
+        text-align: center;
+        padding: 10px 14px;
+      }
     }
   </style>
 </head>
@@ -246,14 +317,25 @@
         </p>
       </div>
 
+      <p class="section-key">latest creative project:</p>
+      <a class="project" href="https://keyboardheist.netlify.app" target="_blank" rel="noopener">
+        <div class="head">
+          <span class="name">Keyboard Heist</span>
+          <span class="tag">choose your own adventure</span>
+        </div>
+        <p class="desc">
+          A video game I built. An office comedy that opens with a printer
+          ticket from the CEO, where every choice is yours and the ending
+          depends on them.
+        </p>
+        <div class="meta">
+          <span>42 scenes</span>
+          <span>4 endings</span>
+          <span class="play">play &rarr;</span>
+        </div>
+      </a>
+
       <ul class="links">
-        <li>
-          <a href="https://keyboardheist.netlify.app" target="_blank" rel="noopener">
-            <span class="label">latest creative project</span>
-            <span class="value">Keyboard Heist</span>
-            <span class="arrow">&rarr;</span>
-          </a>
-        </li>
         <li>
           <a href="https://github.com/NikhilMath" target="_blank" rel="noopener">
             <span class="label">github</span>
