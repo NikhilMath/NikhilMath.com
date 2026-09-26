@@ -174,6 +174,46 @@
     }
     .currently .key { color: var(--accent); }
 
+    .project {
+      display: block;
+      margin: 0 0 24px 0;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(255, 184, 108, 0.04);
+      transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+    }
+    .project:hover {
+      border-color: var(--accent);
+      background: rgba(255, 184, 108, 0.08);
+    }
+    .project:active { transform: translateY(1px); }
+
+    .project .head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .project .name { font-size: 15px; font-weight: 600; }
+    .project .tag { color: var(--muted); font-size: 12px; }
+    .project .desc {
+      margin: 6px 0 10px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .project .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .project .play { margin-left: auto; color: var(--accent); }
+
     ul.links {
       list-style: none;
       padding: 0;
@@ -244,6 +284,23 @@
           - Functional 3D Printing
         </p>
       </div>
+
+      <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> ./keyboard-heist</div>
+      <a class="project" href="https://keyboardheist.netlify.app" target="_blank" rel="noopener">
+        <div class="head">
+          <span class="name">Keyboard Heist</span>
+          <span class="tag">choose your own adventure</span>
+        </div>
+        <p class="desc">
+          An office comedy that opens with a printer ticket from the CEO.
+          Every choice is yours, and the ending depends on them.
+        </p>
+        <div class="meta">
+          <span>42 scenes</span>
+          <span>4 endings</span>
+          <span class="play">play &rarr;</span>
+        </div>
+      </a>
 
       <ul class="links">
         <li>
