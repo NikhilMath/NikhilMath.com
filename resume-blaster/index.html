@@ -18,6 +18,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    // Opened as a window over another page: fill the frame, and send links to the top page.
+    if (window.self !== window.top) {
+      document.documentElement.classList.add("embedded");
+      const base = document.createElement("base");
+      base.target = "_top";
+      document.head.appendChild(base);
+    }
+  </script>
   <style>
     :root {
       --text: #e6edf3;
@@ -388,6 +397,23 @@
     .below .hint { text-align: center; }
     .below .resume-link { color: var(--accent); }
 
+    /* Embedded as a window over the homepage: the frame is the window. */
+    html.embedded, html.embedded body { height: 100%; min-height: 0; background: transparent; }
+    html.embedded body { display: block; padding: 0; }
+    html.embedded body::before { display: none; }
+    html.embedded .window {
+      display: flex;
+      flex-direction: column;
+      max-width: none;
+      height: 100%;
+      background: #11161d;
+      box-shadow: none;
+    }
+    html.embedded .body { display: flex; flex: 1; flex-direction: column; min-height: 0; }
+    html.embedded .stage { flex: 1; min-height: 0; }
+    html.embedded .desk { min-height: 100%; }
+    html.embedded .home-link { visibility: hidden; }
+
     @media (max-width: 480px) {
       body { padding: 12px; }
       .titlebar .title { display: none; }
@@ -439,7 +465,7 @@
         <div class="overlay" id="overlay" hidden></div>
       </div>
       <div class="below">
-        <a href="/">&larr; nikhilmath.com</a>
+        <a class="home-link" href="/">&larr; nikhilmath.com</a>
         <span class="hint" id="hint"></span>
         <a class="resume-link" href="/resume/" target="_blank" rel="noopener">my resume &#8599;</a>
       </div>
@@ -995,6 +1021,7 @@
     });
     window.addEventListener("blur", pause);
     document.addEventListener("visibilitychange", () => { if (document.hidden) pause(); });
+    window.addEventListener("chrome:hide", pause);
 
     // ---- Loop -------------------------------------------------------------------------
 
@@ -1030,5 +1057,6 @@
     requestAnimationFrame(frame);
   })();
   </script>
+  <script src="/chrome.js" defer></script>
 </body>
 </html>
