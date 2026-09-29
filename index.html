@@ -186,15 +186,9 @@
       margin: 0 0 10px 0;
     }
 
-    .projects {
-      display: grid;
-      gap: 14px;
-      margin: 0 0 28px 0;
-    }
-
     .project {
       display: block;
-      margin: 0;
+      margin: 0 0 28px 0;
       padding: 22px 24px;
       border: 1px solid rgba(255, 184, 108, 0.32);
       border-radius: 10px;
@@ -247,28 +241,6 @@
       border-color: var(--accent);
       background: rgba(255, 184, 108, 0.22);
     }
-
-    /* A card with several buttons: only the buttons react, not the whole card. */
-    .project.multi:hover {
-      border-color: rgba(255, 184, 108, 0.32);
-      background: rgba(255, 184, 108, 0.09);
-    }
-    .project.multi:active { transform: none; }
-    .project .actions { flex-wrap: wrap; gap: 10px; }
-    .project .actions .play {
-      margin-left: 0;
-      text-decoration: none;
-      transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
-    }
-    .project.multi:hover .play {
-      border-color: rgba(255, 184, 108, 0.45);
-      background: rgba(255, 184, 108, 0.12);
-    }
-    .project.multi .play:hover {
-      border-color: var(--accent);
-      background: rgba(255, 184, 108, 0.22);
-    }
-    .project.multi .play:active { transform: translateY(1px); }
 
     ul.links {
       list-style: none;
@@ -353,42 +325,32 @@
 
       <hr>
       <p class="section-key">latest creative project:</p>
-      <div class="projects">
-        <a class="project" href="https://keyboardheist.com" target="_blank" rel="noopener">
-          <div class="head">
-            <span class="name">Keyboard Heist</span>
-            <span class="tag">choose your own adventure</span>
-          </div>
-          <p class="desc">
-            A video game I built. An office comedy that opens with a printer
-            ticket from the CEO, where every choice is yours and the ending
-            depends on them. Two of the four endings stay grounded in the
-            office. The other two go somewhere considerably less realistic.
-          </p>
-          <div class="meta">
-            <span>42 scenes</span>
-            <span>4 endings</span>
-            <span class="play">play &rarr;</span>
-          </div>
-        </a>
-        <div class="project multi">
-          <div class="head">
-            <span class="name">Resume Blaster</span>
-            <span class="tag">my resume, as a video game</span>
-          </div>
-          <p class="desc">
-            My resume as a help desk shift. Send each request to the skill
-            that fixes it before the SLA runs out, and every level you clear
-            unlocks the next chapter of my IT career.
-          </p>
-          <div class="meta actions">
-            <a class="play" href="/resume-blaster/">play the game &rarr;</a>
-            <a class="play" href="/resume/">view my resume &rarr;</a>
-          </div>
+      <a class="project" href="https://keyboardheist.com" target="_blank" rel="noopener">
+        <div class="head">
+          <span class="name">Keyboard Heist</span>
+          <span class="tag">choose your own adventure</span>
         </div>
-      </div>
+        <p class="desc">
+          A video game I built. An office comedy that opens with a printer
+          ticket from the CEO, where every choice is yours and the ending
+          depends on them. Two of the four endings stay grounded in the
+          office. The other two go somewhere considerably less realistic.
+        </p>
+        <div class="meta">
+          <span>42 scenes</span>
+          <span>4 endings</span>
+          <span class="play">play &rarr;</span>
+        </div>
+      </a>
 
       <ul class="links">
+        <li>
+          <a href="/resume/">
+            <span class="label">resume</span>
+            <span class="value">view my resume</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </li>
         <li>
           <a href="https://github.com/NikhilMath" target="_blank" rel="noopener">
             <span class="label">github</span>

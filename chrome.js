@@ -1,9 +1,10 @@
 // Makes the macOS-style traffic lights on the site's windows work, and opens
-// Resume Blaster as its own window over the page instead of navigating to it.
+// internal pages (like the resume) as their own window over the page instead
+// of navigating to them.
 //
 // Red closes, yellow minimizes to a dock, green zooms. A page only needs a
 // `.window` containing a `.chrome` with three spans, plus this script. Inside
-// the game's embedded window, the lights ask the parent page to act instead.
+// an embedded window, the lights ask the parent page to act instead.
 (() => {
   "use strict";
 
@@ -14,14 +15,12 @@
 
   const embedded = window.self !== window.top;
   const path = location.pathname;
-  const isHome = !/^\/(resume|resume-blaster)(\/|$)/.test(path);
-  const isGame = /^\/resume-blaster(\/|$)/.test(path);
+  const isHome = !/^\/resume(\/|$)/.test(path);
   const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Internal pages that open as windows over the current page.
   const APPS = {
-    "/resume-blaster/": { label: "Resume Blaster", icon: "RB", kind: "game" },
-    "/resume/": { label: "Resume", icon: "CV", kind: "doc" },
+    "/resume/": { label: "Resume", icon: "CV" },
   };
   const slash = p => (p.endsWith("/") ? p : `${p}/`);
   const here = slash(path);
@@ -72,27 +71,16 @@
       pointer-events: none;
     }
     .app-window {
-      width: min(620px, 100%);
-      height: min(760px, calc(100vh - 24px));
-      height: min(760px, calc(100dvh - 24px));
+      width: min(800px, 100%);
+      height: min(900px, calc(100vh - 24px));
+      height: min(900px, calc(100dvh - 24px));
       pointer-events: auto;
       border-radius: 12px;
       overflow: hidden;
-      pointer-events: auto;
       box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.35);
       transition: width 320ms cubic-bezier(0.2, 0.8, 0.2, 1), height 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .app-window.zoomed {
-      width: min(820px, 100%);
-      height: min(920px, calc(100vh - 24px));
-      height: min(920px, calc(100dvh - 24px));
-    }
-    .app-window.doc {
-      width: min(800px, 100%);
-      height: min(900px, calc(100vh - 24px));
-      height: min(900px, calc(100dvh - 24px));
-    }
-    .app-window.doc.zoomed {
       width: min(1100px, 100%);
       height: calc(100vh - 24px);
       height: calc(100dvh - 24px);
@@ -195,16 +183,22 @@
       background: rgba(17, 22, 29, 0.95);
       transform: rotate(45deg);
     }
-    .cat-btn svg { width: 120px; height: 120px; transition: transform 160ms ease; }
+    .cat-btn svg { width: 130px; height: 150px; transition: transform 160ms ease; }
     .cat-btn:hover svg { transform: translateY(-5px); }
     .cat-btn:hover .bubble { border-color: var(--accent, #ffb86c); }
     .cat-btn:focus-visible { outline: 2px solid var(--accent, #ffb86c); outline-offset: 6px; border-radius: 12px; }
-    .cat-btn .tail { transform-origin: 80px 98px; animation: swish 2.4s ease-in-out infinite alternate; }
+    .cat-btn .tail { transform-origin: 40px 98px; animation: swish 2.4s ease-in-out infinite alternate; }
     .cat-btn .eyes { transform-box: fill-box; transform-origin: center; animation: blink 4.5s infinite; }
     @keyframes swish { from { transform: rotate(-10deg); } to { transform: rotate(8deg); } }
     @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+    .cat-btn .spark, .cat-btn .star { transform-box: fill-box; transform-origin: center; }
+    .cat-btn .spark { animation: twinkle 1.6s ease-in-out infinite; }
+    .cat-btn .star { animation: twinkle 2.8s ease-in-out infinite; }
+    .cat-btn .star:nth-of-type(2) { animation-delay: -1.4s; }
+    .cat-btn:hover .spark { animation-duration: 0.6s; }
+    @keyframes twinkle { 0%, 100% { transform: scale(0.6); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 1; } }
     @media (prefers-reduced-motion: reduce) {
-      .cat-btn .tail, .cat-btn .eyes { animation: none; }
+      .cat-btn .tail, .cat-btn .eyes, .cat-btn .spark, .cat-btn .star { animation: none; }
     }
   `;
   document.head.appendChild(style);
@@ -222,12 +216,11 @@
     });
   });
 
-  // ---- Inside the game's window: ask the page underneath to act ----
+  // ---- Inside an embedded window: ask the page underneath to act ----
 
   if (embedded) {
     ["close", "minimize", "zoom"].forEach((action, i) => {
       lights[i].addEventListener("click", () => {
-        if (action !== "zoom") window.dispatchEvent(new CustomEvent("chrome:hide"));
         window.parent.postMessage({ chrome: action }, location.origin);
       });
     });
@@ -241,7 +234,7 @@
     return;
   }
 
-  // ---- A top-level page: manage its window, the game window and the dock ----
+  // ---- A top-level page: manage its window, any page windows and the dock ----
 
   const dock = document.createElement("div");
   dock.className = "chrome-dock";
@@ -256,8 +249,8 @@
     <p>nikhil@math — [Process completed]</p>
     <button type="button" class="cat-btn" aria-label="Reopen nikhil@math">
       <span class="bubble">press me to get the link tree back up</span>
-      <svg viewBox="0 0 120 120" aria-hidden="true">
-        <path class="tail" d="M80 98 C108 98 112 68 96 56" fill="none" stroke="#0b0b0d" stroke-width="8" stroke-linecap="round"/>
+      <svg viewBox="0 -30 130 150" aria-hidden="true">
+        <path class="tail" d="M40 98 C12 98 8 68 24 56" fill="none" stroke="#0b0b0d" stroke-width="8" stroke-linecap="round"/>
         <ellipse cx="60" cy="90" rx="26" ry="22" fill="#0b0b0d"/>
         <ellipse cx="49" cy="110" rx="7" ry="4" fill="#0b0b0d"/>
         <ellipse cx="71" cy="110" rx="7" ry="4" fill="#0b0b0d"/>
@@ -270,6 +263,14 @@
         </g>
         <path d="M57.5 59 L62.5 59 L60 62 Z" fill="#d08a80"/>
         <path d="M42 58 L31 55 M42 61 L31 62 M78 58 L89 55 M78 61 L89 62" stroke="rgba(255,255,255,0.35)" stroke-width="1" stroke-linecap="round"/>
+        <path d="M45 35 Q55 12 61 -6 Q64 -16 74 -20 Q67 -7 70 6 Q73 22 76 35 Z" fill="#7d4fd1"/>
+        <path d="M46 31 Q60 35 75 31 L76 35 Q60 39 45 35 Z" fill="#ffb86c"/>
+        <ellipse cx="60.5" cy="36" rx="25" ry="4.5" fill="#5e37a8"/>
+        <path class="star" d="M60 10 l1.4 3.2 3.2 1.4 -3.2 1.4 -1.4 3.2 -1.4 -3.2 -3.2 -1.4 3.2 -1.4 z" fill="#ffb86c"/>
+        <path class="star" d="M68 -2 l1 2.2 2.2 1 -2.2 1 -1 2.2 -1 -2.2 -2.2 -1 2.2 -1 z" fill="#ffb86c"/>
+        <path d="M82 98 L106 66" stroke="#b08158" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="82" cy="98" rx="6" ry="5" fill="#0b0b0d"/>
+        <path class="spark" d="M107 58 l2.2 5.3 5.3 2.2 -5.3 2.2 -2.2 5.3 -2.2 -5.3 -5.3 -2.2 5.3 -2.2 z" fill="#fff4e0"/>
       </svg>
     </button>`;
   document.body.appendChild(closed);
@@ -333,7 +334,6 @@
   });
 
   yellow.addEventListener("click", () => {
-    if (isGame) window.dispatchEvent(new CustomEvent("chrome:hide"));
     minimize(win, "&gt;_", "nikhil@math", () => yellow.focus());
   });
 
@@ -361,7 +361,7 @@
     const def = APPS[key];
     const layer = document.createElement("div");
     layer.className = "app-layer";
-    layer.innerHTML = `<div class="app-window ${def.kind}" role="dialog" aria-label="${def.label}"><iframe src="${key}" title="${def.label}"></iframe></div>`;
+    layer.innerHTML = `<div class="app-window" role="dialog" aria-label="${def.label}"><iframe src="${key}" title="${def.label}"></iframe></div>`;
     document.body.appendChild(layer);
     const box = layer.firstElementChild;
     const frame = box.querySelector("iframe");
