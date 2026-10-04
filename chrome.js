@@ -1,10 +1,7 @@
-// Makes the macOS-style traffic lights on the site's windows work, and opens
-// internal pages (like the resume) as their own window over the page instead
-// of navigating to them.
+// Makes the macOS-style traffic lights on the site's window work.
 //
 // Red closes, yellow minimizes to a dock, green zooms. A page only needs a
-// `.window` containing a `.chrome` with three spans, plus this script. Inside
-// an embedded window, the lights ask the parent page to act instead.
+// `.window` containing a `.chrome` with three spans, plus this script.
 (() => {
   "use strict";
 
@@ -13,24 +10,7 @@
   if (!lights || lights.length < 3) return;
   const [red, yellow, green] = lights;
 
-  const embedded = window.self !== window.top;
-  const path = location.pathname;
-  const isHome = !/^\/resume(\/|$)/.test(path);
   const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Internal pages that open as windows over the current page.
-  const APPS = {
-    "/resume/": { label: "Resume", icon: "CV" },
-  };
-  const slash = p => (p.endsWith("/") ? p : `${p}/`);
-  const here = slash(path);
-  const modified = e => e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
-  function appFor(link) {
-    const url = new URL(link.href, location.href);
-    if (url.origin !== location.origin) return null;
-    const key = slash(url.pathname);
-    return APPS[key] && key !== here ? key : null;
-  }
 
   const glyph = paths =>
     `url("data:image/svg+xml,${encodeURIComponent(
@@ -60,32 +40,6 @@
 
     .window { transition: max-width 320ms cubic-bezier(0.2, 0.8, 0.2, 1); }
     .window.zoomed { max-width: min(1200px, 100%); }
-
-    .app-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      display: grid;
-      place-items: center;
-      padding: 12px;
-      pointer-events: none;
-    }
-    .app-window {
-      width: min(800px, 100%);
-      height: min(900px, calc(100vh - 24px));
-      height: min(900px, calc(100dvh - 24px));
-      pointer-events: auto;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.35);
-      transition: width 320ms cubic-bezier(0.2, 0.8, 0.2, 1), height 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .app-window.zoomed {
-      width: min(1100px, 100%);
-      height: calc(100vh - 24px);
-      height: calc(100dvh - 24px);
-    }
-    .app-window iframe { display: block; width: 100%; height: 100%; border: 0; background: transparent; }
 
     .chrome-dock {
       position: fixed;
@@ -216,26 +170,6 @@
     });
   });
 
-  // ---- Inside an embedded window: ask the page underneath to act ----
-
-  if (embedded) {
-    ["close", "minimize", "zoom"].forEach((action, i) => {
-      lights[i].addEventListener("click", () => {
-        window.parent.postMessage({ chrome: action }, location.origin);
-      });
-    });
-    document.addEventListener("click", e => {
-      const link = e.target.closest("a[href]");
-      const key = link && !modified(e) && appFor(link);
-      if (!key) return;
-      e.preventDefault();
-      window.parent.postMessage({ chrome: "open", href: key }, location.origin);
-    });
-    return;
-  }
-
-  // ---- A top-level page: manage its window, any page windows and the dock ----
-
   const dock = document.createElement("div");
   dock.className = "chrome-dock";
   dock.setAttribute("aria-label", "Dock");
@@ -288,7 +222,7 @@
     return `translate(${dx}px, ${dy}px) scale(0.06)`;
   }
 
-  async function minimize(el, icon, label, afterRestore, key = "main") {
+  async function minimize(el, icon, label, afterRestore) {
     const to = towardDock(el);
     await animate(el, [{ transform: "none", opacity: 1 }, { transform: to, opacity: 0.3 }], 380, "cubic-bezier(0.5, 0, 0.75, 0)");
     el.style.visibility = "hidden";
@@ -296,7 +230,6 @@
 
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.dataset.app = key;
     btn.setAttribute("aria-label", `Restore ${label}`);
     btn.title = label;
     btn.innerHTML = `<span class="app">${icon}</span><span class="dot"></span>`;
@@ -312,13 +245,8 @@
     btn.focus();
   }
 
-  // This page's own window.
   red.addEventListener("click", async () => {
     await animate(win, [{ transform: "none", opacity: 1 }, { transform: "scale(0.92)", opacity: 0 }], 180, "ease-in");
-    if (!isHome) {
-      location.href = "/";
-      return;
-    }
     win.style.visibility = "hidden";
     settle(win);
     closed.hidden = false;
@@ -339,77 +267,5 @@
 
   green.addEventListener("click", () => {
     green.setAttribute("aria-pressed", String(win.classList.toggle("zoomed")));
-  });
-
-  // ---- Internal pages open as windows over the page ----
-
-  const apps = new Map(); // key -> { key, def, layer, box, frame }
-  let topZ = 20;
-  const front = app => { app.layer.style.zIndex = String(++topZ); };
-
-  function openApp(key) {
-    const existing = apps.get(key);
-    if (existing) {
-      const docked = dock.querySelector(`[data-app="${key}"]`);
-      if (docked) docked.click();
-      else {
-        front(existing);
-        existing.frame.contentWindow.focus();
-      }
-      return;
-    }
-    const def = APPS[key];
-    const layer = document.createElement("div");
-    layer.className = "app-layer";
-    layer.innerHTML = `<div class="app-window" role="dialog" aria-label="${def.label}"><iframe src="${key}" title="${def.label}"></iframe></div>`;
-    document.body.appendChild(layer);
-    const box = layer.firstElementChild;
-    const frame = box.querySelector("iframe");
-    frame.addEventListener("load", () => frame.contentWindow.focus(), { once: true });
-    const app = { key, def, layer, box, frame };
-    apps.set(key, app);
-    front(app);
-    animate(box, [{ transform: "scale(0.92)", opacity: 0 }, { transform: "none", opacity: 1 }], 220, "ease-out").then(() => settle(box));
-  }
-
-  async function closeApp(app) {
-    apps.delete(app.key);
-    const docked = dock.querySelector(`[data-app="${app.key}"]`);
-    if (docked) docked.remove();
-    await animate(app.box, [{ transform: "none", opacity: 1 }, { transform: "scale(0.92)", opacity: 0 }], 180, "ease-in");
-    app.layer.remove();
-  }
-
-  window.addEventListener("message", e => {
-    if (e.origin !== location.origin) return;
-    const app = [...apps.values()].find(a => a.frame.contentWindow === e.source);
-    if (!app) return;
-    const action = e.data && e.data.chrome;
-    if (action === "close") closeApp(app);
-    else if (action === "minimize") {
-      minimize(app.box, app.def.icon, app.def.label, () => {
-        front(app);
-        app.frame.contentWindow.focus();
-      }, app.key);
-    } else if (action === "zoom") app.box.classList.toggle("zoomed");
-    else if (action === "open" && APPS[e.data.href]) openApp(e.data.href);
-  });
-
-  // Clicking into a window brings it to the front.
-  window.addEventListener("blur", () => {
-    setTimeout(() => {
-      const app = [...apps.values()].find(a => a.frame === document.activeElement);
-      if (app) front(app);
-    });
-  });
-
-  // Links to internal pages open their window instead of leaving the page.
-  // Modified clicks (new tab, new window) still work as normal links.
-  document.addEventListener("click", e => {
-    const link = e.target.closest("a[href]");
-    const key = link && !modified(e) && appFor(link);
-    if (!key) return;
-    e.preventDefault();
-    openApp(key);
   });
 })();

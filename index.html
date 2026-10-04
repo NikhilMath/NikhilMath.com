@@ -173,6 +173,17 @@
       flex: 1 1 140px;
     }
     .currently .key { color: var(--accent); }
+    .currently a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 184, 108, 0.4);
+      text-underline-offset: 3px;
+      transition: color 120ms ease, text-decoration-color 120ms ease;
+    }
+    .currently a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
 
     hr {
       border: 0;
@@ -273,6 +284,17 @@
     .arrow { margin-left: auto; color: var(--muted); }
     ul.links a:hover .arrow { color: var(--accent); }
 
+    ul.links a.download {
+      border-color: rgba(255, 184, 108, 0.45);
+      background: rgba(255, 184, 108, 0.12);
+    }
+    ul.links a.download:hover {
+      border-color: var(--accent);
+      background: rgba(255, 184, 108, 0.22);
+    }
+    ul.links a.download .label,
+    ul.links a.download .arrow { color: var(--accent); }
+
     footer {
       margin-top: 22px;
       color: var(--muted);
@@ -311,9 +333,9 @@
       <div class="status">
         <p class="currently">
           <span class="key">on the clock:</span><br>
-          - IT Support Manager<br>
-          - Director of PR<br>
-          - Support Group Chair
+          - <a href="https://visionaryhomes.com" target="_blank" rel="noopener">IT Support Manager</a><br>
+          - <a href="https://recoverycafelogan.com" target="_blank" rel="noopener">Director of PR</a><br>
+          - <a href="https://www.nar-anon.org" target="_blank" rel="noopener">Support Group Chair</a>
         </p>
         <p class="currently">
           <span class="key">off-hours:</span><br>
@@ -345,10 +367,10 @@
 
       <ul class="links">
         <li>
-          <a href="/resume/">
+          <a class="download" href="/Nikhil-Math-Resume.pdf" download>
             <span class="label">resume</span>
-            <span class="value">view my resume</span>
-            <span class="arrow">&rarr;</span>
+            <span class="value">download pdf</span>
+            <span class="arrow">&darr;</span>
           </a>
         </li>
         <li>
@@ -376,13 +398,6 @@
           <a href="mailto:erulemath@gmail.com">
             <span class="label">email</span>
             <span class="value">erulemath@gmail.com</span>
-            <span class="arrow">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a href="tel:+14359194041">
-            <span class="label">phone</span>
-            <span class="value">+1 435 919 4041</span>
             <span class="arrow">&rarr;</span>
           </a>
         </li>
