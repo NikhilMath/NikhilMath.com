@@ -103,7 +103,8 @@
     .chrome-closed[hidden] { display: none; }
     .chrome-closed p { margin: 0; }
 
-    /* Easter egg: close the main window and a cat waits to bring it back. */
+    /* Easter egg: close the main window and you catch a wizard cat napping on
+       his spellbook. He jolts awake, and clicking him brings the window back. */
     .cat-btn {
       display: flex;
       flex-direction: column;
@@ -123,11 +124,13 @@
       background: rgba(17, 22, 29, 0.9);
       color: var(--text, #e6edf3);
       font-size: 13px;
+      line-height: 1.5;
+      max-width: 290px;
     }
     .cat-btn .bubble::after {
       content: "";
       position: absolute;
-      left: 50%;
+      left: calc(50% - 22px);
       bottom: -7px;
       width: 12px;
       height: 12px;
@@ -137,22 +140,39 @@
       background: rgba(17, 22, 29, 0.95);
       transform: rotate(45deg);
     }
-    .cat-btn svg { width: 130px; height: 150px; transition: transform 160ms ease; }
+    .cat-btn svg { width: 150px; height: 140px; overflow: visible; transition: transform 160ms ease; }
     .cat-btn:hover svg { transform: translateY(-5px); }
     .cat-btn:hover .bubble { border-color: var(--accent, #ffb86c); }
     .cat-btn:focus-visible { outline: 2px solid var(--accent, #ffb86c); outline-offset: 6px; border-radius: 12px; }
-    .cat-btn .tail { transform-origin: 40px 98px; animation: swish 2.4s ease-in-out infinite alternate; }
-    .cat-btn .eyes { transform-box: fill-box; transform-origin: center; animation: blink 4.5s infinite; }
-    @keyframes swish { from { transform: rotate(-10deg); } to { transform: rotate(8deg); } }
+
+    /* Startled awake each time the window closes (the panel is display: none
+       until then, so these replay), then fidgety while he waits. */
+    .cat-btn .cat { transform-origin: 75px 120px; animation: startle 560ms cubic-bezier(0.3, 1.5, 0.5, 1) both; }
+    .cat-btn .hat { transform-origin: 57px 57px; animation: knocked 1.1s 120ms ease-out both; }
+    .cat-btn .bang { transform-box: fill-box; transform-origin: center bottom; animation: pop 420ms 160ms cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+    .cat-btn .z { opacity: 0; animation: drift 1.4s ease-out both; }
+    .cat-btn .tail { transform-origin: 112px 104px; animation: swish 1.6s ease-in-out infinite alternate; }
+    .cat-btn .eyes { transform-box: fill-box; transform-origin: center; animation: blink 4.5s 1.2s infinite; }
+    .cat-btn .star { transform-box: fill-box; transform-origin: center; animation: twinkle 2.8s ease-in-out infinite; }
+    @keyframes startle {
+      0% { transform: translateY(4px) scaleY(0.92); }
+      35% { transform: translateY(-10px) scaleY(1.04); }
+      100% { transform: none; }
+    }
+    @keyframes knocked {
+      0% { transform: translateY(8px) rotate(-14deg); }
+      40% { transform: translateY(-4px) rotate(8deg); }
+      70% { transform: rotate(-4deg); }
+      100% { transform: none; }
+    }
+    @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes drift { from { transform: translate(-14px, 12px); opacity: 0.9; } to { transform: translate(10px, -18px); opacity: 0; } }
+    @keyframes swish { from { transform: rotate(-12deg); } to { transform: rotate(6deg); } }
     @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
-    .cat-btn .spark, .cat-btn .star { transform-box: fill-box; transform-origin: center; }
-    .cat-btn .spark { animation: twinkle 1.6s ease-in-out infinite; }
-    .cat-btn .star { animation: twinkle 2.8s ease-in-out infinite; }
-    .cat-btn .star:nth-of-type(2) { animation-delay: -1.4s; }
-    .cat-btn:hover .spark { animation-duration: 0.6s; }
     @keyframes twinkle { 0%, 100% { transform: scale(0.6); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 1; } }
     @media (prefers-reduced-motion: reduce) {
-      .cat-btn .tail, .cat-btn .eyes, .cat-btn .spark, .cat-btn .star { animation: none; }
+      .cat-btn .cat, .cat-btn .hat, .cat-btn .bang, .cat-btn .z,
+      .cat-btn .tail, .cat-btn .eyes, .cat-btn .star { animation: none; }
     }
   `;
   document.head.appendChild(style);
@@ -182,29 +202,44 @@
   closed.innerHTML = `
     <p>nikhil@math — [Process completed]</p>
     <button type="button" class="cat-btn" aria-label="Reopen nikhil@math">
-      <span class="bubble">press me to get the link tree back up</span>
-      <svg viewBox="0 -30 130 150" aria-hidden="true">
-        <path class="tail" d="M40 98 C12 98 8 68 24 56" fill="none" stroke="#0b0b0d" stroke-width="8" stroke-linecap="round"/>
-        <ellipse cx="60" cy="90" rx="26" ry="22" fill="#0b0b0d"/>
-        <ellipse cx="49" cy="110" rx="7" ry="4" fill="#0b0b0d"/>
-        <ellipse cx="71" cy="110" rx="7" ry="4" fill="#0b0b0d"/>
-        <path d="M43 44 L40 20 L57 36 Z M77 44 L80 20 L63 36 Z" fill="#0b0b0d"/>
-        <circle cx="60" cy="52" r="21" fill="#0b0b0d"/>
-        <path d="M45 38 L44 27 L52 35 Z M75 38 L76 27 L68 35 Z" fill="#4a2f2a"/>
-        <g class="eyes">
-          <ellipse cx="52" cy="51" rx="3.4" ry="4.4" fill="#ffb86c"/>
-          <ellipse cx="68" cy="51" rx="3.4" ry="4.4" fill="#ffb86c"/>
+      <span class="bubble">oh, you caught me napping on the job! do me a favor: if you click me, the linktree will pop back up and I can finish my nap.</span>
+      <svg viewBox="0 0 150 140" aria-hidden="true">
+        <rect x="19" y="122" width="112" height="8" rx="2" fill="#5e37a8"/>
+        <path d="M23 110 Q49 102 75 110 L75 124 Q49 116 23 124 Z" fill="#efe3cc"/>
+        <path d="M75 110 Q101 102 127 110 L127 124 Q101 116 75 124 Z" fill="#dccdb0"/>
+        <path d="M83 113 Q101 108 119 113 M83 118 Q101 113 119 118" fill="none" stroke="#b9a684" stroke-width="1"/>
+        <text class="z" x="96" y="60" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700" fill="#fff4e0">z</text>
+        <g class="cat">
+          <path class="tail" d="M112 104 Q130 98 126 76" fill="none" stroke="#0b0b0d" stroke-width="8" stroke-linecap="round"/>
+          <ellipse cx="82" cy="102" rx="34" ry="15" fill="#0b0b0d"/>
+          <ellipse cx="56" cy="100" rx="14" ry="12" fill="#0b0b0d"/>
+          <ellipse cx="44" cy="112" rx="7" ry="4.5" fill="#0b0b0d"/>
+          <ellipse cx="62" cy="113" rx="7" ry="4.5" fill="#0b0b0d"/>
+          <path d="M40 72 L37 50 L51 65 Z M58 65 L68 50 L66 72 Z" fill="#0b0b0d"/>
+          <path d="M41 66 L40 55 L47 63 Z M61 63 L65 55 L64 66 Z" fill="#4a2f2a"/>
+          <circle cx="52" cy="82" r="17" fill="#0b0b0d"/>
+          <g class="eyes">
+            <circle cx="45.5" cy="81" r="4.6" fill="#ffb86c"/>
+            <circle cx="58.5" cy="81" r="4.6" fill="#ffb86c"/>
+            <circle cx="45.5" cy="81" r="1.5" fill="#0b0b0d"/>
+            <circle cx="58.5" cy="81" r="1.5" fill="#0b0b0d"/>
+          </g>
+          <path d="M50 88 L54 88 L52 90.5 Z" fill="#d08a80"/>
+          <ellipse cx="52" cy="93.5" rx="1.8" ry="2.2" fill="#d08a80"/>
+          <path d="M38 87 L26 82 M38 90 L26 91 M66 87 L78 82 M66 90 L78 91" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round"/>
+          <g class="hat">
+            <g transform="translate(5 -9) rotate(18 52 66)">
+              <path d="M38 66 Q46 46 50 34 Q53 28 60 26 Q56 36 57 46 Q58 56 66 66 Z" fill="#7d4fd1"/>
+              <path d="M38 63 Q52 66 66 63 L66 66 Q52 69 38 66 Z" fill="#ffb86c"/>
+              <ellipse cx="52" cy="66" rx="16" ry="3.6" fill="#5e37a8"/>
+              <path class="star" d="M53 44 l1.2 2.8 2.8 1.2 -2.8 1.2 -1.2 2.8 -1.2 -2.8 -2.8 -1.2 2.8 -1.2 z" fill="#ffb86c"/>
+            </g>
+          </g>
+          <g class="bang">
+            <path d="M80 44 L85 44 L84 60 L81 60 Z" fill="#ffb86c"/>
+            <circle cx="82.5" cy="65" r="2.3" fill="#ffb86c"/>
+          </g>
         </g>
-        <path d="M57.5 59 L62.5 59 L60 62 Z" fill="#d08a80"/>
-        <path d="M42 58 L31 55 M42 61 L31 62 M78 58 L89 55 M78 61 L89 62" stroke="rgba(255,255,255,0.35)" stroke-width="1" stroke-linecap="round"/>
-        <path d="M45 35 Q55 12 61 -6 Q64 -16 74 -20 Q67 -7 70 6 Q73 22 76 35 Z" fill="#7d4fd1"/>
-        <path d="M46 31 Q60 35 75 31 L76 35 Q60 39 45 35 Z" fill="#ffb86c"/>
-        <ellipse cx="60.5" cy="36" rx="25" ry="4.5" fill="#5e37a8"/>
-        <path class="star" d="M60 10 l1.4 3.2 3.2 1.4 -3.2 1.4 -1.4 3.2 -1.4 -3.2 -3.2 -1.4 3.2 -1.4 z" fill="#ffb86c"/>
-        <path class="star" d="M68 -2 l1 2.2 2.2 1 -2.2 1 -1 2.2 -1 -2.2 -2.2 -1 2.2 -1 z" fill="#ffb86c"/>
-        <path d="M82 98 L106 66" stroke="#b08158" stroke-width="3" stroke-linecap="round"/>
-        <ellipse cx="82" cy="98" rx="6" ry="5" fill="#0b0b0d"/>
-        <path class="spark" d="M107 58 l2.2 5.3 5.3 2.2 -5.3 2.2 -2.2 5.3 -2.2 -5.3 -5.3 -2.2 5.3 -2.2 z" fill="#fff4e0"/>
       </svg>
     </button>`;
   document.body.appendChild(closed);
