@@ -90,6 +90,11 @@ the next run overwrites it.
   `(Dragon Ball Super, #24)`, and year ranges such as `(2024-)` are dropped,
   and `Volume` becomes `Vol.`. A subtitle is kept when it carries the volume
   or issue number, as in `Solo Leveling: Ragnarok, Vol. 1`.
+- Each book Nikhil has rated on Goodreads shows his own rating underneath,
+  as amber `★` stars with the unearned ones dimmed (`.book-rating`,
+  `.unlit`). Unrated books (rating 0 in the feed) show no stars. JetBrains
+  Mono has no `★`, so the browser borrows the glyph from a fallback font,
+  which is why the stars are set larger than the caption text.
 - Covers load from Goodreads' image servers at 240px wide (`._SX240_` in the
   filename). Goodreads resizes based on that part of the filename.
 - It refuses to write if the read shelf comes back empty or the markers are

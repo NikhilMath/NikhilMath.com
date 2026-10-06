@@ -39,6 +39,7 @@ def fetch(shelf):
             "cover": cover(text("book_large_image_url")),
             "added": date("user_date_added"),
             "read": date("user_read_at"),
+            "rating": int(text("user_rating") or 0),
         })
     return books
 
@@ -76,6 +77,14 @@ def section(label, books):
             f'      <img src="{html.escape(book["cover"])}" alt="" width="240" height="360" loading="lazy">',
             f'      <span class="book-title">{html.escape(book["title"], quote=False)}</span>',
             f'      <span class="book-author">{html.escape(book["author"], quote=False)}</span>',
+        ]
+        if book["rating"]:  # 0 means I haven't rated it
+            lit, unlit = "★" * book["rating"], "★" * (5 - book["rating"])
+            lines.append(
+                f'      <span class="book-rating" role="img" aria-label="rated {book["rating"]} of 5 stars">'
+                + lit + (f'<span class="unlit">{unlit}</span>' if unlit else "") + "</span>"
+            )
+        lines += [
             "    </a>",
             "  </li>",
         ]

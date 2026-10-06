@@ -370,6 +370,15 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    ul.books .book-rating {
+      display: block;
+      margin-top: 5px;
+      color: var(--accent);
+      font-size: 15px;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    ul.books .book-rating .unlit { color: rgba(255, 255, 255, 0.18); }
 
     footer {
       margin-top: 22px;
@@ -532,6 +541,7 @@
               <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
               <span class="book-title">Born a Crime</span>
               <span class="book-author">Trevor Noah</span>
+              <span class="book-rating" role="img" aria-label="rated 5 of 5 stars">★★★★★</span>
             </a>
           </li>
         </ul>
