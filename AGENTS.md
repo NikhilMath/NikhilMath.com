@@ -156,8 +156,6 @@ activity; turn it back on from the Actions tab if that happens.
 - Work directly on `master` with no branches or PRs, and push when you're
   done; the owner wants changes to go live. Pull with `--rebase` first,
   because the book bot also commits to `master`.
-  The `development-branch` and `nikhils-personal-branch` branches are
-  leftovers from 2023 and aren't used.
 - Commit subjects are imperative and Title Case with no prefix, and describe
   what a visitor would notice. For example:
   `Show My Goodreads Books And Keep Them Updated Daily`,
