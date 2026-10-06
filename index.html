@@ -282,6 +282,7 @@
       padding: 0;
       margin: 0;
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: 8px;
     }
     ul.links a {
@@ -319,6 +320,57 @@
     ul.links a.download .label,
     ul.links a.download .arrow { color: var(--accent); }
 
+    .reading { margin-top: 28px; }
+    ul.books + .section-key { margin-top: 26px; }
+    ul.books {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+    ul.books a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+    }
+    ul.books img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      transition: border-color 120ms ease, transform 120ms ease;
+    }
+    ul.books a:hover img {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    ul.books .book-title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      margin-top: 9px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    ul.books a:hover .book-title { color: var(--accent); }
+    ul.books .book-author {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     footer {
       margin-top: 22px;
       color: var(--muted);
@@ -326,9 +378,11 @@
     }
 
     @media (max-width: 480px) {
+      body { padding: 16px; }
       .terminal { padding: 22px 20px 24px 20px; }
       h1 { font-size: 26px; }
       .titlebar .title { display: none; }
+      ul.links a { gap: 10px; }
       .label { min-width: 82px; }
       .project { padding: 18px 18px 20px 18px; }
       .project .name { font-size: 19px; }
@@ -340,6 +394,19 @@
         text-align: center;
         padding: 10px 14px;
       }
+      ul.books {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 96px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        margin: 0 -20px;
+        padding: 4px 20px 6px 20px;
+        scroll-padding: 0 20px;
+        scrollbar-width: none;
+      }
+      ul.books::-webkit-scrollbar { display: none; }
+      ul.books li { scroll-snap-align: start; }
     }
   </style>
 </head>
@@ -421,11 +488,79 @@
         <li>
           <a href="mailto:erulemath@gmail.com">
             <span class="label">email</span>
-            <span class="value">erulemath@gmail.com</span>
+            <span class="value">erulemath<wbr>@gmail.com</span>
             <span class="arrow">&rarr;</span>
           </a>
         </li>
       </ul>
+
+      <section class="reading">
+        <hr>
+        <!-- goodreads:start (filled in daily by .github/scripts/update-books.py) -->
+        <p class="section-key">last 5 books finished:</p>
+        <ul class="books">
+          <li>
+            <a href="https://www.goodreads.com/book/show/1237398" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1318523719l/1237398._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">One Piece, Vol. 1</span>
+              <span class="book-author">Eiichiro Oda</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/234515726" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1749636147l/234515726._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">Hey Yang, Where's My Thousand Bucks?</span>
+              <span class="book-author">Andrew Yang</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/247118620" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1769419784l/247118620._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">Solo Leveling: Ragnarok, Vol. 1</span>
+              <span class="book-author">Brix</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/241094437" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1773781009l/241094437._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">I Am Not a Robot</span>
+              <span class="book-author">Joanna Stern</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/29780253" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">Born a Crime</span>
+              <span class="book-author">Trevor Noah</span>
+            </a>
+          </li>
+        </ul>
+        <p class="section-key">currently reading:</p>
+        <ul class="books">
+          <li>
+            <a href="https://www.goodreads.com/book/show/19366807" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1572272591l/19366807._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">One Piece, Vol. 2</span>
+              <span class="book-author">Eiichiro Oda</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/198139881" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1693281633l/198139881._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">Millionaire Mission</span>
+              <span class="book-author">Brian Preston</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/220687901" target="_blank" rel="noopener">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747306293l/220687901._SX240_.jpg" alt="" width="240" height="360" loading="lazy">
+              <span class="book-title">The Wealth Ladder</span>
+              <span class="book-author">Nick Maggiulli</span>
+            </a>
+          </li>
+        </ul>
+        <!-- goodreads:end -->
+      </section>
 
       <footer>&copy; <span id="year"></span> Nikhil Math</footer>
     </div>
