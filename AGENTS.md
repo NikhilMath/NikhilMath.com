@@ -56,7 +56,10 @@ three spans plus `<script src="/chrome.js" defer>`, and an entry in
    - `off-hours:` lists hobbies.
 5. **`latest creative project:`** is a card for Keyboard Heist, linking to
    keyboardheist.com. That game lives in a separate repo, not this one.
-6. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email.
+6. **Link rows**: resume (a highlighted download), github, linkedin,
+   goodreads, pokémon, email. The pokémon row links to Rarest Catch
+   (rarest-catch.netlify.app), a daily Pokémon guessing game that lives in
+   its own repo. It's a game, not a profile, so it stays out of `sameAs`.
 7. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
 8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
