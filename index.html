@@ -221,9 +221,13 @@
       margin: 0 0 10px 0;
     }
 
+    .projects {
+      display: grid;
+      gap: 14px;
+      margin: 0 0 28px 0;
+    }
     .project {
       display: block;
-      margin: 0 0 28px 0;
       padding: 22px 24px;
       border: 1px solid rgba(255, 184, 108, 0.32);
       border-radius: 10px;
@@ -251,6 +255,15 @@
       letter-spacing: -0.3px;
     }
     .project .tag { color: var(--accent); font-size: 13px; }
+    .project .badge {
+      order: 1;
+      margin-left: auto;
+      padding: 2px 9px;
+      border: 1px solid rgba(255, 184, 108, 0.45);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 12px;
+    }
     .project .desc {
       margin: 12px 0 18px 0;
       color: #cbd5de;
@@ -395,6 +408,8 @@
       .label { min-width: 82px; }
       .project { padding: 18px 18px 20px 18px; }
       .project .name { font-size: 19px; }
+      .project .head { column-gap: 10px; }
+      .project .badge { order: 0; padding: 1px 7px; }
       .project .meta { flex-wrap: wrap; gap: 14px; }
       .project .meta span { white-space: nowrap; }
       .project .play {
@@ -446,24 +461,44 @@
       </div>
 
       <hr>
-      <p class="section-key">latest creative project:</p>
-      <a class="project" href="https://keyboardheist.com" target="_blank" rel="noopener">
-        <div class="head">
-          <span class="name">Keyboard Heist</span>
-          <span class="tag">choose your own adventure</span>
-        </div>
-        <p class="desc">
-          A video game I built. An office comedy that opens with a printer
-          ticket from the CEO, where every choice is yours and the ending
-          depends on them. Two of the four endings stay grounded in the
-          office. The other two go somewhere considerably less realistic.
-        </p>
-        <div class="meta">
-          <span>42 scenes</span>
-          <span>4 endings</span>
-          <span class="play">play &rarr;</span>
-        </div>
-      </a>
+      <p class="section-key">games i've made:</p>
+      <div class="projects">
+        <a class="project" href="https://rarest-catch.netlify.app" target="_blank" rel="noopener">
+          <div class="head">
+            <span class="name">Rarest Catch</span>
+            <span class="badge">latest</span>
+            <span class="tag">daily pokémon game</span>
+          </div>
+          <p class="desc">
+            Everyone gets the same five Pokémon prompts each day, like
+            &ldquo;name a pure Water-type,&rdquo; with 30 seconds to answer
+            each. A right answer scores more the fewer other players picked
+            the same Pokémon, so the obvious pick is rarely the best one.
+          </p>
+          <div class="meta">
+            <span>5 prompts</span>
+            <span>30 sec each</span>
+            <span class="play">play &rarr;</span>
+          </div>
+        </a>
+        <a class="project" href="https://keyboardheist.com" target="_blank" rel="noopener">
+          <div class="head">
+            <span class="name">Keyboard Heist</span>
+            <span class="tag">choose your own adventure</span>
+          </div>
+          <p class="desc">
+            A video game I built. An office comedy that opens with a printer
+            ticket from the CEO, where every choice is yours and the ending
+            depends on them. Two of the four endings stay grounded in the
+            office. The other two go somewhere considerably less realistic.
+          </p>
+          <div class="meta">
+            <span>42 scenes</span>
+            <span>4 endings</span>
+            <span class="play">play &rarr;</span>
+          </div>
+        </a>
+      </div>
 
       <ul class="links">
         <li>
@@ -491,13 +526,6 @@
           <a href="https://www.goodreads.com/nikhilmath" target="_blank" rel="noopener">
             <span class="label">goodreads</span>
             <span class="value">nikhilmath</span>
-            <span class="arrow">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://rarest-catch.netlify.app" target="_blank" rel="noopener">
-            <span class="label">pokémon</span>
-            <span class="value">Rarest Catch</span>
             <span class="arrow">&rarr;</span>
           </a>
         </li>

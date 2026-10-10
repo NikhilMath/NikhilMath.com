@@ -54,12 +54,15 @@ three spans plus `<script src="/chrome.js" defer>`, and an entry in
 4. **Status**, in two columns:
    - `on the clock:` lists current roles, each linked to the organization.
    - `off-hours:` lists hobbies.
-5. **`latest creative project:`** is a card for Keyboard Heist, linking to
-   keyboardheist.com. That game lives in a separate repo, not this one.
-6. **Link rows**: resume (a highlighted download), github, linkedin,
-   goodreads, pokémon, email. The pokémon row links to Rarest Catch
-   (rarest-catch.netlify.app), a daily Pokémon guessing game that lives in
-   its own repo. It's a game, not a profile, so it stays out of `sameAs`.
+5. **`games i've made:`** holds one `.project` card per game inside a
+   `.projects` wrapper, newest first. The newest card carries a `latest`
+   badge (`.badge`); move it when a new game goes on top. Right now
+   that's Rarest Catch (rarest-catch.netlify.app), a daily Pokémon
+   guessing game, then Keyboard Heist (keyboardheist.com). Each game lives
+   in its own repo, not this one. On phones the badge stays on the name's
+   line, which only just fits at 320px with a 12-character name; check
+   320px if you add a game with a longer name.
+6. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email.
 7. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
 8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
@@ -135,7 +138,7 @@ activity; turn it back on from the Actions tab if that happens.
   `--accent`, `--border` and so on). The accent is amber `#ffb86c`. The
   design is dark only, with no light mode.
 - **Voice**: labels are lowercase terminal-style, with a trailing colon in
-  the accent color, such as `on the clock:` and `latest creative project:`.
+  the accent color, such as `on the clock:` and `games i've made:`.
   Body copy is casual and first person.
 - **Components**: borders are 1px translucent; hover states turn the
   border amber, with transitions around 120ms. External links get
