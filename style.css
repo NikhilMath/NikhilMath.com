@@ -466,6 +466,7 @@ footer {
   object-fit: cover;
   border-bottom: 1px solid var(--border);
 }
+.infobox img:last-child { border-bottom: 0; }
 .infobox dl {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);

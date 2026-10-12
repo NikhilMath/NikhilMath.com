@@ -92,12 +92,11 @@ longer name.
 ## The wiki page (`wiki/`)
 
 "Wiki of Nikhil". Nikhil asked to drop the old "Nikhilpedia" name, so
-don't bring it back. Right now it's only the title and an
-`.infobox` that floats right (and stacks on phones), with the photo and a
-few facts. Nikhil wrote the `nickname` ("Nikki"), `known for` ("Being kind and funny") and
-`education` ("Books, people and YouTube (plus school, ...)") rows, so keep
-them. Nikhil asked to remove the article text that used to sit
-beside the box, so don't add body text unless asked. The `.wiki` styles for
+don't bring it back. Right now it's only the title and an `.infobox` that
+floats right (and stacks on phones), holding just the photo. Nikhil
+cleared out the fact rows to rewrite them from scratch, so add `<dl>` rows
+only from answers Nikhil gives. Nikhil also asked to remove the article
+text that used to sit beside the box, so don't add body text unless asked. The `.wiki` styles for
 paragraphs, lists and `## `-prefixed `<h2>` headings are still in
 `style.css` for when it grows. Don't invent biography details; ask Nikhil.
 
@@ -105,7 +104,7 @@ paragraphs, lists and `## `-prefixed `<h2>` headings are still in
 
 - **Job title or employer**: `<title>`, `<meta name="description">`, the
   JSON-LD `jobTitle` / `worksFor` / `knowsAbout`, the first item under
-  `on the clock:`, and the wiki's infobox.
+  `on the clock:`.
 - **Profiles**: the link rows and the JSON-LD `sameAs` list should name the same accounts.
 - **Link-preview text**: each `og:*` tag has a `twitter:*` twin. Change both.
 - **Photo**: `avatar.jpg` is also the JSON-LD `image`. `og-image.png` shows
