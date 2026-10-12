@@ -17,7 +17,7 @@ wrong or out of date, fix it.
 
 Source for [nikhilmath.com](https://nikhilmath.com), Nikhil Math's personal
 landing page, styled as a macOS terminal window over a warm amber
-background. It's a small static site (three pages) with no framework, no
+background. It's a small static site (two pages) with no framework, no
 build step and no dependencies, and it should stay that way.
 
 Netlify deploys the repo root from `master` on every push, so `master` is
@@ -29,21 +29,21 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | --- | --- |
 | `index.html` | The home page at `/`. Its only inline JavaScript sets the footer year. |
 | `games/index.html` | The video games page at `/games/`, with a card for each game Nikhil has made. |
-| `wiki/index.html` | "Wiki of Nikhil" at `/wiki/`, a wiki-style infobox with Nikhil's photo and a few facts. |
 | `style.css` | Every page's CSS, linked as `/style.css`. |
 | `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
 | `.github/scripts/update-books.py` | Regenerates the book covers from Goodreads (see below). |
 | `.github/workflows/update-books.yml` | Runs that script daily and commits any changes. |
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
-| `avatar.jpg` | 800×800 photo shown at the top right of the home page and in the wiki's infobox. |
+| `avatar.jpg` | 800×800 photo shown at the top right of the home page. |
 | `og-image.png` | 1200×630 link-preview image, a picture of the terminal design with the photo. |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
-| `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists all three pages, each with a hand-set `<lastmod>`. |
+| `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists both pages, each with a hand-set `<lastmod>`. |
 | `.vscode/settings.json` | Sets VS Code Live Server to port 5501. |
 | `README.md`, `LICENSE` | Short README with the preview image; MIT license. |
 
 The site once had other sub-pages (`books/`, `resume/`, `archive/`,
-`resume-blaster/`), which were removed on purpose. Don't bring them back.
+`resume-blaster/`, and later a `wiki/` page), which were removed on purpose.
+Don't bring them back.
 
 **Adding a page.** Make a folder with an `index.html` and copy the shell of
 `games/index.html`: the `<head>` (its own title, description, canonical and
@@ -60,9 +60,9 @@ fit at 320px, so check that width when adding or renaming a tab.
 Every page shares the title bar, tabs and footer.
 
 1. **Title bar**: traffic lights, plus `nikhil@math — -zsh — 90×27` (on
-   the other pages, `~/games` or `~/wiki` replaces `-zsh`). The size label
+   the other pages, `~/games` replaces `-zsh`). The size label
    is decoration, and it's hidden on phones.
-2. **Tabs** (`nav.tabs`): `home`, `video games`, `wiki`, styled like macOS
+2. **Tabs** (`nav.tabs`): `home` and `video games`, styled like macOS
    Terminal tabs. This is the site's navigation.
 3. **Avatar** in the top right corner (128px, or 80px on phones).
 4. **Prompt line** `~ nikhil@math:$ whoami` with a blinking cursor, then the name as `<h1>`.
@@ -73,9 +73,9 @@ Every page shares the title bar, tabs and footer.
 7. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
 8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
-Nikhil asked to keep the home page clean, which is why the games and the
-longer bio live on their own pages. Put new long-form content on a sub-page
-rather than the home page.
+Nikhil asked to keep the home page clean, which is why the games live on
+their own page. Put new long-form content on a sub-page rather than the
+home page.
 
 ## The video games page (`games/`)
 
@@ -88,17 +88,6 @@ Heist (keyboardheist.com). Each game lives in its own repo, not this one.
 On phones the badge stays on the name's line, which only just fits at
 320px with a 12-character name; check 320px if you add a game with a
 longer name.
-
-## The wiki page (`wiki/`)
-
-"Wiki of Nikhil". Nikhil asked to drop the old "Nikhilpedia" name, so
-don't bring it back. Right now it's only the title and an `.infobox` that
-floats right (and stacks on phones), holding just the photo. Nikhil
-cleared out the fact rows to rewrite them from scratch, so add `<dl>` rows
-only from answers Nikhil gives. Nikhil also asked to remove the article
-text that used to sit beside the box, so don't add body text unless asked. The `.wiki` styles for
-paragraphs, lists and `## `-prefixed `<h2>` headings are still in
-`style.css` for when it grows. Don't invent biography details; ask Nikhil.
 
 ## Things that must stay in sync
 
@@ -198,7 +187,7 @@ activity; turn it back on from the Actions tab if that happens.
   and open `http://localhost:5501` in the browser pane instead.
 - Check widths of 320, 360, 375 and 390px, plus desktop, and look for
   horizontal scrolling at each. A change to `style.css` affects every
-  page, so check all three. Also check the zoomed window (green button).
+  page, so check both. Also check the zoomed window (green button).
 - If you touched the window or title bar, click all three buttons, reopen
   the window via the cat, and restore it from the dock.
 

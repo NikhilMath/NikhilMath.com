@@ -4,4 +4,4 @@
 
 Source for my personal landing page.
 
-Static site with no build step: a home page, a video games page and a wiki page, sharing one `style.css`.
+Static site with no build step: a home page and a video games page, sharing one `style.css`.
