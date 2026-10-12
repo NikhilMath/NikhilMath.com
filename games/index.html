@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Games · Nikhil Math</title>
+  <meta name="description" content="Free browser games made by Nikhil Math: Rarest Catch, a daily Pokémon guessing game, and Keyboard Heist, an office comedy adventure.">
+  <link rel="canonical" href="https://nikhilmath.com/games/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Video Games by Nikhil Math">
+  <meta property="og:description" content="Free browser games made by Nikhil Math: Rarest Catch, a daily Pokémon guessing game, and Keyboard Heist, an office comedy adventure.">
+  <meta property="og:url" content="https://nikhilmath.com/games/">
+  <meta property="og:image" content="https://nikhilmath.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Video Games by Nikhil Math">
+  <meta name="twitter:description" content="Free browser games made by Nikhil Math: Rarest Catch, a daily Pokémon guessing game, and Keyboard Heist, an office comedy adventure.">
+  <meta name="twitter:image" content="https://nikhilmath.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='ui-monospace,Menlo,Consolas,monospace' font-size='36' font-weight='700' fill='%23ffb86c'%3E%26gt;_%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="window">
+    <div class="titlebar">
+      <div class="chrome"><span></span><span></span><span></span></div>
+      <div class="title">nikhil@math — ~/games — 90×27</div>
+    </div>
+    <nav class="tabs" aria-label="Pages">
+      <a href="/">home</a>
+      <a href="/games/" aria-current="page">video games</a>
+      <a href="/wiki/">wiki</a>
+    </nav>
+    <div class="terminal">
+      <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> ls ~/games<span class="cursor"></span></div>
+      <h1>Video Games</h1>
+      <p class="intro">
+        I make small games in my spare time. They're free and run right in
+        the browser, so there's nothing to install.
+      </p>
+
+      <p class="section-key">games i've made:</p>
+      <div class="projects">
+        <a class="project" href="https://rarest-catch.netlify.app" target="_blank" rel="noopener">
+          <div class="head">
+            <span class="name">Rarest Catch</span>
+            <span class="badge">latest</span>
+            <span class="tag">daily pokémon game</span>
+          </div>
+          <p class="desc">
+            Everyone gets the same five Pokémon prompts each day, like
+            &ldquo;name a pure Water-type,&rdquo; with 30 seconds to answer
+            each. A right answer scores more the fewer other players picked
+            the same Pokémon, so the obvious pick is rarely the best one.
+          </p>
+          <div class="meta">
+            <span>5 prompts</span>
+            <span>30 sec each</span>
+            <span class="play">play &rarr;</span>
+          </div>
+        </a>
+        <a class="project" href="https://keyboardheist.com" target="_blank" rel="noopener">
+          <div class="head">
+            <span class="name">Keyboard Heist</span>
+            <span class="tag">choose your own adventure</span>
+          </div>
+          <p class="desc">
+            A video game I built. An office comedy that opens with a printer
+            ticket from the CEO, where every choice is yours and the ending
+            depends on them. Two of the four endings stay grounded in the
+            office. The other two go somewhere considerably less realistic.
+          </p>
+          <div class="meta">
+            <span>42 scenes</span>
+            <span>4 endings</span>
+            <span class="play">play &rarr;</span>
+          </div>
+        </a>
+      </div>
+
+      <footer>&copy; <span id="year"></span> Nikhil Math</footer>
+    </div>
+  </main>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="/chrome.js" defer></script>
+</body>
+</html>

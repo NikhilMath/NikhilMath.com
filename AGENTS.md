@@ -17,8 +17,8 @@ wrong or out of date, fix it.
 
 Source for [nikhilmath.com](https://nikhilmath.com), Nikhil Math's personal
 landing page, styled as a macOS terminal window over a warm amber
-background. It's a single static page with no framework, no build step and
-no dependencies, and it should stay that way.
+background. It's a small static site (three pages) with no framework, no
+build step and no dependencies, and it should stay that way.
 
 Netlify deploys the repo root from `master` on every push, so `master` is
 production. There's no `netlify.toml`; Netlify's settings live in its web UI.
@@ -27,56 +27,92 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The whole page. CSS is inlined in `<style>`; its only inline JavaScript sets the footer year. |
+| `index.html` | The home page at `/`. Its only inline JavaScript sets the footer year. |
+| `games/index.html` | The video games page at `/games/`, with a card for each game Nikhil has made. |
+| `wiki/index.html` | "Nikhilpedia" at `/wiki/`, an encyclopedia-style article about Nikhil. |
+| `style.css` | Every page's CSS, linked as `/style.css`. |
 | `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
 | `.github/scripts/update-books.py` | Regenerates the book covers from Goodreads (see below). |
 | `.github/workflows/update-books.yml` | Runs that script daily and commits any changes. |
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
-| `avatar.jpg` | 800×800 photo shown at the top right. |
+| `avatar.jpg` | 800×800 photo shown at the top right of the home page and in the wiki's infobox. |
 | `og-image.png` | 1200×630 link-preview image, a picture of the terminal design with the photo. |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
-| `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists only the homepage, with a hand-set `<lastmod>`. |
+| `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists all three pages, each with a hand-set `<lastmod>`. |
 | `.vscode/settings.json` | Sets VS Code Live Server to port 5501. |
 | `README.md`, `LICENSE` | Short README with the preview image; MIT license. |
 
-The site used to have sub-pages (`books/`, `resume/`, `archive/`,
-`resume-blaster/`). They were removed on purpose, and the site is now one
-page. If a new page is ever added, it needs a `.window` with a `.chrome` of
-three spans plus `<script src="/chrome.js" defer>`, and an entry in
-`sitemap.xml`.
+The site once had other sub-pages (`books/`, `resume/`, `archive/`,
+`resume-blaster/`), which were removed on purpose. Don't bring them back.
+
+**Adding a page.** Make a folder with an `index.html` and copy the shell of
+`games/index.html`: the `<head>` (its own title, description, canonical and
+`og:`/`twitter:` tags, the favicon, the font and `/style.css`), a `.window`
+with a `.chrome` of three spans, the `.tabs` nav, the footer, and
+`<script src="/chrome.js" defer>`. Add the new tab to the `.tabs` nav on
+**every** page, and mark the current page's tab with `aria-current="page"`.
+Then add the page to `sitemap.xml`. Use root-relative paths (`/style.css`,
+`/avatar.jpg`), because pages live in subfolders. The tab labels only just
+fit at 320px, so check that width when adding or renaming a tab.
 
 ## The page, top to bottom
 
-1. **Title bar**: traffic lights, plus `nikhil@math — -zsh — 90×27`. The
-   size label is decoration, and it's hidden on phones.
-2. **Avatar** in the top right corner (128px, or 80px on phones).
-3. **Prompt line** `~ nikhil@math:$ whoami` with a blinking cursor, then the name as `<h1>`.
-4. **Status**, in two columns:
+Every page shares the title bar, tabs and footer.
+
+1. **Title bar**: traffic lights, plus `nikhil@math — -zsh — 90×27` (on
+   the other pages, `~/games` or `~/wiki` replaces `-zsh`). The size label
+   is decoration, and it's hidden on phones.
+2. **Tabs** (`nav.tabs`): `home`, `video games`, `wiki`, styled like macOS
+   Terminal tabs. This is the site's navigation.
+3. **Avatar** in the top right corner (128px, or 80px on phones).
+4. **Prompt line** `~ nikhil@math:$ whoami` with a blinking cursor, then the name as `<h1>`.
+5. **Status**, in two columns:
    - `on the clock:` lists current roles, each linked to the organization.
    - `off-hours:` lists hobbies.
-5. **`games i've made:`** holds one `.project` card per game inside a
-   `.projects` wrapper, newest first. The newest card carries a `latest`
-   badge (`.badge`); move it when a new game goes on top. Right now
-   that's Rarest Catch (rarest-catch.netlify.app), a daily Pokémon
-   guessing game, then Keyboard Heist (keyboardheist.com). Each game lives
-   in its own repo, not this one. On phones the badge stays on the name's
-   line, which only just fits at 320px with a 12-character name; check
-   320px if you add a game with a longer name.
 6. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email.
 7. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
 8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
+Nikhil asked to keep the home page clean, which is why the games and the
+longer bio live on their own pages. Put new long-form content on a sub-page
+rather than the home page.
+
+## The video games page (`games/`)
+
+Prompt `ls ~/games`, a one-line intro, then **`games i've made:`**, which
+holds one `.project` card per game inside a `.projects` wrapper, newest
+first. The newest card carries a `latest` badge (`.badge`); move it when a
+new game goes on top. Right now that's Rarest Catch
+(rarest-catch.netlify.app), a daily Pokémon guessing game, then Keyboard
+Heist (keyboardheist.com). Each game lives in its own repo, not this one.
+On phones the badge stays on the name's line, which only just fits at
+320px with a 12-character name; check 320px if you add a game with a
+longer name.
+
+## The wiki page (`wiki/`)
+
+"Nikhilpedia, the wiki of Nikhil", written in a Wikipedia voice: an
+`.infobox` that floats right (and stacks on phones), a `.toc` contents box,
+and `## `-prefixed `<h2>` sections with ids the contents box links to. Its
+facts come from the resume and the home page. Don't invent biography
+details; ask Nikhil. It refers to Nikhil by name rather than with pronouns.
+Keep the jokes light, like the `[citation needed]` on the wizard cat.
+
 ## Things that must stay in sync
 
 - **Job title or employer**: `<title>`, `<meta name="description">`, the
-  JSON-LD `jobTitle` / `worksFor` / `knowsAbout`, and the first item under
-  `on the clock:`.
+  JSON-LD `jobTitle` / `worksFor` / `knowsAbout`, the first item under
+  `on the clock:`, and the wiki's infobox and Career section.
 - **Profiles**: the link rows and the JSON-LD `sameAs` list should name the same accounts.
 - **Link-preview text**: each `og:*` tag has a `twitter:*` twin. Change both.
 - **Photo**: `avatar.jpg` is also the JSON-LD `image`. `og-image.png` shows
   the design and photo, so it goes stale if either changes.
 - **Resume**: replace `Nikhil-Math-Resume.pdf` and keep the filename; the
-  page links to it with `download`.
+  home page and the wiki link to it with `download`. The wiki's career,
+  community and education facts come from it, so update them to match.
+- **Games**: a new game gets a card on `games/` and a line in the wiki's
+  Games section (and its infobox `known for`, if it's notable).
+- **Tabs**: the `.tabs` nav is copied on every page; change all of them.
 - **Domain**: the canonical URL, `og:url`, JSON-LD URLs and `sitemap.xml`
   all use `https://nikhilmath.com/`.
 
@@ -107,7 +143,7 @@ the next run overwrites it.
   missing, so a Goodreads outage can't wipe the section.
 - To change the markup, labels or count, edit the script, then run
   `python3 .github/scripts/update-books.py` to regenerate the block. To
-  change the look, edit the `ul.books` CSS in `index.html`. The script uses
+  change the look, edit the `ul.books` CSS in `style.css`. The script uses
   only Python's standard library.
 
 The workflow runs daily at 12:00 UTC (about 6am in Utah). It can also be
@@ -156,9 +192,13 @@ activity; turn it back on from the Actions tab if that happens.
 
 - Serve the folder rather than opening the file directly, for example with
   `python3 -m http.server 5501` or VS Code Live Server. Root-relative paths
-  like `/chrome.js` don't load over `file://`.
+  like `/chrome.js` don't load over `file://`. In the Claude desktop app, a
+  `.claude/launch.json` server can't read this folder (it's under
+  `~/Documents`), so start `http.server` from the shell in the background
+  and open `http://localhost:5501` in the browser pane instead.
 - Check widths of 320, 360, 375 and 390px, plus desktop, and look for
-  horizontal scrolling at each. Also check the zoomed window (green button).
+  horizontal scrolling at each. A change to `style.css` affects every
+  page, so check all three. Also check the zoomed window (green button).
 - If you touched the window or title bar, click all three buttons, reopen
   the window via the cat, and restore it from the dock.
 
