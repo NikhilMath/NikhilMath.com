@@ -69,7 +69,9 @@ Every page shares the title bar, tabs and footer.
 5. **Status**, in two columns:
    - `on the clock:` lists current roles, each linked to the organization.
    - `off-hours:` lists hobbies.
-6. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email.
+6. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email,
+   phone (a `tel:` link). The resume PDF lists a different phone number on
+   purpose; don't make them match.
 7. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
 8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
