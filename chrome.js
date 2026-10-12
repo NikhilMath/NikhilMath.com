@@ -202,7 +202,7 @@
   closed.innerHTML = `
     <p>nikhil@math — [Process completed]</p>
     <button type="button" class="cat-btn" aria-label="Reopen nikhil@math">
-      <span class="bubble">oh, you caught me napping on the job! do me a favor: if you click me, the linktree will pop back up and I can finish my nap.</span>
+      <span class="bubble">oh, you caught me napping on the job! do me a favor: if you click me, the content will pop back up and I can finish my nap.</span>
       <svg viewBox="0 0 150 140" aria-hidden="true">
         <rect x="19" y="122" width="112" height="8" rx="2" fill="#5e37a8"/>
         <path d="M23 110 Q49 102 75 110 L75 124 Q49 116 23 124 Z" fill="#efe3cc"/>
