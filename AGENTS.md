@@ -94,7 +94,7 @@ longer name.
 "Wiki of Nikhil". Nikhil asked to drop the old "Nikhilpedia" name, so
 don't bring it back. Right now it's only the title and an
 `.infobox` that floats right (and stacks on phones), with the photo and a
-few facts. Nikhil wrote the `nickname` ("Nikki"), `known for` ("being kind and funny") and
+few facts. Nikhil wrote the `nickname` ("Nikki"), `known for` ("Being kind and funny") and
 `education` ("Books, people and YouTube (plus school, ...)") rows, so keep
 them. Nikhil asked to remove the article text that used to sit
 beside the box, so don't add body text unless asked. The `.wiki` styles for
