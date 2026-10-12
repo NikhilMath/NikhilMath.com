@@ -514,7 +514,8 @@ footer {
   ul.books li { scroll-snap-align: start; }
   .tabs a { padding: 7px 4px; font-size: 11.5px; }
   .infobox { float: none; width: auto; margin: 0 0 20px 0; }
-  .infobox img { width: 50%; margin: 14px auto 0 auto; border: 1px solid var(--border); border-radius: 10px; }
+  .infobox img,
+  .infobox img:last-child { width: 50%; margin: 14px auto; border: 1px solid var(--border); border-radius: 10px; }
   .infobox .caption { border-bottom: 0; padding-bottom: 0; }
   .wiki h2 { font-size: 16px; }
 }
