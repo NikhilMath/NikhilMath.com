@@ -93,8 +93,9 @@ longer name.
 
 "Nikhilpedia, the wiki of Nikhil". Right now it's only the title and an
 `.infobox` that floats right (and stacks on phones), with the photo and a
-few facts. Its `known for` row says "being kind and funny"; Nikhil chose
-that, so keep it. Nikhil asked to remove the article text that used to sit
+few facts. Nikhil wrote the `known for` ("being kind and funny") and
+`education` ("Books, people and YouTube (plus school, ...)") rows, so keep
+them. Nikhil asked to remove the article text that used to sit
 beside the box, so don't add body text unless asked. The `.wiki` styles for
 paragraphs, lists and `## `-prefixed `<h2>` headings are still in
 `style.css` for when it grows. Don't invent biography details; ask Nikhil.
