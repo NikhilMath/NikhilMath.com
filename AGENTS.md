@@ -29,7 +29,7 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | --- | --- |
 | `index.html` | The home page at `/`. Its only inline JavaScript sets the footer year. |
 | `games/index.html` | The video games page at `/games/`, with a card for each game Nikhil has made. |
-| `wiki/index.html` | "Nikhilpedia" at `/wiki/`, a wiki-style infobox with Nikhil's photo and a few facts. |
+| `wiki/index.html` | "The wiki of Nikhil" at `/wiki/`, a wiki-style infobox with Nikhil's photo and a few facts. |
 | `style.css` | Every page's CSS, linked as `/style.css`. |
 | `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
 | `.github/scripts/update-books.py` | Regenerates the book covers from Goodreads (see below). |
@@ -91,7 +91,8 @@ longer name.
 
 ## The wiki page (`wiki/`)
 
-"Nikhilpedia, the wiki of Nikhil". Right now it's only the title and an
+"The wiki of Nikhil". Nikhil asked to drop the old "Nikhilpedia" name, so
+don't bring it back. Right now it's only the title and an
 `.infobox` that floats right (and stacks on phones), with the photo and a
 few facts. Nikhil wrote the `known for` ("being kind and funny") and
 `education` ("Books, people and YouTube (plus school, ...)") rows, so keep
