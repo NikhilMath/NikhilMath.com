@@ -29,7 +29,7 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | --- | --- |
 | `index.html` | The home page at `/`. Its only inline JavaScript sets the footer year. |
 | `games/index.html` | The video games page at `/games/`, with a card for each game Nikhil has made. |
-| `wiki/index.html` | "Nikhilpedia" at `/wiki/`, an encyclopedia-style article about Nikhil. |
+| `wiki/index.html` | "Nikhilpedia" at `/wiki/`, a wiki-style infobox with Nikhil's photo and a few facts. |
 | `style.css` | Every page's CSS, linked as `/style.css`. |
 | `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
 | `.github/scripts/update-books.py` | Regenerates the book covers from Goodreads (see below). |
@@ -91,27 +91,26 @@ longer name.
 
 ## The wiki page (`wiki/`)
 
-"Nikhilpedia, the wiki of Nikhil", written in a Wikipedia voice: an
-`.infobox` that floats right (and stacks on phones), a `.toc` contents box,
-and `## `-prefixed `<h2>` sections with ids the contents box links to. Its
-facts come from the resume and the home page. Don't invent biography
-details; ask Nikhil. It refers to Nikhil by name rather than with pronouns.
-Keep the jokes light, like the `[citation needed]` on the wizard cat.
+"Nikhilpedia, the wiki of Nikhil". Right now it's only the title and an
+`.infobox` that floats right (and stacks on phones), with the photo and a
+few facts. Its `known for` row says "being kind and funny"; Nikhil chose
+that, so keep it. Nikhil asked to remove the article text that used to sit
+beside the box, so don't add body text unless asked. The `.wiki` styles for
+paragraphs, lists and `## `-prefixed `<h2>` headings are still in
+`style.css` for when it grows. Don't invent biography details; ask Nikhil.
 
 ## Things that must stay in sync
 
 - **Job title or employer**: `<title>`, `<meta name="description">`, the
   JSON-LD `jobTitle` / `worksFor` / `knowsAbout`, the first item under
-  `on the clock:`, and the wiki's infobox and Career section.
+  `on the clock:`, and the wiki's infobox.
 - **Profiles**: the link rows and the JSON-LD `sameAs` list should name the same accounts.
 - **Link-preview text**: each `og:*` tag has a `twitter:*` twin. Change both.
 - **Photo**: `avatar.jpg` is also the JSON-LD `image`. `og-image.png` shows
   the design and photo, so it goes stale if either changes.
 - **Resume**: replace `Nikhil-Math-Resume.pdf` and keep the filename; the
-  home page and the wiki link to it with `download`. The wiki's career,
-  community and education facts come from it, so update them to match.
-- **Games**: a new game gets a card on `games/` and a line in the wiki's
-  Games section (and its infobox `known for`, if it's notable).
+  home page links to it with `download`.
+- **Games**: a new game gets a card on `games/`.
 - **Tabs**: the `.tabs` nav is copied on every page; change all of them.
 - **Domain**: the canonical URL, `og:url`, JSON-LD URLs and `sitemap.xml`
   all use `https://nikhilmath.com/`.

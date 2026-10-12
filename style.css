@@ -476,20 +476,6 @@ footer {
 .infobox dt { color: var(--accent); }
 .infobox dd { margin: 0; color: #cbd5de; }
 
-.toc {
-  display: inline-block;
-  margin: 4px 0 6px 0;
-  padding: 12px 18px 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.02);
-  font-size: 13px;
-}
-.toc .section-key { margin-bottom: 6px; }
-.toc ol { margin: 0; padding-left: 22px; }
-.toc li { margin: 0; }
-.toc li::marker { color: var(--muted); }
-.wiki .toc a { text-decoration: none; }
 
 .wiki h2[id] { scroll-margin-top: 16px; }
 
