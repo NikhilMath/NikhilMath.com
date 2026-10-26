@@ -73,7 +73,12 @@ Every page shares the title bar, tabs and footer.
    phone (a `tel:` link). The resume PDF lists a different phone number on
    purpose; don't make them match.
 7. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
-8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
+8. **Published books**: `books i've published:`, Nikhil's own pick-your-path
+   books on Amazon, in the same cover grid as the Goodreads books. This list
+   is hand-edited and sits outside the generated block. Covers load from
+   Amazon by ASIN (`m.media-amazon.com/images/P/<ASIN>.01._SCLZZZZZZZ_SX500_.jpg`),
+   and the links are the product pages with the search tracking stripped.
+9. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
 Nikhil asked to keep the home page clean, which is why the games live on
 their own page. Put new long-form content on a sub-page rather than the

@@ -288,7 +288,7 @@ ul.links a.download:hover {
 ul.links a.download .label,
 ul.links a.download .arrow { color: var(--accent); }
 
-.reading { margin-top: 28px; }
+.reading, .published { margin-top: 28px; }
 ul.books + .section-key { margin-top: 26px; }
 ul.books {
   list-style: none;
