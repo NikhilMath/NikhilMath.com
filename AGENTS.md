@@ -16,9 +16,9 @@ wrong or out of date, fix it.
 ## What this is
 
 Source for [nikhilmath.com](https://nikhilmath.com), Nikhil Math's personal
-landing page, styled as a macOS terminal window. By default the window is
-frosted glass over an ocean-blue gradient; a switch in the title bar turns
-that off for the classic look, a dark window over a warm amber glow. It's a
+landing page, styled as a macOS terminal window. By default it's the
+classic look, a dark window over a warm amber glow; a switch in the title
+bar turns on liquid glass, a frosted window over an ocean-blue gradient. It's a
 small static site (one page) with no framework, no build step and no
 dependencies, and it should stay that way.
 
@@ -136,20 +136,25 @@ activity; turn it back on from the Actions tab if that happens.
 The `liquid glass` switch in the title bar (`button.look-toggle`,
 `role="switch"`) flips the page between two looks:
 
-- **Glass**, the default: frosted glass over the ocean backdrop (see
+- **Glass**, switched on by the visitor: frosted glass over the ocean backdrop (see
   Style below), with a seafoam accent (`--accent`, `#7ee8c6`) for labels,
   the cursor, the resume row and the book stars, and aqua hover highlights
   (`--hover`, `#8be9fd`). Nikhil felt amber clashed with the blue.
-- **Classic**: the site as it was before 2026-10-26, a dark window over a
-  warm amber glow, with an amber accent and amber hovers. It's `<html data-look="classic">`,
+- **Classic**, the default (Nikhil wants the switch to start off): the
+  site as it was before 2026-10-26, a dark window over a warm amber glow,
+  with an amber accent and amber hovers. It's `<html data-look="classic">`,
   styled by the `[data-look="classic"]` block at the end of `style.css`,
   which puts back the old colours, radii and shadows and hides the blobs
   for the amber glow (`.blobs::before`).
 
-`chrome.js` runs the switch and saves the choice in `localStorage` under
-`look` (`"glass"` or `"classic"`). A one-line inline script in `<head>`
-reads it before the first paint, so a visitor who picked classic never
-sees the glass flash first. Keep that script in `<head>`.
+`index.html` ships with `data-look="classic"` on `<html>`, so first
+visits and visitors without JavaScript get the classic look. `chrome.js`
+runs the switch and saves the choice in `localStorage` under `look`
+(`"glass"` or `"classic"`). A one-line inline script in `<head>` removes
+`data-look` before the first paint when the saved choice is glass, so the
+page never flashes the wrong look. Keep that script in `<head>`. The
+glass styles are the stylesheet's base rules and the classic look is the
+override block, even though classic is the default.
 
 Before the glass, the amber glow used `@keyframes drift`, which clashed
 with the cat's `drift` in `chrome.js`, so the glow faded in and out every
