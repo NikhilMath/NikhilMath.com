@@ -4,4 +4,4 @@
 
 Source for my personal landing page.
 
-Static site with no build step: a home page and a video games page, sharing one `style.css`.
+Static site with no build step: one page, a terminal window in liquid glass, with a switch for the classic amber look.

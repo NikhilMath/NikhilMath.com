@@ -8,6 +8,11 @@
   --titlebar: rgba(255, 255, 255, 0.1);
   --titlebar-border: rgba(255, 255, 255, 0.14);
   --border: rgba(255, 255, 255, 0.16);
+  /* Hover highlights: a cool aqua that sits with the ocean blue (the
+     classic look swaps these back to amber). */
+  --hover: #8be9fd;
+  --hover-tint: rgba(139, 233, 253, 0.12);
+  --hover-tint-strong: rgba(139, 233, 253, 0.18);
   /* The backdrop's palette: four gradient stops, then the four blobs. */
   --sky-1: #061a33;
   --sky-2: #0a3460;
@@ -68,7 +73,7 @@ body {
   to { transform: translate(var(--dx), var(--dy)) scale(1.15); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .blobs span { animation: none; }
+  .blobs span, .blobs::before { animation: none; }
 }
 
 /* The terminal is a pane of glass: a faint white tint over a heavy blur of
@@ -129,6 +134,57 @@ body {
   color: var(--muted);
   font-size: 13px;
   letter-spacing: 0.2px;
+}
+
+/* The title bar's switch between the glass look and the classic one
+   (see the end of this file). chrome.js makes it work. */
+.look-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* A taller tap target that doesn't make the title bar any taller. */
+  margin: -8px 0 -8px auto;
+  padding: 7px 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+.look-toggle:hover { color: var(--text); }
+.look-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.look-toggle .switch {
+  position: relative;
+  width: 26px;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  transition: background 160ms ease;
+}
+.look-toggle .switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 160ms ease;
+}
+.look-toggle[aria-checked="true"] .switch { background: var(--accent); }
+.look-toggle[aria-checked="true"] .switch::after { transform: translateX(12px); }
+@media (prefers-reduced-motion: reduce) {
+  .look-toggle .switch, .look-toggle .switch::after { transition: none; }
 }
 
 .terminal {
@@ -202,8 +258,8 @@ h1 {
   transition: color 120ms ease, text-decoration-color 120ms ease;
 }
 .currently a:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
+  color: var(--hover);
+  text-decoration-color: var(--hover);
 }
 
 hr {
@@ -216,75 +272,6 @@ hr {
   color: var(--accent);
   font-size: 13px;
   margin: 0 0 10px 0;
-}
-
-.projects {
-  display: grid;
-  gap: 14px;
-  margin: 0 0 28px 0;
-}
-.project {
-  display: block;
-  padding: 22px 24px;
-  border: 1px solid rgba(255, 184, 108, 0.32);
-  border-radius: 10px;
-  color: var(--text);
-  text-decoration: none;
-  background: rgba(255, 184, 108, 0.09);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
-}
-.project:hover {
-  border-color: var(--accent);
-  background: rgba(255, 184, 108, 0.15);
-}
-.project:active { transform: translateY(1px); }
-
-.project .head {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.project .name {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.3px;
-}
-.project .tag { color: var(--accent); font-size: 13px; }
-.project .badge {
-  order: 1;
-  margin-left: auto;
-  padding: 2px 9px;
-  border: 1px solid rgba(255, 184, 108, 0.45);
-  border-radius: 999px;
-  color: var(--accent);
-  font-size: 12px;
-}
-.project .desc {
-  margin: 12px 0 18px 0;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 14px;
-  line-height: 1.75;
-}
-.project .meta {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  color: var(--muted);
-  font-size: 13px;
-}
-.project .play {
-  margin-left: auto;
-  padding: 7px 14px;
-  border: 1px solid rgba(255, 184, 108, 0.45);
-  border-radius: 6px;
-  color: var(--accent);
-  background: rgba(255, 184, 108, 0.12);
-}
-.project:hover .play {
-  border-color: var(--accent);
-  background: rgba(255, 184, 108, 0.22);
 }
 
 ul.links {
@@ -310,26 +297,27 @@ ul.links a {
   transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
 }
 ul.links a:hover {
-  border-color: var(--accent);
-  background: rgba(255, 184, 108, 0.14);
+  border-color: var(--hover);
+  background: var(--hover-tint);
 }
 ul.links a:active { transform: translateY(1px); }
 
 .label { color: var(--muted); min-width: 92px; }
 .value { color: var(--text); }
 .arrow { margin-left: auto; color: var(--muted); }
-ul.links a:hover .arrow { color: var(--accent); }
+ul.links a:hover .arrow { color: var(--hover); }
 
 ul.links a.download {
   border-color: rgba(255, 184, 108, 0.45);
   background: rgba(255, 184, 108, 0.12);
 }
 ul.links a.download:hover {
-  border-color: var(--accent);
-  background: rgba(255, 184, 108, 0.22);
+  border-color: var(--hover);
+  background: var(--hover-tint-strong);
 }
 ul.links a.download .label,
 ul.links a.download .arrow { color: var(--accent); }
+ul.links a.download:hover .arrow { color: var(--hover); }
 
 .reading, .published { margin-top: 28px; }
 ul.books + .section-key { margin-top: 26px; }
@@ -359,7 +347,7 @@ ul.books img {
   transition: border-color 120ms ease, transform 120ms ease;
 }
 ul.books a:hover img {
-  border-color: var(--accent);
+  border-color: var(--hover);
   transform: translateY(-3px);
 }
 ul.books .book-title {
@@ -371,7 +359,7 @@ ul.books .book-title {
   font-size: 12px;
   line-height: 1.45;
 }
-ul.books a:hover .book-title { color: var(--accent); }
+ul.books a:hover .book-title { color: var(--hover); }
 ul.books .book-author {
   display: block;
   margin-top: 2px;
@@ -397,59 +385,6 @@ footer {
   font-size: 12px;
 }
 
-/* Terminal-style tabs under the title bar, one per page. */
-.tabs {
-  display: flex;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid var(--titlebar-border);
-}
-.tabs a {
-  flex: 1 1 0;
-  min-width: 0;
-  padding: 7px 10px;
-  border-left: 1px solid var(--titlebar-border);
-  color: var(--muted);
-  font-size: 12px;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 120ms ease, background 120ms ease;
-}
-.tabs a:first-child { border-left: 0; }
-.tabs a:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
-}
-.tabs a[aria-current="page"] {
-  color: var(--text);
-  background: var(--titlebar);
-  box-shadow: inset 0 -2px 0 var(--accent);
-}
-.tabs a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: -2px;
-}
-
-.intro {
-  margin: 0 0 24px 0;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 14px;
-  line-height: 1.75;
-}
-.intro a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 184, 108, 0.4);
-  text-underline-offset: 3px;
-  transition: color 120ms ease, text-decoration-color 120ms ease;
-}
-.intro a:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
-
 @media (max-width: 480px) {
   body { padding: 16px; }
   .window { border-radius: 18px; }
@@ -458,18 +393,6 @@ footer {
   .titlebar .title { display: none; }
   ul.links a { gap: 10px; }
   .label { min-width: 82px; }
-  .project { padding: 18px 18px 20px 18px; }
-  .project .name { font-size: 19px; }
-  .project .head { column-gap: 10px; }
-  .project .badge { order: 0; padding: 1px 7px; }
-  .project .meta { flex-wrap: wrap; gap: 14px; }
-  .project .meta span { white-space: nowrap; }
-  .project .play {
-    margin-left: 0;
-    flex-basis: 100%;
-    text-align: center;
-    padding: 10px 14px;
-  }
   ul.books {
     grid-template-columns: none;
     grid-auto-flow: column;
@@ -483,5 +406,61 @@ footer {
   }
   ul.books::-webkit-scrollbar { display: none; }
   ul.books li { scroll-snap-align: start; }
-  .tabs a { padding: 7px 4px; font-size: 11.5px; }
 }
+
+/* The classic look, as the site was before the glass: a dark window over
+   a warm amber glow. The title bar's switch turns it on by setting
+   <html data-look="classic">, and the choice is remembered. */
+:root[data-look="classic"] {
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --titlebar: rgba(48, 52, 60, 0.85);
+  --titlebar-border: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.08);
+  --hover: #ffb86c;
+  --hover-tint: rgba(255, 184, 108, 0.06);
+  --hover-tint-strong: rgba(255, 184, 108, 0.22);
+  background: #1a1310;
+}
+[data-look="classic"] .blobs { background: #1a1310; }
+[data-look="classic"] .blobs span { display: none; }
+[data-look="classic"] .blobs::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 20% 25%, #c47240 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #964a20 0%, transparent 50%),
+    radial-gradient(circle at 75% 85%, #d89364 0%, transparent 50%),
+    radial-gradient(circle at 25% 90%, #6b3416 0%, transparent 45%);
+  filter: blur(90px) saturate(90%);
+  animation: amber-drift 30s ease-in-out infinite alternate;
+}
+@keyframes amber-drift {
+  to { transform: translate(-4%, 3%) scale(1.08); }
+}
+[data-look="classic"] .window {
+  border-radius: 12px;
+  border-color: var(--border);
+  background: rgba(17, 22, 29, 0.82);
+  backdrop-filter: blur(30px) saturate(160%);
+  -webkit-backdrop-filter: blur(30px) saturate(160%);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+[data-look="classic"] .window::after { display: none; }
+[data-look="classic"] .titlebar {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+[data-look="classic"] .terminal { text-shadow: none; }
+[data-look="classic"] .avatar {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+[data-look="classic"] ul.links a { border-radius: 8px; box-shadow: none; }
+[data-look="classic"] ul.links a:not(.download) { background: rgba(255, 255, 255, 0.02); }
+[data-look="classic"] ul.links a:not(.download):hover { background: var(--hover-tint); }
+[data-look="classic"] ul.books .book-rating .unlit { color: rgba(255, 255, 255, 0.18); }

@@ -2,8 +2,32 @@
 //
 // Red closes, yellow minimizes to a dock, green zooms. A page only needs a
 // `.window` containing a `.chrome` with three spans, plus this script.
+//
+// Also runs the title bar's "liquid glass" switch, which flips the page to
+// the classic look by setting <html data-look="classic">. The choice is
+// saved, and an inline script in the page's <head> applies it before the
+// first paint so the page doesn't flash the wrong look.
 (() => {
   "use strict";
+
+  const lookToggle = document.querySelector(".look-toggle");
+  if (lookToggle) {
+    const root = document.documentElement;
+    const showState = () =>
+      lookToggle.setAttribute("aria-checked", String(root.dataset.look !== "classic"));
+    showState();
+    lookToggle.addEventListener("click", () => {
+      const classic = root.dataset.look !== "classic";
+      if (classic) root.dataset.look = "classic";
+      else delete root.dataset.look;
+      try {
+        localStorage.setItem("look", classic ? "classic" : "glass");
+      } catch (e) {
+        // Private windows can refuse storage; the switch still works for this visit.
+      }
+      showState();
+    });
+  }
 
   const win = document.querySelector(".window");
   const lights = win && win.querySelectorAll(".chrome > span");
@@ -56,6 +80,10 @@
       -webkit-backdrop-filter: blur(24px) saturate(160%);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
       transform: translateX(-50%);
+    }
+    [data-look="classic"] .chrome-dock {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(40, 32, 28, 0.55);
     }
     .chrome-dock:empty { display: none; }
     .chrome-dock button {
@@ -142,7 +170,7 @@
     }
     .cat-btn svg { width: 150px; height: 140px; overflow: visible; transition: transform 160ms ease; }
     .cat-btn:hover svg { transform: translateY(-5px); }
-    .cat-btn:hover .bubble { border-color: var(--accent, #ffb86c); }
+    .cat-btn:hover .bubble { border-color: var(--hover, #ffb86c); }
     .cat-btn:focus-visible { outline: 2px solid var(--accent, #ffb86c); outline-offset: 6px; border-radius: 12px; }
 
     /* Startled awake each time the window closes (the panel is display: none

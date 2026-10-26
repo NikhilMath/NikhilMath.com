@@ -16,9 +16,11 @@ wrong or out of date, fix it.
 ## What this is
 
 Source for [nikhilmath.com](https://nikhilmath.com), Nikhil Math's personal
-landing page, styled as a frosted-glass macOS terminal window over a
-colourful gradient. It's a small static site (two pages) with no framework, no
-build step and no dependencies, and it should stay that way.
+landing page, styled as a macOS terminal window. By default the window is
+frosted glass over an ocean-blue gradient; a switch in the title bar turns
+that off for the classic look, a dark window over a warm amber glow. It's a
+small static site (one page) with no framework, no build step and no
+dependencies, and it should stay that way.
 
 Netlify deploys the repo root from `master` on every push, so `master` is
 production. There's no `netlify.toml`; Netlify's settings live in its web UI.
@@ -27,76 +29,53 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The home page at `/`. Its only inline JavaScript sets the footer year. |
-| `games/index.html` | The video games page at `/games/`, with a card for each game Nikhil has made. |
-| `style.css` | Every page's CSS, linked as `/style.css`. |
-| `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
-| `typing.js` | Types out the prompt's command (`whoami`, `ls ~/games`) on load. |
+| `index.html` | The site's only page, at `/`. Its inline JavaScript applies a saved look in `<head>` (see "Liquid glass and the classic look") and sets the footer year. |
+| `style.css` | All the CSS, linked as `/style.css`. |
+| `chrome.js` | Makes the window's red/yellow/green buttons and the title bar's look switch work, and holds the wizard-cat easter egg. |
+| `typing.js` | Types out the prompt line slowly on load. |
 | `.github/scripts/update-books.py` | Regenerates the book covers from Goodreads (see below). |
 | `.github/workflows/update-books.yml` | Runs that script daily and commits any changes. |
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
 | `avatar.jpg` | 800×800 photo shown at the top right of the home page. |
 | `og-image.png` | 1200×630 link-preview image, a picture of the terminal design with the photo. |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
-| `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists both pages, each with a hand-set `<lastmod>`. |
+| `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists the home page with a hand-set `<lastmod>`. |
 | `.vscode/settings.json` | Sets VS Code Live Server to port 5501. |
 | `README.md`, `LICENSE` | Short README with the preview image; MIT license. |
 
-The site once had other sub-pages (`books/`, `resume/`, `archive/`,
-`resume-blaster/`, and later a `wiki/` page), which were removed on purpose.
-Don't bring them back.
-
-**Adding a page.** Make a folder with an `index.html` and copy the shell of
-`games/index.html`: the `<head>` (its own title, description, canonical and
-`og:`/`twitter:` tags, the favicon, the font and `/style.css`), the
-`.blobs` div of four spans, a `.window` with a `.chrome` of three spans,
-the `.tabs` nav, the footer, and both `<script src="/chrome.js" defer>`
-and `<script src="/typing.js" defer>`. Add the new tab to the `.tabs` nav on
-**every** page, and mark the current page's tab with `aria-current="page"`.
-Then add the page to `sitemap.xml`. Use root-relative paths (`/style.css`,
-`/avatar.jpg`), because pages live in subfolders. The tab labels only just
-fit at 320px, so check that width when adding or renaming a tab.
+The site once had other pages (`books/`, `resume/`, `archive/`,
+`resume-blaster/`, a `wiki/` page, and a `games/` video games page with a
+tab bar for switching pages), which were removed on purpose. Don't bring
+them back. If a second page is ever wanted, it needs its own copy of the
+`<head>` and window shell plus some navigation again; the old `.tabs` nav
+is in git history before 2026-10-26.
 
 ## The page, top to bottom
 
-Every page shares the title bar, tabs and footer.
-
-1. **Title bar**: traffic lights, plus `nikhil@math — -zsh — 90×27` (on
-   the other pages, `~/games` replaces `-zsh`). The size label
-   is decoration, and it's hidden on phones.
-2. **Tabs** (`nav.tabs`): `home` and `video games`, styled like macOS
-   Terminal tabs. This is the site's navigation.
-3. **Avatar** in the top right corner (128px, or 80px on phones).
-4. **Prompt line** `~ nikhil@math:$ whoami` with a blinking cursor, then the name as `<h1>`.
-5. **Status**, in two columns:
+1. **Title bar**: traffic lights, `nikhil@math — -zsh — 90×27` in the
+   middle, and the `liquid glass` switch on the right. The size label is
+   decoration, and it's hidden on phones.
+2. **Avatar** in the top right corner (128px, or 80px on phones).
+3. **Prompt line** `~ nikhil@math:$ whoami` with a blinking cursor, then
+   the name as `<h1>`. `typing.js` types the whole line out slowly on load
+   (about four seconds, with a beat after the `$`), keeping the amber `~`
+   and `$`. Under `prefers-reduced-motion` it shows the line at once.
+4. **Status**, in two columns:
    - `on the clock:` lists current roles, each linked to the organization.
    - `off-hours:` lists hobbies.
-6. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email,
+5. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email,
    phone (a `tel:` link). The resume PDF lists a different phone number on
    purpose; don't make them match.
-7. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
-8. **Published books**: `books i've published:`, Nikhil's own pick-your-path
+6. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
+7. **Published books**: `books i've published:`, Nikhil's own pick-your-path
    books on Amazon, in the same cover grid as the Goodreads books. This list
    is hand-edited and sits outside the generated block. Covers load from
    Amazon by ASIN (`m.media-amazon.com/images/P/<ASIN>.01._SCLZZZZZZZ_SX500_.jpg`),
    and the links are the product pages with the search tracking stripped.
-9. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
+8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
-Nikhil asked to keep the home page clean, which is why the games live on
-their own page. Put new long-form content on a sub-page rather than the
-home page.
-
-## The video games page (`games/`)
-
-Prompt `ls ~/games`, a one-line intro, then **`games i've made:`**, which
-holds one `.project` card per game inside a `.projects` wrapper, newest
-first. The newest card carries a `latest` badge (`.badge`); move it when a
-new game goes on top. Right now that's Rarest Catch
-(rarest-catch.netlify.app), a daily Pokémon guessing game, then Keyboard
-Heist (keyboardheist.com). Each game lives in its own repo, not this one.
-On phones the badge stays on the name's line, which only just fits at
-320px with a 12-character name; check 320px if you add a game with a
-longer name.
+Nikhil asked to keep the page clean, so check with him before adding
+much to it.
 
 ## Things that must stay in sync
 
@@ -109,8 +88,9 @@ longer name.
   the design and photo, so it goes stale if either changes.
 - **Resume**: replace `Nikhil-Math-Resume.pdf` and keep the filename; the
   home page links to it with `download`.
-- **Games**: a new game gets a card on `games/`.
-- **Tabs**: the `.tabs` nav is copied on every page; change all of them.
+- **Both looks**: a new glass style may need a matching
+  `[data-look="classic"]` override at the end of `style.css`, so the
+  classic look stays as it was.
 - **Domain**: the canonical URL, `og:url`, JSON-LD URLs and `sitemap.xml`
   all use `https://nikhilmath.com/`.
 
@@ -151,6 +131,29 @@ It commits as `github-actions[bot]` with the message
 turns off scheduled workflows in public repos after 60 days with no repo
 activity; turn it back on from the Actions tab if that happens.
 
+## Liquid glass and the classic look
+
+The `liquid glass` switch in the title bar (`button.look-toggle`,
+`role="switch"`) flips the page between two looks:
+
+- **Glass**, the default: frosted glass over the ocean backdrop (see
+  Style below), with aqua hover highlights (`--hover`, `#8be9fd`) because
+  amber hovers clashed with the blue.
+- **Classic**: the site as it was before 2026-10-26, a dark window over a
+  warm amber glow, with amber hovers. It's `<html data-look="classic">`,
+  styled by the `[data-look="classic"]` block at the end of `style.css`,
+  which puts back the old colours, radii and shadows and hides the blobs
+  for the amber glow (`.blobs::before`).
+
+`chrome.js` runs the switch and saves the choice in `localStorage` under
+`look` (`"glass"` or `"classic"`). A one-line inline script in `<head>`
+reads it before the first paint, so a visitor who picked classic never
+sees the glass flash first. Keep that script in `<head>`.
+
+Before the glass, the amber glow used `@keyframes drift`, which clashed
+with the cat's `drift` in `chrome.js`, so the glow faded in and out every
+30 seconds by accident. The classic look uses `amber-drift` and stays lit.
+
 ## Window buttons and the wizard cat (`chrome.js`)
 
 - **Red** fades the window out and shows `[Process completed]`, with a
@@ -169,16 +172,16 @@ activity; turn it back on from the Actions tab if that happens.
 
 - **Font**: JetBrains Mono from Google Fonts, weights 400 and 600.
 - **Colors**: use the CSS variables on `:root` (`--text`, `--muted`,
-  `--accent`, `--border` and so on). Text is white or translucent white,
-  and the accent is amber `#ffb86c`. The design is dark only, with no
-  light mode.
+  `--accent`, `--hover`, `--border` and so on). In the glass look text is
+  white or translucent white; the accent is amber `#ffb86c` in both looks.
+  The design is dark only, with no light mode.
 - **Glass**: the backdrop is `.blobs`, a fixed gradient with four soft
   radial-gradient blobs drifting over it (CSS only, paused under
   `prefers-reduced-motion`). Its colours are the `--sky-1`…`--sky-4` and
   `--blob-1`…`--blob-4` variables on `:root`; Nikhil picked an ocean
   palette (navy, with blue, teal, indigo and sky-blue blobs) over
-  twilight, sunset, aurora and pastel versions. The `.window` is the glass: a faint white
-  tint, `backdrop-filter` blur, a bright rim drawn by `.window::after`,
+  twilight, sunset, aurora and pastel versions. The `.window` is the
+  glass: a faint white tint, `backdrop-filter` blur, a bright rim drawn by `.window::after`,
   and a soft shadow. The backdrop filter's `brightness(0.55)` dims what
   shows through the glass so the 13px amber and muted labels stay
   readable (about 4.4:1 or better) over the brightest blobs. If you
@@ -187,12 +190,13 @@ activity; turn it back on from the Actions tab if that happens.
 - **Keyframe names are global**: `chrome.js` injects its own `@keyframes`
   (`blink`, `drift` and others), and those win over same-named ones in
   `style.css`. Give new keyframes in `style.css` distinct names, like
-  `cursor-blink` and `blob-drift`.
+  `cursor-blink`, `blob-drift` and `amber-drift`.
 - **Voice**: labels are lowercase terminal-style, with a trailing colon in
-  the accent color, such as `on the clock:` and `games i've made:`.
+  the accent color, such as `on the clock:` and `books i've published:`.
   Body copy is casual and first person.
 - **Components**: borders are 1px translucent; hover states turn the
-  border amber, with transitions around 120ms. External links get
+  border `var(--hover)` (aqua in glass, amber in classic), with
+  transitions around 120ms. External links get
   `target="_blank" rel="noopener"`.
 - **Images**: give real images alt text. Book covers use `alt=""` because
   the caption under each one already names the book.
@@ -212,8 +216,8 @@ activity; turn it back on from the Actions tab if that happens.
   `~/Documents`), so start `http.server` from the shell in the background
   and open `http://localhost:5501` in the browser pane instead.
 - Check widths of 320, 360, 375 and 390px, plus desktop, and look for
-  horizontal scrolling at each. A change to `style.css` affects every
-  page, so check both. Also check the zoomed window (green button).
+  horizontal scrolling at each, in both looks (flip the title bar
+  switch). Also check the zoomed window (green button).
 - If you touched the window or title bar, click all three buttons, reopen
   the window via the cat, and restore it from the dock.
 
