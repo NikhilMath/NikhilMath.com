@@ -147,7 +147,7 @@
     .cat-btn .bubble {
       position: relative;
       padding: 9px 14px;
-      border: 1px solid rgba(255, 184, 108, 0.5);
+      border: 1px solid rgba(var(--accent-rgb, 255, 184, 108), 0.5);
       border-radius: 10px;
       background: rgba(17, 22, 29, 0.9);
       color: var(--text, #e6edf3);
@@ -163,8 +163,8 @@
       width: 12px;
       height: 12px;
       margin-left: -6px;
-      border-right: 1px solid rgba(255, 184, 108, 0.5);
-      border-bottom: 1px solid rgba(255, 184, 108, 0.5);
+      border-right: 1px solid rgba(var(--accent-rgb, 255, 184, 108), 0.5);
+      border-bottom: 1px solid rgba(var(--accent-rgb, 255, 184, 108), 0.5);
       background: rgba(17, 22, 29, 0.95);
       transform: rotate(45deg);
     }

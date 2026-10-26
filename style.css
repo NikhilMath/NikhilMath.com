@@ -3,7 +3,11 @@
 :root {
   --text: #ffffff;
   --muted: rgba(255, 255, 255, 0.78);
-  --accent: #ffb86c;
+  /* Labels, cursor and highlights: seafoam against the ocean blue (the
+     classic look swaps it back to amber). --accent-rgb is the same colour
+     for translucent tints. */
+  --accent: #7ee8c6;
+  --accent-rgb: 126, 232, 198;
   --glass-edge: rgba(255, 255, 255, 0.3);
   --titlebar: rgba(255, 255, 255, 0.1);
   --titlebar-border: rgba(255, 255, 255, 0.14);
@@ -253,7 +257,7 @@ h1 {
 .currently a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: rgba(255, 184, 108, 0.4);
+  text-decoration-color: rgba(var(--accent-rgb), 0.4);
   text-underline-offset: 3px;
   transition: color 120ms ease, text-decoration-color 120ms ease;
 }
@@ -308,8 +312,8 @@ ul.links a:active { transform: translateY(1px); }
 ul.links a:hover .arrow { color: var(--hover); }
 
 ul.links a.download {
-  border-color: rgba(255, 184, 108, 0.45);
-  background: rgba(255, 184, 108, 0.12);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  background: rgba(var(--accent-rgb), 0.12);
 }
 ul.links a.download:hover {
   border-color: var(--hover);
@@ -417,6 +421,8 @@ footer {
   --titlebar: rgba(48, 52, 60, 0.85);
   --titlebar-border: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.08);
+  --accent: #ffb86c;
+  --accent-rgb: 255, 184, 108;
   --hover: #ffb86c;
   --hover-tint: rgba(255, 184, 108, 0.06);
   --hover-tint-strong: rgba(255, 184, 108, 0.22);

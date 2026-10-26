@@ -137,10 +137,11 @@ The `liquid glass` switch in the title bar (`button.look-toggle`,
 `role="switch"`) flips the page between two looks:
 
 - **Glass**, the default: frosted glass over the ocean backdrop (see
-  Style below), with aqua hover highlights (`--hover`, `#8be9fd`) because
-  amber hovers clashed with the blue.
+  Style below), with a seafoam accent (`--accent`, `#7ee8c6`) for labels,
+  the cursor, the resume row and the book stars, and aqua hover highlights
+  (`--hover`, `#8be9fd`). Nikhil felt amber clashed with the blue.
 - **Classic**: the site as it was before 2026-10-26, a dark window over a
-  warm amber glow, with amber hovers. It's `<html data-look="classic">`,
+  warm amber glow, with an amber accent and amber hovers. It's `<html data-look="classic">`,
   styled by the `[data-look="classic"]` block at the end of `style.css`,
   which puts back the old colours, radii and shadows and hides the blobs
   for the amber glow (`.blobs::before`).
@@ -172,9 +173,11 @@ with the cat's `drift` in `chrome.js`, so the glow faded in and out every
 
 - **Font**: JetBrains Mono from Google Fonts, weights 400 and 600.
 - **Colors**: use the CSS variables on `:root` (`--text`, `--muted`,
-  `--accent`, `--hover`, `--border` and so on). In the glass look text is
-  white or translucent white; the accent is amber `#ffb86c` in both looks.
-  The design is dark only, with no light mode.
+  `--accent`, `--hover`, `--border` and so on). For a translucent accent
+  tint use `rgba(var(--accent-rgb), alpha)`, so it follows the look. In the
+  glass look text is white or translucent white and the accent is seafoam
+  `#7ee8c6`; the classic look's accent is amber `#ffb86c`. The design is
+  dark only, with no light mode.
 - **Glass**: the backdrop is `.blobs`, a fixed gradient with four soft
   radial-gradient blobs drifting over it (CSS only, paused under
   `prefers-reduced-motion`). Its colours are the `--sky-1`…`--sky-4` and
@@ -183,8 +186,8 @@ with the cat's `drift` in `chrome.js`, so the glow faded in and out every
   twilight, sunset, aurora and pastel versions. The `.window` is the
   glass: a faint white tint, `backdrop-filter` blur, a bright rim drawn by `.window::after`,
   and a soft shadow. The backdrop filter's `brightness(0.55)` dims what
-  shows through the glass so the 13px amber and muted labels stay
-  readable (about 4.4:1 or better) over the brightest blobs. If you
+  shows through the glass so the 13px seafoam and muted labels stay
+  readable (about 4.9:1 or better) over the brightest blobs. If you
   brighten it, lighten the glass tint or change a blob colour, check that
   contrast again; light blobs such as cyan were too bright.
 - **Keyframe names are global**: `chrome.js` injects its own `@keyframes`
