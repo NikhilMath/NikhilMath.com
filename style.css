@@ -1,16 +1,27 @@
 /* Shared styles for every page on nikhilmath.com. */
 
 :root {
-  --text: #e6edf3;
-  --muted: #8b949e;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.78);
   --accent: #ffb86c;
-  --window-bg: rgba(17, 22, 29, 0.82);
-  --titlebar: rgba(48, 52, 60, 0.85);
-  --titlebar-border: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.08);
+  --glass-edge: rgba(255, 255, 255, 0.3);
+  --titlebar: rgba(255, 255, 255, 0.1);
+  --titlebar-border: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, 0.16);
+  /* The backdrop's palette: four gradient stops, then the four blobs. */
+  --sky-1: #061a33;
+  --sky-2: #0a3460;
+  --sky-3: #0b5a72;
+  --sky-4: #0a2a4a;
+  --blob-1: #1e90ff;
+  --blob-2: #0f9f94;
+  --blob-3: #6366f1;
+  --blob-4: #0ea5e9;
 }
 
 * { box-sizing: border-box; }
+
+html { background: var(--sky-1); }
 
 html, body {
   margin: 0;
@@ -27,43 +38,71 @@ body {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: #1a1310;
   position: relative;
 }
 
-body::before {
-  content: "";
+/* A colourful gradient behind everything, with soft blobs drifting across
+   it so the glass window always has something to blur. */
+.blobs {
   position: fixed;
-  inset: -20%;
-  background:
-    radial-gradient(circle at 20% 25%, #c47240 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, #964a20 0%, transparent 50%),
-    radial-gradient(circle at 75% 85%, #d89364 0%, transparent 50%),
-    radial-gradient(circle at 25% 90%, #6b3416 0%, transparent 45%);
-  filter: blur(90px) saturate(90%);
+  inset: 0;
   z-index: 0;
-  animation: drift 30s ease-in-out infinite alternate;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(135deg, var(--sky-1) 0%, var(--sky-2) 40%, var(--sky-3) 75%, var(--sky-4) 100%);
 }
-@keyframes drift {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-4%, 3%) scale(1.08); }
+.blobs span {
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--c) 0%, transparent 68%);
+  opacity: 0.8;
+  animation: blob-drift var(--t) ease-in-out infinite alternate;
+}
+.blobs span:nth-child(1) { --c: var(--blob-1); --t: 24s; --dx: 18vw; --dy: 14vh; top: -25vmax; left: -20vmax; }
+.blobs span:nth-child(2) { --c: var(--blob-2); --t: 30s; --dx: -16vw; --dy: 20vh; top: -10vmax; right: -25vmax; }
+.blobs span:nth-child(3) { --c: var(--blob-3); --t: 36s; --dx: 14vw; --dy: -18vh; bottom: -30vmax; left: -5vmax; }
+.blobs span:nth-child(4) { --c: var(--blob-4); --t: 27s; --dx: -20vw; --dy: -12vh; bottom: -25vmax; right: -15vmax; width: 50vmax; height: 50vmax; }
+@keyframes blob-drift {
+  to { transform: translate(var(--dx), var(--dy)) scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blobs span { animation: none; }
 }
 
+/* The terminal is a pane of glass: a faint white tint over a heavy blur of
+   whatever drifts behind it, with a bright rim and a soft shadow. */
 .window {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 700px;
-  border-radius: 12px;
-  background: var(--window-bg);
-  backdrop-filter: blur(30px) saturate(160%);
-  -webkit-backdrop-filter: blur(30px) saturate(160%);
-  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04) 45%, rgba(255, 255, 255, 0.08));
+  /* Dimmed behind the glass so small text stays readable over the brightest blobs. */
+  backdrop-filter: blur(30px) saturate(150%) brightness(0.55);
+  -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(0.55);
+  border: 1px solid var(--glass-edge);
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.55),
-    0 2px 6px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 30px 70px rgba(2, 12, 30, 0.45),
+    0 2px 8px rgba(2, 12, 30, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
   overflow: hidden;
+}
+/* Light catching the rim, brightest at the top left and bottom right. */
+.window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), transparent 35%, transparent 65%, rgba(255, 255, 255, 0.35));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .titlebar {
@@ -73,8 +112,6 @@ body::before {
   padding: 10px 14px;
   background: var(--titlebar);
   border-bottom: 1px solid var(--titlebar-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 .chrome { display: flex; gap: 8px; }
 .chrome span {
@@ -97,6 +134,7 @@ body::before {
 .terminal {
   padding: 34px 38px 38px 38px;
   position: relative;
+  text-shadow: 0 1px 2px rgba(2, 12, 30, 0.25);
 }
 
 .avatar {
@@ -107,8 +145,8 @@ body::before {
   height: 128px;
   border-radius: 18px;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(2, 12, 30, 0.35);
 }
 @media (max-width: 480px) {
   .avatar { width: 80px; height: 80px; top: 18px; right: 20px; border-radius: 12px; }
@@ -127,9 +165,13 @@ body::before {
   background: var(--accent);
   vertical-align: -2px;
   margin-left: 2px;
-  animation: blink 1.1s steps(2, start) infinite;
+  animation: cursor-blink 1.1s steps(2, start) infinite;
 }
-@keyframes blink { to { visibility: hidden; } }
+/* Solid while the command is being typed out (see typing.js). */
+.cursor.typing { animation: none; }
+/* Not called "blink": chrome.js has its own "blink" for the cat's eyes,
+   and the later definition would win. */
+@keyframes cursor-blink { to { visibility: hidden; } }
 
 h1 {
   margin: 0 0 20px 0;
@@ -221,7 +263,7 @@ hr {
 }
 .project .desc {
   margin: 12px 0 18px 0;
-  color: #cbd5de;
+  color: rgba(255, 255, 255, 0.86);
   font-size: 14px;
   line-height: 1.75;
 }
@@ -229,7 +271,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 18px;
-  color: #a5aeb8;
+  color: var(--muted);
   font-size: 13px;
 }
 .project .play {
@@ -259,16 +301,17 @@ ul.links a {
   gap: 12px;
   padding: 11px 14px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   color: var(--text);
   text-decoration: none;
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
 }
 ul.links a:hover {
   border-color: var(--accent);
-  background: rgba(255, 184, 108, 0.06);
+  background: rgba(255, 184, 108, 0.14);
 }
 ul.links a:active { transform: translateY(1px); }
 
@@ -346,7 +389,7 @@ ul.books .book-rating {
   letter-spacing: 1px;
   line-height: 1;
 }
-ul.books .book-rating .unlit { color: rgba(255, 255, 255, 0.18); }
+ul.books .book-rating .unlit { color: rgba(255, 255, 255, 0.28); }
 
 footer {
   margin-top: 22px;
@@ -357,7 +400,7 @@ footer {
 /* Terminal-style tabs under the title bar, one per page. */
 .tabs {
   display: flex;
-  background: rgba(30, 33, 39, 0.9);
+  background: rgba(255, 255, 255, 0.03);
   border-bottom: 1px solid var(--titlebar-border);
 }
 .tabs a {
@@ -391,7 +434,7 @@ footer {
 
 .intro {
   margin: 0 0 24px 0;
-  color: #cbd5de;
+  color: rgba(255, 255, 255, 0.86);
   font-size: 14px;
   line-height: 1.75;
 }
@@ -409,6 +452,7 @@ footer {
 
 @media (max-width: 480px) {
   body { padding: 16px; }
+  .window { border-radius: 18px; }
   .terminal { padding: 22px 20px 24px 20px; }
   h1 { font-size: 26px; }
   .titlebar .title { display: none; }

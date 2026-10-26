@@ -49,9 +49,9 @@
       display: flex;
       gap: 8px;
       padding: 8px 10px 6px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 16px;
-      background: rgba(40, 32, 28, 0.55);
+      background: rgba(255, 255, 255, 0.14);
       backdrop-filter: blur(24px) saturate(160%);
       -webkit-backdrop-filter: blur(24px) saturate(160%);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);

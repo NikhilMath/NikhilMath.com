@@ -16,8 +16,8 @@ wrong or out of date, fix it.
 ## What this is
 
 Source for [nikhilmath.com](https://nikhilmath.com), Nikhil Math's personal
-landing page, styled as a macOS terminal window over a warm amber
-background. It's a small static site (two pages) with no framework, no
+landing page, styled as a frosted-glass macOS terminal window over a
+colourful gradient. It's a small static site (two pages) with no framework, no
 build step and no dependencies, and it should stay that way.
 
 Netlify deploys the repo root from `master` on every push, so `master` is
@@ -31,6 +31,7 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | `games/index.html` | The video games page at `/games/`, with a card for each game Nikhil has made. |
 | `style.css` | Every page's CSS, linked as `/style.css`. |
 | `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
+| `typing.js` | Types out the prompt's command (`whoami`, `ls ~/games`) on load. |
 | `.github/scripts/update-books.py` | Regenerates the book covers from Goodreads (see below). |
 | `.github/workflows/update-books.yml` | Runs that script daily and commits any changes. |
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
@@ -47,9 +48,10 @@ Don't bring them back.
 
 **Adding a page.** Make a folder with an `index.html` and copy the shell of
 `games/index.html`: the `<head>` (its own title, description, canonical and
-`og:`/`twitter:` tags, the favicon, the font and `/style.css`), a `.window`
-with a `.chrome` of three spans, the `.tabs` nav, the footer, and
-`<script src="/chrome.js" defer>`. Add the new tab to the `.tabs` nav on
+`og:`/`twitter:` tags, the favicon, the font and `/style.css`), the
+`.blobs` div of four spans, a `.window` with a `.chrome` of three spans,
+the `.tabs` nav, the footer, and both `<script src="/chrome.js" defer>`
+and `<script src="/typing.js" defer>`. Add the new tab to the `.tabs` nav on
 **every** page, and mark the current page's tab with `aria-current="page"`.
 Then add the page to `sitemap.xml`. Use root-relative paths (`/style.css`,
 `/avatar.jpg`), because pages live in subfolders. The tab labels only just
@@ -167,8 +169,25 @@ activity; turn it back on from the Actions tab if that happens.
 
 - **Font**: JetBrains Mono from Google Fonts, weights 400 and 600.
 - **Colors**: use the CSS variables on `:root` (`--text`, `--muted`,
-  `--accent`, `--border` and so on). The accent is amber `#ffb86c`. The
-  design is dark only, with no light mode.
+  `--accent`, `--border` and so on). Text is white or translucent white,
+  and the accent is amber `#ffb86c`. The design is dark only, with no
+  light mode.
+- **Glass**: the backdrop is `.blobs`, a fixed gradient with four soft
+  radial-gradient blobs drifting over it (CSS only, paused under
+  `prefers-reduced-motion`). Its colours are the `--sky-1`…`--sky-4` and
+  `--blob-1`…`--blob-4` variables on `:root`; Nikhil picked an ocean
+  palette (navy, with blue, teal, indigo and sky-blue blobs) over
+  twilight, sunset, aurora and pastel versions. The `.window` is the glass: a faint white
+  tint, `backdrop-filter` blur, a bright rim drawn by `.window::after`,
+  and a soft shadow. The backdrop filter's `brightness(0.55)` dims what
+  shows through the glass so the 13px amber and muted labels stay
+  readable (about 4.4:1 or better) over the brightest blobs. If you
+  brighten it, lighten the glass tint or change a blob colour, check that
+  contrast again; light blobs such as cyan were too bright.
+- **Keyframe names are global**: `chrome.js` injects its own `@keyframes`
+  (`blink`, `drift` and others), and those win over same-named ones in
+  `style.css`. Give new keyframes in `style.css` distinct names, like
+  `cursor-blink` and `blob-drift`.
 - **Voice**: labels are lowercase terminal-style, with a trailing colon in
   the accent color, such as `on the clock:` and `games i've made:`.
   Body copy is casual and first person.
