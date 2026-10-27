@@ -66,7 +66,7 @@ is in git history before 2026-10-26.
 5. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email,
    phone (a `tel:` link). The resume PDF lists a different phone number on
    purpose; don't make them match.
-6. **Books**: `last N books finished:` and `currently reading:`. Generated; see below.
+6. **Books**: `last N books i've read or listened to:` and `currently reading:`. Generated; see below.
 7. **Published books**: `books i've published:`, Nikhil's own pick-your-path
    books on Amazon, in the same cover grid as the Goodreads books. This list
    is hand-edited and sits outside the generated block. Covers load from
@@ -103,7 +103,7 @@ the next run overwrites it.
 - `update-books.py` reads the Goodreads RSS feeds for user `143237965`
   (goodreads.com/nikhilmath): the `read` and `currently-reading` shelves.
 - It shows the 5 most recently finished books, sorted by date read and then
-  date added, under `last N books finished:`. It also shows up to 5
+  date added, under `last N books i've read or listened to:`. It also shows up to 5
   currently-reading books, newest first. The currently-reading heading is
   left out when that shelf is empty.
 - Titles are shortened for captions. Subtitles, trailing series tags such as

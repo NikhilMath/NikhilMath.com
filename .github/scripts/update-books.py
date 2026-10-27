@@ -100,7 +100,7 @@ def main():
     reading = sorted(fetch("currently-reading"), key=lambda b: b["added"], reverse=True)
 
     finished = read[:SHOW]
-    label = f"last {len(finished)} books finished" if len(finished) > 1 else "last book finished"
+    label = f"last {len(finished)} books i've read or listened to" if len(finished) > 1 else "last book i've read or listened to"
     lines = section(label, finished)
     if reading:
         lines += section("currently reading", reading[:SHOW])
