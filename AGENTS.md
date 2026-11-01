@@ -59,7 +59,8 @@ is in git history before 2026-10-26.
    (about four seconds, with a beat after the `$`), keeping the amber `~`
    and `$`. Under `prefers-reduced-motion` it shows the line at once.
 4. **Status**, in two columns:
-   - `on the clock:` lists current roles, each linked to the organization.
+   - `on the clock:` lists current roles, each linked to the organization
+     except Property Manager, which Nikhil asked to leave unlinked.
    - `off-hours:` lists hobbies.
 5. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email,
    phone (a `tel:` link). The resume PDF lists a different phone number on
