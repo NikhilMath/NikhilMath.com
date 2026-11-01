@@ -2,32 +2,8 @@
 //
 // Red closes, yellow minimizes to a dock, green zooms. A page only needs a
 // `.window` containing a `.chrome` with three spans, plus this script.
-//
-// Also runs the title bar's "liquid glass" switch, which flips the page to
-// the classic look by setting <html data-look="classic">. The choice is
-// saved, and an inline script in the page's <head> applies it before the
-// first paint so the page doesn't flash the wrong look.
 (() => {
   "use strict";
-
-  const lookToggle = document.querySelector(".look-toggle");
-  if (lookToggle) {
-    const root = document.documentElement;
-    const showState = () =>
-      lookToggle.setAttribute("aria-checked", String(root.dataset.look !== "classic"));
-    showState();
-    lookToggle.addEventListener("click", () => {
-      const classic = root.dataset.look !== "classic";
-      if (classic) root.dataset.look = "classic";
-      else delete root.dataset.look;
-      try {
-        localStorage.setItem("look", classic ? "classic" : "glass");
-      } catch (e) {
-        // Private windows can refuse storage; the switch still works for this visit.
-      }
-      showState();
-    });
-  }
 
   const win = document.querySelector(".window");
   const lights = win && win.querySelectorAll(".chrome > span");
@@ -73,17 +49,13 @@
       display: flex;
       gap: 8px;
       padding: 8px 10px 6px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.14);
+      background: rgba(40, 32, 28, 0.55);
       backdrop-filter: blur(24px) saturate(160%);
       -webkit-backdrop-filter: blur(24px) saturate(160%);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
       transform: translateX(-50%);
-    }
-    [data-look="classic"] .chrome-dock {
-      border-color: rgba(255, 255, 255, 0.12);
-      background: rgba(40, 32, 28, 0.55);
     }
     .chrome-dock:empty { display: none; }
     .chrome-dock button {
