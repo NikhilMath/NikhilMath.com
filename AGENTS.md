@@ -79,8 +79,13 @@ much to it.
 ## Things that must stay in sync
 
 - **Job title or employer**: `<title>`, `<meta name="description">`, the
-  JSON-LD `jobTitle` / `worksFor` / `knowsAbout`, the first item under
-  `on the clock:`.
+  JSON-LD `jobTitle` / `worksFor` / `knowsAbout`, and `on the clock:`.
+  These follow the resume's headline (`IT Support Manager | CompTIA A+ |
+  ITIL 4 | ...`). Nikhil's Visionary Homes job ended in Nov 2026, so the
+  page has no IT employer under `on the clock:` and no JSON-LD
+  `worksFor`. The title, the description and `jobTitle` still say IT
+  Support Manager because that's the resume's headline. When he starts a
+  new IT job, add it to the top of `on the clock:` and add `worksFor` back.
 - **Profiles**: the link rows and the JSON-LD `sameAs` list should name the same accounts.
 - **Link-preview text**: each `og:*` tag has a `twitter:*` twin. Change both.
 - **Photo**: `avatar.jpg` is also the JSON-LD `image`. `og-image.png` shows
