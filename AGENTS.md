@@ -68,7 +68,12 @@ is in git history before 2026-10-26.
    Covers load from
    Amazon by ASIN (`m.media-amazon.com/images/P/<ASIN>.01._SCLZZZZZZZ_SX500_.jpg`),
    and the links are the product pages with the search tracking stripped.
-7. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
+7. **Apps**: `apps i've made:`, Nikhil's iPhone apps on the App Store
+   (Plate Chase, Chip Chaser), hand-edited, in the same grid as the books
+   with `ul.books.apps` making the icons square with rounded corners. Icon
+   URLs come from `https://itunes.apple.com/lookup?id=<app id>`
+   (`artworkUrl512`, with `512x512bb` swapped for `240x240bb`).
+8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
 Nikhil asked to keep the page clean, so check with him before adding
 much to it.

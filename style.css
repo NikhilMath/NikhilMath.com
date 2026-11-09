@@ -240,7 +240,12 @@ ul.links a.download .label,
 ul.links a.download .arrow { color: var(--accent); }
 ul.links a.download:hover .arrow { color: var(--hover); }
 
-.published { margin-top: 28px; }
+.published, .apps { margin-top: 28px; }
+/* App icons: square, with the iPhone's rounded corners. */
+ul.books.apps img {
+  aspect-ratio: 1;
+  border-radius: 22%;
+}
 ul.books {
   list-style: none;
   padding: 0;
