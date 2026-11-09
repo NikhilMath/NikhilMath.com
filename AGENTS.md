@@ -61,7 +61,9 @@ on phones it's all one column.
 3. **Things I've made**: two mini sections, each an `<h3>` over its own
    `ul.links`: **Pick-your-path stories** (Hex Support, Keyboard Heist)
    first, then **iPhone apps** (Chip Chaser, Plate Chase); Nikhil wants
-   the books first. The headings say what each item is, so the subtitles
+   the books first. Each title carries an age-rating pill
+   (`.age`): Hex Support 18+, Keyboard Heist 13+, Chip Chaser and Plate
+   Chase All Ages (Nikhil's ratings). The headings say what each item is, so the subtitles
    don't repeat "iPhone app". Each is a card
    with its icon or cover. App icon URLs come from
    `https://itunes.apple.com/lookup?id=<app id>` (`artworkUrl512`, with
