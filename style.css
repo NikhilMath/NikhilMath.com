@@ -108,7 +108,8 @@ ul.links {
   padding: 0;
   margin: 0;
 }
-ul.links a {
+ul.links > li > a,
+ul.links .card {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -123,11 +124,11 @@ ul.links a {
   box-shadow: 0 2px 0 var(--card-edge), 0 8px 20px rgba(160, 80, 20, 0.08);
   transition: transform 120ms ease, box-shadow 120ms ease;
 }
-ul.links a:hover {
+ul.links > li > a:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 0 var(--accent), 0 12px 24px rgba(160, 80, 20, 0.14);
 }
-ul.links a:active { transform: translateY(0); }
+ul.links > li > a:active { transform: translateY(0); }
 ul.links a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -169,6 +170,28 @@ ul.links .arrow {
   font-size: 18px;
 }
 ul.links a:hover .arrow { color: var(--accent); }
+/* Book cards aren't one link: each has two equal buttons, the paperback
+   on Amazon and the book's own website. */
+.book-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.book-links a {
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--icon-bg);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 120ms ease, color 120ms ease;
+}
+.book-links a:hover {
+  background: var(--accent);
+  color: #fff;
+}
 
 footer {
   margin-top: 34px;
@@ -227,10 +250,11 @@ footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
   }
-  .more ul.links a { margin: 0; height: 100%; }
+  .more ul.links > li > a,
+  .more ul.links .card { margin: 0; height: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   ul.links a { transition: none; }
-  ul.links a:hover { transform: none; }
+  ul.links > li > a:hover { transform: none; }
 }
