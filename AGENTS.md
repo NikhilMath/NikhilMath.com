@@ -48,6 +48,9 @@ is in git history before 2026-10-26.
 
 ## The page, top to bottom
 
+On wide screens the intro is on the left and items 2–5 sit in a column
+on the right; on phones it's all one column.
+
 1. **Intro**: the round avatar, the name as `<h1>` (Fraunces), the roles
    line (President of Recovery Cafe is linked; Property Manager is left
    unlinked at Nikhil's request), and the hobbies as plain text chips.
@@ -144,8 +147,14 @@ history; don't bring it back unless asked.
 - **Links**: external links get `target="_blank" rel="noopener"`.
 - **Images**: give real images alt text. Icons and covers inside link
   cards use `alt=""` because the card's text already names them.
-- **Phones**: one breakpoint, `@media (max-width: 480px)`, which shrinks
-  the avatar and name. The column is 460px max with a 16px gutter.
+- **Layout**: below 1000px it's one centred column (460px max, 16px
+  gutter), and `@media (max-width: 480px)` shrinks the avatar and name.
+  From `@media (min-width: 1000px)` it takes the layout of the
+  link-preview card, which Nikhil liked: the intro (`.intro`) on the left,
+  left-aligned, vertically centred and `position: sticky`, with the link
+  cards (`.cards`) in a 420px column on the right. The roles go on
+  separate lines there (the ` · ` separator is hidden). Keep
+  `tools/og-image.html` matching this layout.
 - **Favicon**: an inline SVG data URI (a cream serif `N` on dark brown),
   with no separate file.
 
