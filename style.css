@@ -160,15 +160,15 @@ ul.links a:hover .arrow { color: var(--accent); }
 .book-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 10px;
 }
 .book-links a {
-  padding: 5px 11px;
+  padding: 8px 14px;
   border-radius: 999px;
   background: var(--icon-bg);
   color: var(--text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   transition: background 120ms ease, color 120ms ease;
