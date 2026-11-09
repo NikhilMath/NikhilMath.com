@@ -240,8 +240,7 @@ ul.links a.download .label,
 ul.links a.download .arrow { color: var(--accent); }
 ul.links a.download:hover .arrow { color: var(--hover); }
 
-.reading, .published { margin-top: 28px; }
-ul.books + .section-key { margin-top: 26px; }
+.published { margin-top: 28px; }
 ul.books {
   list-style: none;
   padding: 0;
@@ -290,15 +289,6 @@ ul.books .book-author {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-ul.books .book-rating {
-  display: block;
-  margin-top: 5px;
-  color: var(--accent);
-  font-size: 15px;
-  letter-spacing: 1px;
-  line-height: 1;
-}
-ul.books .book-rating .unlit { color: rgba(255, 255, 255, 0.18); }
 
 footer {
   margin-top: 22px;

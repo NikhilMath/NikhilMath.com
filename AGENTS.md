@@ -31,8 +31,6 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | `style.css` | All the CSS, linked as `/style.css`. |
 | `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
 | `typing.js` | Types out the prompt line slowly on load. |
-| `.github/scripts/update-books.py` | Regenerates the book covers from Goodreads (see below). |
-| `.github/workflows/update-books.yml` | Runs that script daily and commits any changes. |
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
 | `avatar.jpg` | 800×800 photo shown at the top right of the home page. |
 | `og-image.png` | 1200×630 link-preview image, a picture of the terminal design with the photo. |
@@ -65,13 +63,12 @@ is in git history before 2026-10-26.
 5. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email,
    phone (a `tel:` link). The resume PDF lists a different phone number on
    purpose; don't make them match.
-6. **Books**: `last N books i've read or listened to:` and `currently reading:`. Generated; see below.
-7. **Published books**: `books i've published:`, Nikhil's own pick-your-path
-   books on Amazon, in the same cover grid as the Goodreads books. This list
-   is hand-edited and sits outside the generated block. Covers load from
+6. **Published books**: `books i've published:`, Nikhil's own pick-your-path
+   books on Amazon, in a cover grid (`ul.books`). This list is hand-edited.
+   Covers load from
    Amazon by ASIN (`m.media-amazon.com/images/P/<ASIN>.01._SCLZZZZZZZ_SX500_.jpg`),
    and the links are the product pages with the search tracking stripped.
-8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
+7. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
 Nikhil asked to keep the page clean, so check with him before adding
 much to it.
@@ -95,42 +92,15 @@ much to it.
 - **Domain**: the canonical URL, `og:url`, JSON-LD URLs and `sitemap.xml`
   all use `https://nikhilmath.com/`.
 
-## Book covers update themselves
+## No Goodreads book list
 
-Everything between `<!-- goodreads:start ... -->` and `<!-- goodreads:end -->`
-in `index.html` is generated. **Don't hand-edit inside that block**, because
-the next run overwrites it.
-
-- `update-books.py` reads the Goodreads RSS feeds for user `143237965`
-  (goodreads.com/nikhilmath): the `read` and `currently-reading` shelves.
-- It shows the 5 most recently finished books, sorted by date read and then
-  date added, under `last N books i've read or listened to:`. It also shows up to 5
-  currently-reading books, newest first. The currently-reading heading is
-  left out when that shelf is empty.
-- Titles are shortened for captions. Subtitles, trailing series tags such as
-  `(Dragon Ball Super, #24)`, and year ranges such as `(2024-)` are dropped,
-  and `Volume` becomes `Vol.`. A subtitle is kept when it carries the volume
-  or issue number, as in `Solo Leveling: Ragnarok, Vol. 1`.
-- Each book Nikhil has rated on Goodreads shows Nikhil's own rating underneath,
-  as amber `★` stars with the unearned ones dimmed (`.book-rating`,
-  `.unlit`). Unrated books (rating 0 in the feed) show no stars. JetBrains
-  Mono has no `★`, so the browser borrows the glyph from a fallback font,
-  which is why the stars are set larger than the caption text.
-- Covers load from Goodreads' image servers at 240px wide (`._SX240_` in the
-  filename). Goodreads resizes based on that part of the filename.
-- It refuses to write if the read shelf comes back empty or the markers are
-  missing, so a Goodreads outage can't wipe the section.
-- To change the markup, labels or count, edit the script, then run
-  `python3 .github/scripts/update-books.py` to regenerate the block. To
-  change the look, edit the `ul.books` CSS in `style.css`. The script uses
-  only Python's standard library.
-
-The workflow runs daily at 12:00 UTC (about 6am in Utah). It can also be
-run by hand from the Actions tab or with `gh workflow run update-books.yml`.
-It commits as `github-actions[bot]` with the message
-`Update My Books From Goodreads`, and only when the block changed. GitHub
-turns off scheduled workflows in public repos after 60 days with no repo
-activity; turn it back on from the Actions tab if that happens.
+The page used to show the last few books Nikhil read and was currently
+reading, pulled daily from Goodreads RSS by a GitHub Action. Nikhil
+dropped it on 2026-11-08 ("if people cared, they will check out my
+goodreads"); the goodreads link row is enough. The feed had also broken:
+once Nikhil published books, Goodreads turned the profile into an author
+page and `review/list_rss/143237965` started returning 404. Don't bring
+the list back without asking; the old script is in git history.
 
 ## The liquid glass look was removed
 
@@ -202,11 +172,10 @@ history if wanted.
 ## Commits and pushing
 
 - Work directly on `master` with no branches or PRs, and push when you're
-  done; the owner wants changes to go live. Pull with `--rebase` first,
-  because the book bot also commits to `master`.
+  done; the owner wants changes to go live. Pull with `--rebase` first
+  in case `master` moved.
 - Commit subjects are imperative and Title Case with no prefix, and describe
   what a visitor would notice. For example:
-  `Show My Goodreads Books And Keep Them Updated Daily`,
   `Catch The Wizard Cat Napping On His Spellbook`,
   `Swap The Resume Page For A PDF Download And Link My Roles`.
   Add a short body when the why isn't obvious.
