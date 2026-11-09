@@ -66,21 +66,6 @@ h1 {
   text-underline-offset: 3px;
 }
 .roles a:hover { color: var(--accent); text-decoration-color: currentColor; }
-.hobbies {
-  list-style: none;
-  padding: 0;
-  margin: 14px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-}
-.hobbies li {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 999px;
-  padding: 4px 11px;
-  font-size: 13px;
-}
 
 /* ---- Section headings ---- */
 h2 {
@@ -243,7 +228,6 @@ footer {
   .roles { font-size: 22px; line-height: 1.45; }
   .roles span { display: block; }
   .roles .sep { display: none; }
-  .hobbies { justify-content: flex-start; margin-top: 18px; }
   .more h2 { text-align: left; padding-left: 4px; margin: 36px 0 12px; }
   .more ul.links {
     display: grid;

@@ -54,7 +54,8 @@ on phones it's all one column.
 
 1. **Intro**: the round avatar, the name as `<h1>` (Fraunces), the roles
    line (President of Recovery Cafe is linked; Property Manager is left
-   unlinked at Nikhil's request), and the hobbies as plain text chips.
+   unlinked at Nikhil's request). Nikhil removed the hobbies (rock
+   climbing, Pokémon Go, 3D printing) on 2026-11-08; don't add them back.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
    PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
 3. **Things I've made**: Nikhil's iPhone apps (Plate Chase, Chip Chaser)
