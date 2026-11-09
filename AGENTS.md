@@ -153,7 +153,8 @@ history; don't bring it back unless asked.
   From `@media (min-width: 1000px)`, the top of the page (`.hero`) is laid
   out like the link-preview card, which Nikhil liked: the intro on the
   left, left-aligned, and the four main links on the right in a 420px
-  column, filling the first screen (up to 780px tall). The roles go on
+  column. The hero has no minimum height, so the rest follows right
+  after it with no big gap (Nikhil asked for that). The roles go on
   separate lines there (the ` · ` separator is hidden). Everything else
   (`.more`: things I've made, say hi) follows below in a two-column grid
   of the same cards. Keep `tools/og-image.html` matching the hero.

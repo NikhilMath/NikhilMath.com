@@ -192,12 +192,11 @@ footer {
     padding: 0 64px 48px;
   }
   .hero {
-    min-height: min(100vh, 780px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) 420px;
     gap: 56px;
     align-items: center;
-    padding: 48px 0;
+    padding: 72px 0 12px;
   }
   .hero > section { margin-top: 0; }
   .intro {
@@ -222,7 +221,7 @@ footer {
   .roles span { display: block; }
   .roles .sep { display: none; }
   .hobbies { justify-content: flex-start; margin-top: 18px; }
-  .more h2 { text-align: left; padding-left: 4px; margin: 28px 0 12px; }
+  .more h2 { text-align: left; padding-left: 4px; margin: 36px 0 12px; }
   .more ul.links {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
