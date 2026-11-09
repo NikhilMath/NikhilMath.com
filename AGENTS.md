@@ -64,9 +64,9 @@ on phones it's all one column.
    `512x512bb` swapped for `240x240bb`). Book covers load from Amazon by
    ASIN (`m.media-amazon.com/images/P/<ASIN>.01._SCLZZZZZZZ_SX500_.jpg`).
    Each book card (`.card.book`, a `div`, not a link) has two equal
-   buttons (`.book-links`): **Paperback**, the Amazon paperback page with
+   buttons (`.book-links`): **Paperback on Amazon**, the Amazon paperback page with
    the search tracking stripped (both ASINs are the paperback editions),
-   and **Read online**, the book's own site: Keyboard Heist at
+   and **Play online for free**, the book's own site (Nikhil's wording): Keyboard Heist at
    `https://keyboardheist.com/` and Hex Support at
    `https://hex-support.netlify.app/` (repos `NikhilMath/Keyboard-Heist`
    and `NikhilMath/Hex-Support`). If Hex Support gets a custom domain,
