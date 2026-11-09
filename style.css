@@ -77,6 +77,13 @@ h2 {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+h3 {
+  margin: 18px 0 2px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -241,6 +248,7 @@ footer {
   .roles span { display: block; }
   .roles .sep { display: none; }
   .more h2 { text-align: left; padding-left: 4px; margin: 36px 0 12px; }
+  .more h3 { text-align: left; padding-left: 4px; margin: 20px 0 10px; }
   .more ul.links {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

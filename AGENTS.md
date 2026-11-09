@@ -58,9 +58,11 @@ on phones it's all one column.
    climbing, Pokémon Go, 3D printing) on 2026-11-08; don't add them back.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
    PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
-3. **Things I've made**: Nikhil's pick-your-path books first (Keyboard
-   Heist, Hex Support), then his iPhone apps (Plate Chase, Chip Chaser);
-   Nikhil wants the books first. Each is a card
+3. **Things I've made**: two mini sections, each an `<h3>` over its own
+   `ul.links`: **Pick-your-path stories** (Keyboard Heist, Hex Support)
+   first, then **iPhone apps** (Plate Chase, Chip Chaser); Nikhil wants
+   the books first. The headings say what each item is, so the subtitles
+   don't repeat "iPhone app". Each is a card
    with its icon or cover. App icon URLs come from
    `https://itunes.apple.com/lookup?id=<app id>` (`artworkUrl512`, with
    `512x512bb` swapped for `240x240bb`). Book covers load from Amazon by
