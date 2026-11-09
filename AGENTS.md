@@ -32,7 +32,8 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | `style.css` | All the CSS, linked as `/style.css`. |
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
 | `avatar.jpg` | 800×800 photo shown in the circle at the top of the page. |
-| `og-image.png` | 1200×630 link-preview image, still a picture of the old terminal design (see "Things that must stay in sync"). |
+| `og-image.png` | 1200×630 link-preview image in the site's style: photo, name, roles and the four main link cards. |
+| `tools/og-image.html` | Source for `og-image.png`; render it with the command under "Preview image and favicon follow the design". |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
 | `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists the home page with a hand-set `<lastmod>`. |
 | `.vscode/settings.json` | Sets VS Code Live Server to port 5501. |
@@ -83,9 +84,20 @@ much to it.
   new IT job, add it to the top of `on the clock:` and add `worksFor` back.
 - **Profiles**: the link rows and the JSON-LD `sameAs` list should name the same accounts.
 - **Link-preview text**: each `og:*` tag has a `twitter:*` twin. Change both.
-- **Photo**: `avatar.jpg` is also the JSON-LD `image`. `og-image.png` shows
-  the design and photo, so it goes stale if either changes. It still shows
-  the old terminal design and needs remaking for the link-card design.
+- **Photo**: `avatar.jpg` is also the JSON-LD `image`, and it's in
+  `og-image.png`.
+- **Preview image and favicon follow the design.** Nikhil's standing rule:
+  whenever the site's look changes (colours, fonts, layout, main links,
+  roles), update `og-image.png` and the favicon in the same change so
+  they match, without being asked. Edit `tools/og-image.html`, then
+  render it with headless Chrome from the repo root:
+
+  ```bash
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --user-data-dir="$(mktemp -d)" --window-size=1200,630 --virtual-time-budget=6000 --screenshot="$PWD/og-image.png" "file://$PWD/tools/og-image.html"
+  ```
+
+  Look at the PNG before committing. The favicon is the inline SVG data
+  URI in `index.html`'s `<head>`.
 - **Resume**: replace `Nikhil-Math-Resume.pdf` and keep the filename; the
   home page links to it with `download`.
 - **Domain**: the canonical URL, `og:url`, JSON-LD URLs and `sitemap.xml`
