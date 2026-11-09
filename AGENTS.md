@@ -51,7 +51,7 @@ is in git history before 2026-10-26.
    line (President of Recovery Cafe is linked; Property Manager is left
    unlinked at Nikhil's request), and the hobbies as plain text chips.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
-   PDF), GitHub, LinkedIn, Goodreads.
+   PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
 3. **Things I've made**: Nikhil's iPhone apps (Plate Chase, Chip Chaser)
    and pick-your-path books (Keyboard Heist, Hex Support), each a card
    with its icon or cover. App icon URLs come from
