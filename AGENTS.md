@@ -74,7 +74,10 @@ on phones it's all one column.
    and `NikhilMath/Hex-Support`). If Hex Support gets a custom domain,
    update the link. The buttons are a row of their own under the cover
    and title (`flex-basis: 100%`), indented to the title on wide screens
-   and full width on phones, so the long labels never wrap.
+   and full width on phones, so the long labels never wrap. Nikhil wants
+   the two buttons exactly the same size: `.book-links` is a grid of
+   equal `1fr` columns (`auto-fit`, `minmax(250px, 1fr)`), so they sit
+   side by side when there's room and stack otherwise.
 4. **Say hi**: email and phone (a `tel:` link). The resume PDF lists a
    different phone number on purpose; don't make them match.
 5. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
