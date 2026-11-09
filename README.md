@@ -4,4 +4,4 @@
 
 Source for my personal landing page.
 
-Static site with no build step: one page, a terminal window over a warm amber glow.
+Static site with no build step: one page of link cards on a warm peach gradient.

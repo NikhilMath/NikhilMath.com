@@ -16,8 +16,9 @@ wrong or out of date, fix it.
 ## What this is
 
 Source for [nikhilmath.com](https://nikhilmath.com), Nikhil Math's personal
-landing page, styled as a macOS terminal window: a dark window over a
-warm amber glow. It's a small static site (one page) with no framework, no build step and no
+landing page: a link-in-bio style column of equal-weight link cards on a
+warm peach gradient. It's a small static site (one page) with no
+framework, no build step, no JavaScript beyond the footer year and no
 dependencies, and it should stay that way.
 
 Netlify deploys the repo root from `master` on every push, so `master` is
@@ -29,11 +30,9 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | --- | --- |
 | `index.html` | The site's only page, at `/`. Its only inline JavaScript sets the footer year. |
 | `style.css` | All the CSS, linked as `/style.css`. |
-| `chrome.js` | Makes the window's red/yellow/green buttons work, and holds the wizard-cat easter egg. |
-| `typing.js` | Types out the prompt line slowly on load. |
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
-| `avatar.jpg` | 800×800 photo shown at the top right of the home page. |
-| `og-image.png` | 1200×630 link-preview image, a picture of the terminal design with the photo. |
+| `avatar.jpg` | 800×800 photo shown in the circle at the top of the page. |
+| `og-image.png` | 1200×630 link-preview image, still a picture of the old terminal design (see "Things that must stay in sync"). |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
 | `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists the home page with a hand-set `<lastmod>`. |
 | `.vscode/settings.json` | Sets VS Code Live Server to port 5501. |
@@ -43,37 +42,31 @@ The site once had other pages (`books/`, `resume/`, `archive/`,
 `resume-blaster/`, a `wiki/` page, and a `games/` video games page with a
 tab bar for switching pages), which were removed on purpose. Don't bring
 them back. If a second page is ever wanted, it needs its own copy of the
-`<head>` and window shell plus some navigation again; the old `.tabs` nav
+`<head>` plus some navigation again; the old `.tabs` nav
 is in git history before 2026-10-26.
 
 ## The page, top to bottom
 
-1. **Title bar**: traffic lights and `nikhil@math — -zsh — 90×27` in the
-   middle. The size label is
-   decoration, and it's hidden on phones.
-2. **Avatar** in the top right corner (128px, or 80px on phones).
-3. **Prompt line** `~ nikhil@math:$ whoami` with a blinking cursor, then
-   the name as `<h1>`. `typing.js` types the whole line out slowly on load
-   (about four seconds, with a beat after the `$`), keeping the amber `~`
-   and `$`. Under `prefers-reduced-motion` it shows the line at once.
-4. **Status**, in two columns:
-   - `on the clock:` lists current roles, each linked to the organization
-     except Property Manager, which Nikhil asked to leave unlinked.
-   - `off-hours:` lists hobbies.
-5. **Link rows**: resume (a highlighted download), github, linkedin, goodreads, email,
-   phone (a `tel:` link). The resume PDF lists a different phone number on
-   purpose; don't make them match.
-6. **Published books**: `books i've published:`, Nikhil's own pick-your-path
-   books on Amazon, in a cover grid (`ul.books`). This list is hand-edited.
-   Covers load from
-   Amazon by ASIN (`m.media-amazon.com/images/P/<ASIN>.01._SCLZZZZZZZ_SX500_.jpg`),
+1. **Intro**: the round avatar, the name as `<h1>` (Fraunces), the roles
+   line (President of Recovery Cafe is linked; Property Manager is left
+   unlinked at Nikhil's request), and the hobbies as plain text chips.
+2. **Links** (heading visually hidden): Résumé (a `download` link to the
+   PDF), GitHub, LinkedIn, Goodreads.
+3. **Things I've made**: Nikhil's iPhone apps (Plate Chase, Chip Chaser)
+   and pick-your-path books (Keyboard Heist, Hex Support), each a card
+   with its icon or cover. App icon URLs come from
+   `https://itunes.apple.com/lookup?id=<app id>` (`artworkUrl512`, with
+   `512x512bb` swapped for `240x240bb`). Book covers load from Amazon by
+   ASIN (`m.media-amazon.com/images/P/<ASIN>.01._SCLZZZZZZZ_SX500_.jpg`),
    and the links are the product pages with the search tracking stripped.
-7. **Apps**: `apps i've made:`, Nikhil's iPhone apps on the App Store
-   (Plate Chase, Chip Chaser), hand-edited, in the same grid as the books
-   with `ul.books.apps` making the icons square with rounded corners. Icon
-   URLs come from `https://itunes.apple.com/lookup?id=<app id>`
-   (`artworkUrl512`, with `512x512bb` swapped for `240x240bb`).
-8. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
+4. **Say hi**: email and phone (a `tel:` link). The resume PDF lists a
+   different phone number on purpose; don't make them match.
+5. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
+
+**Every link must carry the same visual weight.** Nikhil wants visitors
+to see the résumé, LinkedIn, Goodreads and the rest as equals, each
+saying plainly what it does (a name plus a short line like "download the
+PDF" or "books I've read"). Don't highlight one link over the others.
 
 Nikhil asked to keep the page clean, so check with him before adding
 much to it.
@@ -91,7 +84,8 @@ much to it.
 - **Profiles**: the link rows and the JSON-LD `sameAs` list should name the same accounts.
 - **Link-preview text**: each `og:*` tag has a `twitter:*` twin. Change both.
 - **Photo**: `avatar.jpg` is also the JSON-LD `image`. `og-image.png` shows
-  the design and photo, so it goes stale if either changes.
+  the design and photo, so it goes stale if either changes. It still shows
+  the old terminal design and needs remaking for the link-card design.
 - **Resume**: replace `Nikhil-Math-Resume.pdf` and keep the filename; the
   home page links to it with `download`.
 - **Domain**: the canonical URL, `og:url`, JSON-LD URLs and `sitemap.xml`
@@ -107,72 +101,52 @@ once Nikhil published books, Goodreads turned the profile into an author
 page and `review/list_rss/143237965` started returning 404. Don't bring
 the list back without asking; the old script is in git history.
 
-## The liquid glass look was removed
+## Earlier designs
 
-From 2026-10-26 to 2026-11-01 a title bar switch offered a "liquid glass"
-look (frosted window, ocean-blue blobs, seafoam accent). Nikhil had it
-removed, so the amber look is now the only one and lives in the base rules
-of `style.css`. Don't bring the switch back unless asked; it's in git
-history if wanted.
-
-## Window buttons and the wizard cat (`chrome.js`)
-
-- **Red** fades the window out and shows `[Process completed]`, with a
-  wizard cat startled awake from a nap on his spellbook. Clicking the cat
-  brings the window back.
-- **Yellow** shrinks the window into a dock at the bottom, with a `>_`
-  icon. Clicking the icon restores it.
-- **Green** toggles `.zoomed`, which widens the window from 700px to 1200px.
-- The buttons are keyboard accessible (role, tabindex, Enter/Space, focus
-  rings). All motion is skipped under `prefers-reduced-motion`.
-- The cat's SVG and all of `chrome.js`'s CSS are inlined in the script.
-  The script expects the `.window > ... > .chrome > span ×3` structure, so
-  keep that markup if you restyle the title bar.
+The site was a macOS terminal window over an amber glow until
+2026-11-08, with typed-out prompt text (`typing.js`), working window
+buttons and a wizard-cat easter egg (`chrome.js`). A "liquid glass"
+variant with a title bar switch ran from 2026-10-26 to 2026-11-01.
+Nikhil replaced the terminal with the current link-card design ("Stack")
+after comparing several windowless concepts. All of it is in git
+history; don't bring it back unless asked.
 
 ## Style
 
-- **Font**: JetBrains Mono from Google Fonts, weights 400 and 600.
+- **Fonts**: Fraunces 600 for the name, Inter 400/600 for everything
+  else, both from Google Fonts.
 - **Colors**: use the CSS variables on `:root` (`--text`, `--muted`,
-  `--accent`, `--hover`, `--border` and so on). For a translucent accent
-  tint use `rgba(var(--accent-rgb), alpha)`. The accent is amber
-  `#ffb86c`. The design is dark only, with no light mode.
-- **Backdrop**: `.glow` is a fixed dark layer whose `::before` holds four
-  blurred amber radial gradients drifting slowly (`amber-drift`, paused
-  under `prefers-reduced-motion`). The `.window` is a dark translucent
-  pane with a `backdrop-filter` blur.
-- **Keyframe names are global**: `chrome.js` injects its own `@keyframes`
-  (`blink`, `drift` and others), and those win over same-named ones in
-  `style.css`. Give new keyframes in `style.css` distinct names, like
-  `cursor-blink` and `amber-drift`. (An older glow used `drift`, which
-  clashed with the cat's and made the glow fade out every 30 seconds.)
-- **Voice**: labels are lowercase terminal-style, with a trailing colon in
-  the accent color, such as `on the clock:` and `books i've published:`.
-  Body copy is casual and first person.
-- **Components**: borders are 1px translucent; hover states turn the
-  border `var(--hover)` (amber), with
-  transitions around 120ms. External links get
-  `target="_blank" rel="noopener"`.
-- **Images**: give real images alt text. Book covers use `alt=""` because
-  the caption under each one already names the book.
-- **Phones**: one breakpoint, `@media (max-width: 480px)`. The page gets a
-  16px gutter and 20px terminal padding. The books become a sideways swipe
-  strip, using `-20px` margins to run edge to edge; if you change the
-  terminal padding, change those margins to match. The email shows as
-  `erulemath<wbr>@gmail.com` so it can wrap at the `@` on narrow phones.
-- **Favicon**: an inline SVG data URI (`>_` in amber), with no separate file.
+  `--faint`, `--heading`, `--card`, `--card-edge`, `--icon-bg`,
+  `--accent`, and the `--bg-*` gradient stops). Hover and focus use
+  `--accent`, a burnt orange. The design is light only.
+- **Link cards** (`ul.links a`): a white card with a 2px solid lip
+  underneath (`--card-edge`), a 44px icon tile on the left, the name and
+  a `<small>` description, and an arrow on the right (`↓` for the
+  download, `↗` for other sites, `→` for email and phone). Hover lifts the
+  card 2px and turns the lip and arrow `--accent`, over 120ms; motion is
+  off under `prefers-reduced-motion`.
+- **Icons**: small inline SVG line icons (stroke `currentColor`), not
+  emoji. Nikhil asked for the page to be "less emoji'd".
+- **Voice**: casual and first person. Section headings are small
+  uppercase letter-spaced labels.
+- **Links**: external links get `target="_blank" rel="noopener"`.
+- **Images**: give real images alt text. Icons and covers inside link
+  cards use `alt=""` because the card's text already names them.
+- **Phones**: one breakpoint, `@media (max-width: 480px)`, which shrinks
+  the avatar and name. The column is 460px max with a 16px gutter.
+- **Favicon**: an inline SVG data URI (a cream serif `N` on dark brown),
+  with no separate file.
 
 ## Testing a change
 
 - Serve the folder rather than opening the file directly, for example with
   `python3 -m http.server 5501` or VS Code Live Server. Root-relative paths
-  like `/chrome.js` don't load over `file://`. In the Claude desktop app, a
+  like `/style.css` don't load over `file://`. In the Claude desktop app, a
   `.claude/launch.json` server can't read this folder (it's under
   `~/Documents`), so start `http.server` from the shell in the background
   and open `http://localhost:5501` in the browser pane instead.
 - Check widths of 320, 360, 375 and 390px, plus desktop, and look for
-  horizontal scrolling at each. Also check the zoomed window (green button).
-- If you touched the window or title bar, click all three buttons, reopen
-  the window via the cat, and restore it from the dock.
+  horizontal scrolling at each.
 
 ## Commits and pushing
 
@@ -181,6 +155,5 @@ history if wanted.
   in case `master` moved.
 - Commit subjects are imperative and Title Case with no prefix, and describe
   what a visitor would notice. For example:
-  `Catch The Wizard Cat Napping On His Spellbook`,
   `Swap The Resume Page For A PDF Download And Link My Roles`.
   Add a short body when the why isn't obvious.

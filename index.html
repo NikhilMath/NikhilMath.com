@@ -39,131 +39,115 @@
     }
   }
   </script>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='ui-monospace,Menlo,Consolas,monospace' font-size='36' font-weight='700' fill='%23ffb86c'%3E%26gt;_%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232a1a0e'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-weight='700' fill='%23ffd9b3'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="glow" aria-hidden="true"></div>
-  <main class="window">
-    <div class="titlebar">
-      <div class="chrome"><span></span><span></span><span></span></div>
-      <div class="title">nikhil@math — -zsh — 90×27</div>
-    </div>
-    <div class="terminal">
-      <img class="avatar" src="avatar.jpg" alt="Nikhil Math">
-      <div class="prompt"><span class="accent">~</span> nikhil@math:<span class="accent">$</span> whoami<span class="cursor"></span></div>
+  <main class="page">
+    <header class="intro">
+      <img class="avatar" src="avatar.jpg" alt="Nikhil Math" width="112" height="112">
       <h1>Nikhil Math</h1>
+      <p class="roles"><a href="https://recoverycafelogan.com" target="_blank" rel="noopener">President of Recovery Cafe</a> · Property&nbsp;Manager</p>
+      <ul class="hobbies" aria-label="Hobbies">
+        <li>Rock Climbing</li>
+        <li>Pokémon Go</li>
+        <li>Functional 3D Printing</li>
+      </ul>
+    </header>
 
-      <div class="status">
-        <p class="currently">
-          <span class="key">on the clock:</span><br>
-          - <a href="https://recoverycafelogan.com" target="_blank" rel="noopener">President of Recovery Cafe</a><br>
-          - Property Manager
-        </p>
-        <p class="currently">
-          <span class="key">off-hours:</span><br>
-          - Rock Climbing<br>
-          - Pokémon Go<br>
-          - Functional 3D Printing
-        </p>
-      </div>
-
-      <hr>
+    <section aria-labelledby="links-h">
+      <h2 id="links-h" class="visually-hidden">Links</h2>
       <ul class="links">
         <li>
-          <a class="download" href="/Nikhil-Math-Resume.pdf" download>
-            <span class="label">resume</span>
-            <span class="value">download pdf</span>
-            <span class="arrow">&darr;</span>
+          <a href="/Nikhil-Math-Resume.pdf" download>
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></span>
+            <span class="text">Résumé<small>download the PDF</small></span>
+            <span class="arrow" aria-hidden="true">↓</span>
           </a>
         </li>
         <li>
           <a href="https://github.com/NikhilMath" target="_blank" rel="noopener">
-            <span class="label">github</span>
-            <span class="value">NikhilMath</span>
-            <span class="arrow">&rarr;</span>
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-5 4 5 4"/><path d="m16 8 5 4-5 4"/><path d="m13.5 5-3 14"/></svg></span>
+            <span class="text">GitHub<small>see my code</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
           </a>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/nikhil-math/" target="_blank" rel="noopener">
-            <span class="label">linkedin</span>
-            <span class="value">nikhil-math</span>
-            <span class="arrow">&rarr;</span>
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></span>
+            <span class="text">LinkedIn<small>my work history</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
           </a>
         </li>
         <li>
           <a href="https://www.goodreads.com/nikhilmath" target="_blank" rel="noopener">
-            <span class="label">goodreads</span>
-            <span class="value">nikhilmath</span>
-            <span class="arrow">&rarr;</span>
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13"/><path d="M8 7h7"/></svg></span>
+            <span class="text">Goodreads<small>books I've read</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="made-h">
+      <h2 id="made-h">Things I've made</h2>
+      <ul class="links">
+        <li>
+          <a href="https://apps.apple.com/us/app/plate-chase-50-states-dc/id6831714785" target="_blank" rel="noopener">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/17/85/f1/1785f135-e093-422c-3b57-f9f447e6e5a2/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/240x240bb.jpg" alt="" width="44" height="44" loading="lazy">
+            <span class="text">Plate Chase<small>iPhone app · spot all 50 states + DC</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
           </a>
         </li>
         <li>
+          <a href="https://apps.apple.com/us/app/chip-chaser-dealer-chips/id6831792838" target="_blank" rel="noopener">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/67/5a/bd/675abd72-13d9-bf5a-dac4-4f4ccef9930d/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/240x240bb.jpg" alt="" width="44" height="44" loading="lazy">
+            <span class="text">Chip Chaser<small>iPhone app · dealer chips</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.amazon.com/Keyboard-Heist-Pick-Your-Path-Nikhil-Math/dp/B0HNWM68N8" target="_blank" rel="noopener">
+            <img src="https://m.media-amazon.com/images/P/B0HNWM68N8.01._SCLZZZZZZZ_SX500_.jpg" alt="" width="44" height="44" loading="lazy">
+            <span class="text">Keyboard Heist<small>pick-your-path book</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.amazon.com/Hex-Support-Pick-Your-Path-Nikhil-Math/dp/B0HP57KCVC" target="_blank" rel="noopener">
+            <img src="https://m.media-amazon.com/images/P/B0HP57KCVC.01._SCLZZZZZZZ_SX500_.jpg" alt="" width="44" height="44" loading="lazy">
+            <span class="text">Hex Support<small>pick-your-path book</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="hi-h">
+      <h2 id="hi-h">Say hi</h2>
+      <ul class="links">
+        <li>
           <a href="mailto:erulemath@gmail.com">
-            <span class="label">email</span>
-            <span class="value">erulemath<wbr>@gmail.com</span>
-            <span class="arrow">&rarr;</span>
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <span class="text">Email<small>erulemath@gmail.com</small></span>
+            <span class="arrow" aria-hidden="true">→</span>
           </a>
         </li>
         <li>
           <a href="tel:+14359194041">
-            <span class="label">phone</span>
-            <span class="value">435-919-4041</span>
-            <span class="arrow">&rarr;</span>
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
+            <span class="text">Phone<small>435-919-4041</small></span>
+            <span class="arrow" aria-hidden="true">→</span>
           </a>
         </li>
       </ul>
+    </section>
 
-      <section class="published">
-        <hr>
-        <p class="section-key">books i've published:</p>
-        <ul class="books">
-          <li>
-            <a href="https://www.amazon.com/Keyboard-Heist-Pick-Your-Path-Nikhil-Math/dp/B0HNWM68N8" target="_blank" rel="noopener">
-              <img src="https://m.media-amazon.com/images/P/B0HNWM68N8.01._SCLZZZZZZZ_SX500_.jpg" alt="" width="240" height="360" loading="lazy">
-              <span class="book-title">Keyboard Heist</span>
-              <span class="book-author">pick your path</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.amazon.com/Hex-Support-Pick-Your-Path-Nikhil-Math/dp/B0HP57KCVC" target="_blank" rel="noopener">
-              <img src="https://m.media-amazon.com/images/P/B0HP57KCVC.01._SCLZZZZZZZ_SX500_.jpg" alt="" width="240" height="360" loading="lazy">
-              <span class="book-title">Hex Support</span>
-              <span class="book-author">pick your path</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section class="apps">
-        <hr>
-        <p class="section-key">apps i've made:</p>
-        <ul class="books apps">
-          <li>
-            <a href="https://apps.apple.com/us/app/plate-chase-50-states-dc/id6831714785" target="_blank" rel="noopener">
-              <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/17/85/f1/1785f135-e093-422c-3b57-f9f447e6e5a2/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/240x240bb.jpg" alt="" width="240" height="240" loading="lazy">
-              <span class="book-title">Plate Chase</span>
-              <span class="book-author">iphone app</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://apps.apple.com/us/app/chip-chaser-dealer-chips/id6831792838" target="_blank" rel="noopener">
-              <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/67/5a/bd/675abd72-13d9-bf5a-dac4-4f4ccef9930d/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/240x240bb.jpg" alt="" width="240" height="240" loading="lazy">
-              <span class="book-title">Chip Chaser</span>
-              <span class="book-author">iphone app</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <footer>&copy; <span id="year"></span> Nikhil Math</footer>
-    </div>
+    <footer>&copy; <span id="year"></span> Nikhil Math</footer>
   </main>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-  <script src="/chrome.js" defer></script>
-  <script src="/typing.js" defer></script>
 </body>
 </html>
