@@ -47,6 +47,7 @@
 </head>
 <body>
   <main class="page">
+    <div class="hero">
     <header class="intro">
       <img class="avatar" src="avatar.jpg" alt="Nikhil Math" width="112" height="112">
       <h1>Nikhil Math</h1>
@@ -58,7 +59,6 @@
       </ul>
     </header>
 
-    <div class="cards">
     <section aria-labelledby="links-h">
       <h2 id="links-h" class="visually-hidden">Links</h2>
       <ul class="links">
@@ -92,7 +92,9 @@
         </li>
       </ul>
     </section>
+    </div>
 
+    <div class="more">
     <section aria-labelledby="made-h">
       <h2 id="made-h">Things I've made</h2>
       <ul class="links">
@@ -146,9 +148,9 @@
         </li>
       </ul>
     </section>
+    </div>
 
     <footer>&copy; <span id="year"></span> Nikhil Math</footer>
-    </div>
   </main>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>

@@ -48,8 +48,9 @@ is in git history before 2026-10-26.
 
 ## The page, top to bottom
 
-On wide screens the intro is on the left and items 2–5 sit in a column
-on the right; on phones it's all one column.
+On wide screens items 1 and 2 form the hero (intro left, links right,
+like the preview card) and items 3 and 4 follow below in two columns;
+on phones it's all one column.
 
 1. **Intro**: the round avatar, the name as `<h1>` (Fraunces), the roles
    line (President of Recovery Cafe is linked; Property Manager is left
@@ -149,12 +150,13 @@ history; don't bring it back unless asked.
   cards use `alt=""` because the card's text already names them.
 - **Layout**: below 1000px it's one centred column (460px max, 16px
   gutter), and `@media (max-width: 480px)` shrinks the avatar and name.
-  From `@media (min-width: 1000px)` it takes the layout of the
-  link-preview card, which Nikhil liked: the intro (`.intro`) on the left,
-  left-aligned, vertically centred and `position: sticky`, with the link
-  cards (`.cards`) in a 420px column on the right. The roles go on
-  separate lines there (the ` · ` separator is hidden). Keep
-  `tools/og-image.html` matching this layout.
+  From `@media (min-width: 1000px)`, the top of the page (`.hero`) is laid
+  out like the link-preview card, which Nikhil liked: the intro on the
+  left, left-aligned, and the four main links on the right in a 420px
+  column, filling the first screen (up to 780px tall). The roles go on
+  separate lines there (the ` · ` separator is hidden). Everything else
+  (`.more`: things I've made, say hi) follows below in a two-column grid
+  of the same cards. Keep `tools/og-image.html` matching the hero.
 - **Favicon**: an inline SVG data URI (a cream serif `N` on dark brown),
   with no separate file.
 
