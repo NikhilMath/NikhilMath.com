@@ -157,11 +157,14 @@ ul.links .arrow {
 ul.links a:hover .arrow { color: var(--accent); }
 /* Book cards aren't one link: each has two equal buttons, the paperback
    on Amazon and the book's own website. */
+ul.links .card.book { flex-wrap: wrap; }
 .book-links {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  flex-basis: 100%;
+  margin-top: -2px;
+  padding-left: 58px;   /* lines up with the title, past the 44px cover */
 }
 .book-links a {
   padding: 8px 14px;
@@ -171,6 +174,7 @@ ul.links a:hover .arrow { color: var(--accent); }
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
   transition: background 120ms ease, color 120ms ease;
 }
 .book-links a:hover {
@@ -189,6 +193,9 @@ footer {
   .page { padding-top: 40px; }
   .avatar { width: 96px; height: 96px; }
   h1 { font-size: 30px; }
+  /* Room for the long button labels: run them the card's full width. */
+  .book-links { padding-left: 0; }
+  .book-links a { flex: 1 1 auto; text-align: center; }
 }
 
 /* Wide screens: the top of the page is laid out like the link-preview
