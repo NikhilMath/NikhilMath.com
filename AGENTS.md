@@ -59,8 +59,8 @@ on phones it's all one column.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
    PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
 3. **Things I've made**: two mini sections, each an `<h3>` over its own
-   `ul.links`: **Pick-your-path stories** (Keyboard Heist, Hex Support)
-   first, then **iPhone apps** (Plate Chase, Chip Chaser); Nikhil wants
+   `ul.links`: **Pick-your-path stories** (Hex Support, Keyboard Heist)
+   first, then **iPhone apps** (Chip Chaser, Plate Chase); Nikhil wants
    the books first. The headings say what each item is, so the subtitles
    don't repeat "iPhone app". Each is a card
    with its icon or cover. App icon URLs come from
