@@ -58,11 +58,13 @@ on phones it's all one column.
    climbing, Pokémon Go, 3D printing) on 2026-11-08; don't add them back.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
    PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
-3. **Things I've made**: two mini sections, each an `<h3>` over its own
+3. **Things I've made**: three mini sections, each an `<h3>` over its own
    `ul.links`: **Pick-your-path stories** (Hex Support, Keyboard Heist)
-   first, then **iPhone apps** (Chip Chaser, Plate Chase); Nikhil wants
-   the books first. Each title carries an age-rating pill
-   (`.age`): Hex Support 18+, Keyboard Heist 13+, Chip Chaser and Plate
+   first, then **Journals** (Build Your Bucket List, a guided journal,
+   ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has no
+   online version), then **iPhone apps** (Chip Chaser, Plate Chase);
+   Nikhil wants the books first. Each title carries an age-rating pill
+   (`.age`): Hex Support 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser and Plate
    Chase All Ages (Nikhil's ratings). The headings say what each item is, so the subtitles
    don't repeat "iPhone app". Each is a card
    with its icon or cover. App icon URLs come from
