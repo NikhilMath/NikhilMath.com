@@ -270,6 +270,7 @@ footer {
   }
   .more ul.links > li > a,
   .more ul.links .card { margin: 0; height: 100%; }
+  .more ul.links > li.wide { grid-column: 1 / -1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
