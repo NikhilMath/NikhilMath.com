@@ -149,6 +149,21 @@ ul.links .text {
   flex: 1;
   min-width: 0;
 }
+/* The featured (wide) card is taller and shows the whole cover. */
+ul.links > li.wide > a {
+  gap: 18px;
+  padding: 18px 22px 18px 18px;
+  font-size: 19px;
+}
+ul.links > li.wide img {
+  width: 72px;
+  height: 103px;
+  border-radius: 8px;
+}
+ul.links > li.wide small {
+  margin-top: 3px;
+  font-size: 14px;
+}
 ul.links small {
   display: block;
   margin-top: 1px;

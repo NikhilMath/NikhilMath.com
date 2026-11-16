@@ -61,8 +61,8 @@ on phones it's all one column.
 3. **Things I've made**: three mini sections, each an `<h3>` over its own
    `ul.links`: **Journals** first (Build Your Bucket List, a guided
    journal, ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has
-   no online version, with `li.wide` so it spans both columns on wide
-   screens), then **Pick-your-path stories** (Hex Support, Keyboard
+   no online version, with `li.wide` so it spans both columns on wide screens and is taller,
+   showing the whole cover at 72×103 (Nikhil asked for it thicker)), then **Pick-your-path stories** (Hex Support, Keyboard
    Heist), then **iPhone apps** (Chip Chaser, Plate Chase); Nikhil wants
    the journal first and the books before the apps. Each title carries an age-rating pill
    (`.age`): Hex Support 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser and Plate
