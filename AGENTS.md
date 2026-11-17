@@ -33,6 +33,7 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
 | `avatar.jpg` | 800×800 photo shown in the circle at the top of the page. |
 | `og-image.png` | 1200×630 link-preview image in the site's style: photo, name, roles and the four main link cards. |
+| `root-access.jpg` | 480×720 cover for Root Access, which isn't on Amazon yet. It's made in the style of the Amazon covers, using the art from that site's link-preview image. |
 | `tools/og-image.html` | Source for `og-image.png`; render it with the command under "Preview image and favicon follow the design". |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
 | `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists the home page with a hand-set `<lastmod>`. |
@@ -63,9 +64,9 @@ on phones it's all one column.
    journal, ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has
    no online version, with `li.wide` so it spans both columns on wide screens and is taller,
    showing the whole cover at 72×103 (Nikhil asked for it thicker)), then **Pick-your-path stories** (Hex Support, Keyboard
-   Heist), then **iPhone apps** (Chip Chaser, Plate Chase); Nikhil wants
+   Heist, Root Access), then **iPhone apps** (Chip Chaser, Plate Chase); Nikhil wants
    the journal first and the books before the apps. Each title carries an age-rating pill
-   (`.age`): Hex Support 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser and Plate
+   (`.age`): Hex Support and Root Access (an "R-rated" comedy) 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser and Plate
    Chase All Ages (Nikhil's ratings). The headings say what each item is, so the subtitles
    don't repeat "iPhone app". Each is a card
    with its icon or cover. App icon URLs come from
@@ -79,7 +80,11 @@ on phones it's all one column.
    `https://keyboardheist.com/` and Hex Support at
    `https://hex-support.netlify.app/` (repos `NikhilMath/Keyboard-Heist`
    and `NikhilMath/Hex-Support`). If Hex Support gets a custom domain,
-   update the link. The buttons are a row of their own under the cover
+   update the link. Root Access is only a website so far
+   (`https://it-root-access.netlify.app/`), so its card has just the Play
+   Online for Free button and uses `root-access.jpg` for its cover. When it
+   comes out on Amazon, add the paperback button and the Amazon cover, then
+   delete the JPEG. The buttons are a row of their own under the cover
    and title (`flex-basis: 100%`), indented to the title on wide screens
    and full width on phones, so the long labels never wrap. Nikhil wants
    the two buttons exactly the same size: `.book-links` is a grid of
