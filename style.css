@@ -286,6 +286,8 @@ footer {
   .more ul.links > li > a,
   .more ul.links .card { margin: 0; height: 100%; }
   .more ul.links > li.wide { grid-column: 1 / -1; }
+  /* Everything under a section heading is indented from it. */
+  .more section > h2 ~ * { margin-left: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

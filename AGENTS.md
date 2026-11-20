@@ -199,7 +199,10 @@ history; don't bring it back unless asked.
   after it with no big gap (Nikhil asked for that). The roles go on
   separate lines there (the ` · ` separator is hidden). Everything else
   (`.more`: published books, things I've made, say hi) follows below in a two-column grid
-  of the same cards. Keep `tools/og-image.html` matching the hero.
+  of the same cards. There the headings are left-aligned, and everything
+  under each `<h2>` (the `<h3>`s and the cards) is indented 24px from it,
+  at Nikhil's request (2026-11-20). On phones the headings are centred,
+  so nothing is indented. Keep `tools/og-image.html` matching the hero.
 - **Favicon**: an inline SVG data URI (a cream serif `N` on dark brown),
   with no separate file.
 
