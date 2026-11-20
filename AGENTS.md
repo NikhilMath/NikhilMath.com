@@ -33,7 +33,7 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | `Nikhil-Math-Resume.pdf` | The resume linked from the "resume" row. |
 | `avatar.jpg` | 800×800 photo shown in the circle at the top of the page. |
 | `og-image.png` | 1200×630 link-preview image in the site's style: photo, name, roles and the four main link cards. |
-| `root-access.jpg` | 480×720 cover for Root Access, which isn't on Amazon yet. It's made in the style of the Amazon covers, using the art from that site's link-preview image. |
+| `root-access.jpg` | 480×720 cover for Root Access, which isn't on Amazon yet. It's made in the style of the Amazon covers, using the art from that site's link-preview image. Not on the page right now (see Root Access below); kept for when its card comes back. |
 | `pen-holder.jpg` | 240×240 icon for the Molecule Pen Holder card: a square crop of that app's 3D view of caffeine, taken with headless Chrome. |
 | `tools/og-image.html` | Source for `og-image.png`; render it with the command under "Preview image and favicon follow the design". |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
@@ -65,10 +65,10 @@ on phones it's all one column.
    journal, ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has
    no online version, with `li.wide` so it spans both columns on wide screens and is taller,
    showing the whole cover at 72×103 (Nikhil asked for it thicker)), then **Pick-your-path stories** (Hex Support, Keyboard
-   Heist, Root Access), then **iPhone apps** (Chip Chaser, Plate Chase), then
+   Heist), then **iPhone apps** (Chip Chaser, Plate Chase), then
    **Web apps** (Molecule Pen Holder); Nikhil wants
    the journal first and the books before the apps. Each title carries an age-rating pill
-   (`.age`): Hex Support and Root Access (an "R-rated" comedy) 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser, Plate
+   (`.age`): Hex Support 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser, Plate
    Chase and Molecule Pen Holder All Ages (Nikhil's ratings). The Molecule
    Pen Holder (`https://smiles-penholder.netlify.app/`) turns a molecule's
    SMILES string into a 3D-printable pen holder shaped like its skeletal
@@ -90,11 +90,14 @@ on phones it's all one column.
    `https://keyboardheist.com/` and Hex Support at
    `https://hex-support.netlify.app/` (repos `NikhilMath/Keyboard-Heist`
    and `NikhilMath/Hex-Support`). If Hex Support gets a custom domain,
-   update the link. Root Access is only a website so far
-   (`https://it-root-access.netlify.app/`), so its card has just the Play
-   Online for Free button and uses `root-access.jpg` for its cover. When it
-   comes out on Amazon, add the paperback button and the Amazon cover, then
-   delete the JPEG. The buttons are a row of their own under the cover
+   update the link. **Root Access** (`https://it-root-access.netlify.app/`,
+   an "R-rated" comedy, 18+) is off the page for now: Nikhil took it down
+   on 2026-11-20 because it isn't finished. Don't add it back until he says
+   it's done. Its card is in git history (added in `5e3e620`), the third
+   item under Pick-your-path stories. Because it was only a website, it
+   had just the Play Online for Free button and used `root-access.jpg` as
+   its cover. When it reaches Amazon, add the paperback button and the
+   Amazon cover, then delete the JPEG. The buttons are a row of their own under the cover
    and title (`flex-basis: 100%`), indented to the title on wide screens
    and full width on phones, so the long labels never wrap. Nikhil wants
    the two buttons exactly the same size: `.book-links` is a grid of
