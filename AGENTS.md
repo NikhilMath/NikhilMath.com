@@ -34,6 +34,7 @@ production. There's no `netlify.toml`; Netlify's settings live in its web UI.
 | `avatar.jpg` | 800×800 photo shown in the circle at the top of the page. |
 | `og-image.png` | 1200×630 link-preview image in the site's style: photo, name, roles and the four main link cards. |
 | `root-access.jpg` | 480×720 cover for Root Access, which isn't on Amazon yet. It's made in the style of the Amazon covers, using the art from that site's link-preview image. |
+| `pen-holder.jpg` | 240×240 icon for the Molecule Pen Holder card: a square crop of that app's 3D view of caffeine, taken with headless Chrome. |
 | `tools/og-image.html` | Source for `og-image.png`; render it with the command under "Preview image and favicon follow the design". |
 | `googleea46bcb01ea400be.html` | Google Search Console verification. Never delete it or the matching meta tag. |
 | `robots.txt`, `sitemap.xml` | Allow all crawlers. The sitemap lists the home page with a hand-set `<lastmod>`. |
@@ -59,15 +60,24 @@ on phones it's all one column.
    climbing, Pokémon Go, 3D printing) on 2026-11-08; don't add them back.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
    PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
-3. **Things I've made**: three mini sections, each an `<h3>` over its own
+3. **Things I've made**: four mini sections, each an `<h3>` over its own
    `ul.links`: **Journals** first (Build Your Bucket List, a guided
    journal, ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has
    no online version, with `li.wide` so it spans both columns on wide screens and is taller,
    showing the whole cover at 72×103 (Nikhil asked for it thicker)), then **Pick-your-path stories** (Hex Support, Keyboard
-   Heist, Root Access), then **iPhone apps** (Chip Chaser, Plate Chase); Nikhil wants
+   Heist, Root Access), then **iPhone apps** (Chip Chaser, Plate Chase), then
+   **Web apps** (Molecule Pen Holder); Nikhil wants
    the journal first and the books before the apps. Each title carries an age-rating pill
-   (`.age`): Hex Support and Root Access (an "R-rated" comedy) 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser and Plate
-   Chase All Ages (Nikhil's ratings). The headings say what each item is, so the subtitles
+   (`.age`): Hex Support and Root Access (an "R-rated" comedy) 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser, Plate
+   Chase and Molecule Pen Holder All Ages (Nikhil's ratings). The Molecule
+   Pen Holder (`https://smiles-penholder.netlify.app/`) turns a molecule's
+   SMILES string into a 3D-printable pen holder shaped like its skeletal
+   formula; Nikhil started it with Modhephene, which his dad synthesized.
+   It's its own Netlify site from the `NikhilMath/SMILES-holder` repo and
+   loads its files from `/assets` and `/vendor` at the root, so it can't
+   be proxied to a sub-path of nikhilmath.com without rebuilding it with
+   a base path. A subdomain set up in Netlify would work. If it gets one,
+   update the link. The headings say what each item is, so the subtitles
    don't repeat "iPhone app". Each is a card
    with its icon or cover. App icon URLs come from
    `https://itunes.apple.com/lookup?id=<app id>` (`artworkUrl512`, with
@@ -203,6 +213,10 @@ history; don't bring it back unless asked.
 - Work directly on `master` with no branches or PRs, and push when you're
   done; the owner wants changes to go live. Pull with `--rebase` first
   in case `master` moved.
+- A Claude Code worktree under `.claude/worktrees/` can start from an old
+  commit, weeks behind `master` (one started from the terminal design
+  after the link-card redesign had shipped). Fetch `master` and check
+  the page before you plan a change.
 - Commit subjects are imperative and Title Case with no prefix, and describe
   what a visitor would notice. For example:
   `Swap The Resume Page For A PDF Download And Link My Roles`.
