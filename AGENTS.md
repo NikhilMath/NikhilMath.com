@@ -51,7 +51,7 @@ is in git history before 2026-10-26.
 ## The page, top to bottom
 
 On wide screens items 1 and 2 form the hero (intro left, links right,
-like the preview card) and items 3 and 4 follow below in two columns;
+like the preview card) and items 3 to 5 follow below in two columns;
 on phones it's all one column.
 
 1. **Intro**: the round avatar, the name as `<h1>` (Fraunces), the roles
@@ -60,13 +60,16 @@ on phones it's all one column.
    climbing, Pokémon Go, 3D printing) on 2026-11-08; don't add them back.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
    PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
-3. **Things I've made**: four mini sections, each an `<h3>` over its own
-   `ul.links`: **Journals** first (Build Your Bucket List, a guided
+3. **Published books** and 4. **Things I've made**: two `<h2>` sections,
+   each split into mini sections, an `<h3>` over its own `ul.links`.
+   Nikhil asked on 2026-11-20 for the books to get their own section.
+   **Published books** comes first and holds **Journals** (Build Your
+   Bucket List, a guided
    journal, ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has
    no online version, with `li.wide` so it spans both columns on wide screens and is taller,
    showing the whole cover at 72×103 (Nikhil asked for it thicker)), then **Pick-your-path stories** (Hex Support, Keyboard
-   Heist), then **iPhone apps** (Chip Chaser, Plate Chase), then
-   **Web apps** (Molecule Pen Holder); Nikhil wants
+   Heist). **Things I've made** follows with **iPhone apps** (Chip Chaser,
+   Plate Chase), then **Web apps** (Molecule Pen Holder); Nikhil wants
    the journal first and the books before the apps. Each title carries an age-rating pill
    (`.age`): Hex Support 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser, Plate
    Chase and Molecule Pen Holder All Ages (Nikhil's ratings). The Molecule
@@ -103,9 +106,9 @@ on phones it's all one column.
    the two buttons exactly the same size: `.book-links` is a grid of
    equal `1fr` columns (`auto-fit`, `minmax(250px, 1fr)`), so they sit
    side by side when there's room and stack otherwise.
-4. **Say hi**: email and phone (a `tel:` link). The resume PDF lists a
+5. **Say hi**: email and phone (a `tel:` link). The resume PDF lists a
    different phone number on purpose; don't make them match.
-5. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
+6. **Footer**: `© <year> Nikhil Math`, with the year filled in by script.
 
 **Every link must carry the same visual weight.** Nikhil wants visitors
 to see the résumé, LinkedIn, Goodreads and the rest as equals, each
@@ -195,7 +198,7 @@ history; don't bring it back unless asked.
   column. The hero has no minimum height, so the rest follows right
   after it with no big gap (Nikhil asked for that). The roles go on
   separate lines there (the ` · ` separator is hidden). Everything else
-  (`.more`: things I've made, say hi) follows below in a two-column grid
+  (`.more`: published books, things I've made, say hi) follows below in a two-column grid
   of the same cards. Keep `tools/og-image.html` matching the hero.
 - **Favicon**: an inline SVG data URI (a cream serif `N` on dark brown),
   with no separate file.
