@@ -185,8 +185,9 @@ history; don't bring it back unless asked.
   off under `prefers-reduced-motion`.
 - **Icons**: small inline SVG line icons (stroke `currentColor`), not
   emoji. Nikhil asked for the page to be "less emoji'd".
-- **Voice**: casual and first person. Section headings are small
-  uppercase letter-spaced labels.
+- **Voice**: casual and first person. Section headings (`<h2>`) are
+  uppercase letter-spaced labels, 16px on phones and 18px on wide
+  screens (Nikhil asked for them bigger than the old 12px).
 - **Links**: external links get `target="_blank" rel="noopener"`.
 - **Images**: give real images alt text. Icons and covers inside link
   cards use `alt=""` because the card's text already names them.

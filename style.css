@@ -72,9 +72,9 @@ h2 {
   margin: 30px 0 4px;
   text-align: center;
   color: var(--heading);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 h3 {
@@ -276,7 +276,7 @@ footer {
   .roles { font-size: 22px; line-height: 1.45; }
   .roles span { display: block; }
   .roles .sep { display: none; }
-  .more h2 { margin: 36px 0 12px; }   /* stays centred, like on phones */
+  .more h2 { margin: 40px 0 12px; font-size: 18px; }   /* stays centred, like on phones */
   .more h3 { text-align: left; padding-left: 4px; margin: 20px 0 10px; }
   .more ul.links {
     display: grid;
