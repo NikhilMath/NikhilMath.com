@@ -60,7 +60,7 @@ on phones it's all one column.
    climbing, Pokémon Go, 3D printing) on 2026-11-08; don't add them back.
 2. **Links** (heading visually hidden): Résumé (a `download` link to the
    PDF), LinkedIn, GitHub, Goodreads, in that order (Nikhil's pick).
-3. **Published books** and 4. **Things I've made**: two `<h2>` sections,
+3. **Published books** and 4. **Apps I've made** (renamed from "Things I've made" on 2026-11-20): two `<h2>` sections,
    each split into mini sections, an `<h3>` over its own `ul.links`.
    Nikhil asked on 2026-11-20 for the books to get their own section.
    **Published books** comes first and holds **Journals** (Build Your
@@ -68,7 +68,7 @@ on phones it's all one column.
    journal, ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has
    no online version, with `li.wide` so it spans both columns on wide screens and is taller,
    showing the whole cover at 72×103 (Nikhil asked for it thicker)), then **Pick-your-path stories** (Hex Support, Keyboard
-   Heist). **Things I've made** follows with **iPhone apps** (Chip Chaser,
+   Heist). **Apps I've made** follows with **iPhone apps** (Chip Chaser,
    Plate Chase), then **Web apps** (Molecule Pen Holder); Nikhil wants
    the journal first and the books before the apps. Each title carries an age-rating pill
    (`.age`): Hex Support 18+, Keyboard Heist 13+, Build Your Bucket List, Chip Chaser, Plate
@@ -198,11 +198,11 @@ history; don't bring it back unless asked.
   column. The hero has no minimum height, so the rest follows right
   after it with no big gap (Nikhil asked for that). The roles go on
   separate lines there (the ` · ` separator is hidden). Everything else
-  (`.more`: published books, things I've made, say hi) follows below in a two-column grid
-  of the same cards. There the headings are left-aligned, and everything
-  under each `<h2>` (the `<h3>`s and the cards) is indented 24px from it,
-  at Nikhil's request (2026-11-20). On phones the headings are centred,
-  so nothing is indented. Keep `tools/og-image.html` matching the hero.
+  (`.more`: published books, apps I've made, say hi) follows below in a two-column grid
+  of the same cards. There the `<h2>`s stay centred, as on phones, and
+  the `<h3>`s are left-aligned. Nikhil tried indenting everything under
+  each `<h2>` on 2026-11-20 and didn't like it; don't bring it back.
+  Keep `tools/og-image.html` matching the hero.
 - **Favicon**: an inline SVG data URI (a cream serif `N` on dark brown),
   with no separate file.
 
