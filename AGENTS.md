@@ -65,9 +65,16 @@ on phones it's all one column.
    Nikhil asked on 2026-11-20 for the books to get their own section.
    **Published books** comes first and holds **Journals** (Build Your
    Bucket List, a guided
-   journal, ASIN `B0HRT6PGKM`; a plain link card to Amazon, since it has
-   no online version, with `li.wide` so it spans both columns on wide screens and is taller,
-   showing the whole cover at 72×103 (Nikhil asked for it thicker)), then **Pick-your-path stories** (Hex Support, Keyboard
+   journal, ASIN `B0HRT6PGKM`; a book card like the stories, but with
+   only the Purchase Paperback on Amazon button, since it has no online
+   version (Nikhil asked for the button on 2026-11-20). It's `li.wide`, so
+   it spans both columns on wide screens and is taller, showing the whole
+   cover at 72×103 (Nikhil asked for it thicker). On wide screens its
+   button sits at the right end of the card, the same width as a story
+   button and in line with the right-hand column of them; below 1000px
+   it's a row under the cover like the stories'. `li.wide .book-links` in
+   `style.css` does the sums, so if a book card's padding or the
+   58px indent changes, update it too), then **Pick-your-path stories** (Hex Support, Keyboard
    Heist). **Apps I've made** follows with **iPhone apps** (Chip Chaser,
    Plate Chase), then **Web apps** (Molecule Pen Holder); Nikhil wants
    the journal first and the books before the apps. Each title carries an age-rating pill

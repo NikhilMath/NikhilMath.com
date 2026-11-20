@@ -150,7 +150,8 @@ ul.links .text {
   min-width: 0;
 }
 /* The featured (wide) card is taller and shows the whole cover. */
-ul.links > li.wide > a {
+ul.links > li.wide > a,
+ul.links > li.wide > .card {
   gap: 18px;
   padding: 18px 22px 18px 18px;
   font-size: 19px;
@@ -223,6 +224,14 @@ ul.links .card.book { flex-wrap: wrap; }
   background: var(--accent);
   color: #fff;
 }
+/* The wide card's cover is bigger, so its button row starts further in.
+   The card also has 6px more padding each side than a story card; the
+   negative margin keeps its button's edges in line with theirs. */
+li.wide .book-links {
+  flex-basis: calc(100% + 6px);
+  margin-right: -6px;
+  padding-left: 90px;
+}
 
 footer {
   margin-top: 34px;
@@ -237,6 +246,11 @@ footer {
   h1 { font-size: 30px; }
   /* Room for the long button labels: run them the card's full width. */
   .book-links { padding-left: 0; }
+  li.wide .book-links {
+    flex-basis: calc(100% + 12px);
+    margin-left: -6px;
+    padding-left: 0;
+  }
 }
 
 /* Wide screens: the top of the page is laid out like the link-preview
@@ -286,6 +300,18 @@ footer {
   .more ul.links > li > a,
   .more ul.links .card { margin: 0; height: 100%; }
   .more ul.links > li.wide { grid-column: 1 / -1; }
+  /* A full-width button row would be far too long, so the wide card's
+     button sits at the right end, next to the title. It's as wide as the
+     story buttons below and lines up with the right-hand column of them:
+     a story button is half the row (less the 14px gap) minus 86px (its
+     card's 12px + 16px padding and the 58px indent). 100% here is the
+     wide card's content box, 40px narrower than the card. */
+  li.wide .book-links {
+    flex: none;
+    width: calc(50% - 73px);
+    margin: 0 -6px 0 0;   /* the wide card has 6px more right padding */
+    padding-left: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
